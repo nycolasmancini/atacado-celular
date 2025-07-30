@@ -17,7 +17,22 @@ export async function GET() {
       }
     })
 
-    return NextResponse.json(kits)
+    // Converter Decimal para number para serialização JSON
+    const serializedKits = kits.map(kit => ({
+      ...kit,
+      totalPrice: Number(kit.totalPrice),
+      discount: Number(kit.discount),
+      items: kit.items.map(item => ({
+        ...item,
+        product: {
+          ...item.product,
+          price: Number(item.product.price),
+          specialPrice: Number(item.product.specialPrice)
+        }
+      }))
+    }))
+
+    return NextResponse.json(serializedKits)
   } catch (error) {
     console.error('Error fetching kits:', error)
     return NextResponse.json(

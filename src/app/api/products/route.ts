@@ -60,8 +60,15 @@ export async function GET(request: NextRequest) {
     // Get total count for pagination
     const total = await prisma.product.count({ where });
 
+    // Converter Decimal para number para serialização JSON
+    const serializedProducts = products.map(product => ({
+      ...product,
+      price: Number(product.price),
+      specialPrice: Number(product.specialPrice)
+    }))
+
     return NextResponse.json({
-      products,
+      products: serializedProducts,
       pagination: {
         page,
         limit,

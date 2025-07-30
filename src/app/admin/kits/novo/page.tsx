@@ -1,41 +1,7 @@
 import { prisma } from '@/lib/prisma'
-import { notFound, redirect } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { KitEditor } from '@/components/admin/KitEditor'
-import { updateKit } from '../../actions'
-
-interface EditKitPageProps {
-  params: {
-    id: string
-  }
-}
-
-async function getKit(id: number) {
-  const kit = await prisma.kit.findUnique({
-    where: { id },
-    include: {
-      items: {
-        include: {
-          product: true
-        }
-      }
-    }
-  })
-
-  if (!kit) {
-    return null
-  }
-
-  return {
-    id: kit.id,
-    name: kit.name,
-    description: kit.description,
-    discount: Number(kit.discount),
-    items: kit.items.map(item => ({
-      productId: item.productId,
-      quantity: item.quantity
-    }))
-  }
-}
+import { createKit } from '../actions'
 
 async function getProducts() {
   const products = await prisma.product.findMany({
@@ -63,21 +29,8 @@ async function getProducts() {
   }))
 }
 
-export default async function EditKitPage({ params }: EditKitPageProps) {
-  const id = parseInt(params.id)
-  
-  if (isNaN(id)) {
-    notFound()
-  }
-
-  const [kit, products] = await Promise.all([
-    getKit(id),
-    getProducts()
-  ])
-
-  if (!kit) {
-    notFound()
-  }
+export default async function NovoKitPage() {
+  const products = await getProducts()
 
   const handleSave = async (kitData: {
     name: string
@@ -87,13 +40,22 @@ export default async function EditKitPage({ params }: EditKitPageProps) {
   }) => {
     'use server'
     
-    const result = await updateKit(id, kitData)
+    const result = await createKit(kitData)
     
     if (result.success) {
       redirect('/admin/kits')
     } else {
       throw new Error(result.error)
     }
+  }
+
+  // Kit vazio para novo
+  const emptyKit = {
+    id: 0,
+    name: '',
+    description: '',
+    discount: 0,
+    items: []
   }
 
   return (
@@ -104,15 +66,15 @@ export default async function EditKitPage({ params }: EditKitPageProps) {
             Kits
           </a>
           <span>/</span>
-          <span>Editar</span>
+          <span>Novo Kit</span>
         </div>
         <h1 className="text-2xl font-bold text-gray-900">
-          Editar Kit: {kit.name}
+          Criar Novo Kit
         </h1>
       </div>
 
       <KitEditor
-        kit={kit}
+        kit={emptyKit}
         products={products}
         onSave={handleSave}
       />

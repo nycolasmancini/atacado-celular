@@ -46,6 +46,7 @@ model Kit {
   description String?
   imageUrl    String?
   totalPrice  Decimal
+  discount    Decimal   @default(0)   // Desconto em R$ para mostrar economia
   colorTheme  String    @default("purple-pink")
   isActive    Boolean   @default(true)
   items       KitItem[]
