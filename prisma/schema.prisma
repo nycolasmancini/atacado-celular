@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String
+  slug        String    @unique
+  description String?
+  isActive    Boolean   @default(true)
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("categories")
+}
+
+model Product {
+  id                  Int       @id @default(autoincrement())
+  name                String
+  slug                String    @unique
+  description         String?
+  price               Decimal  // Preço normal atacado
+  specialPrice        Decimal  // Preço especial
+  specialPriceMinQty  Int       @default(100)       // Qtd mínima para preço especial
+  categoryId          Int
+  imageUrl            String?
+  isActive            Boolean   @default(true)
+  category            Category  @relation(fields: [categoryId], references: [id])
+  kitItems            KitItem[]
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  @@map("products")
+}
+
+model Kit {
+  id          Int       @id @default(autoincrement())
+  name        String
+  slug        String    @unique
+  description String?
+  imageUrl    String?
+  totalPrice  Decimal
+  colorTheme  String    @default("purple-pink")
+  isActive    Boolean   @default(true)
+  items       KitItem[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("kits")
+}
+
+model KitItem {
+  id        Int     @id @default(autoincrement())
+  kitId     Int
+  productId Int
+  quantity  Int
+  kit       Kit     @relation(fields: [kitId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@unique([kitId, productId])
+  @@map("kit_items")
+}
+
+model TrackingEvent {
+  id          Int      @id @default(autoincrement())
+  sessionId   String
+  eventType   String
+  phoneNumber String?
+  userAgent   String?
+  ipAddress   String?
+  metadata    Json?
+  createdAt   DateTime @default(now())
+
+  @@index([sessionId])
+  @@index([eventType])
+  @@index([phoneNumber])
+  @@map("tracking_events")
+}
+
+model Admin {
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  password    String
+  name        String
+  isActive    Boolean  @default(true)
+  lastLoginAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("admins")
+}
