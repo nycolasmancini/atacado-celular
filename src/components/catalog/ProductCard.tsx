@@ -95,42 +95,37 @@ export function ProductCard({
         </div>
 
         {/* Content - Right side on mobile */}
-        <div className="flex-1 p-3 flex flex-col justify-between min-w-0">
-          {/* Product Info */}
-          <div className="mb-2">
-            <h3 className="font-semibold text-sm text-gray-900 line-clamp-1 mb-1">
+        <div className="flex-1 p-3 flex flex-col min-w-0">
+          {/* Product Name - Top */}
+          <div className="mb-3 text-center">
+            <h3 className="font-semibold text-base text-gray-900 whitespace-nowrap overflow-hidden text-ellipsis">
               {product.name}
             </h3>
-            <p className="text-xs text-gray-600 line-clamp-1">
-              {product.category.name}
-            </p>
           </div>
 
-          {/* Price and Controls */}
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <div className="flex-shrink-0">
-                <QuantitySelector
-                  value={quantity}
-                  onChange={setQuantity}
-                  specialQty={product.specialPriceMinQty}
-                  className="scale-90 origin-left"
-                />
-              </div>
-              
-              <div className="flex-1 min-w-0">
-                <PriceDisplay
-                  price={product.price}
-                  specialPrice={product.specialPrice}
-                  specialQty={product.specialPriceMinQty}
-                  currentQty={quantity}
-                  pricesUnlocked={pricesUnlocked}
-                />
-              </div>
-            </div>
+          {/* Prices - Horizontal layout */}
+          <div className="mb-3">
+            <PriceDisplay
+              price={product.price}
+              specialPrice={product.specialPrice}
+              specialQty={product.specialPriceMinQty}
+              currentQty={quantity}
+              pricesUnlocked={pricesUnlocked}
+            />
+          </div>
+
+          {/* Quantity Selector - Centered */}
+          <div className="mb-3 flex justify-center">
+            <QuantitySelector
+              value={quantity}
+              onChange={setQuantity}
+              specialQty={product.specialPriceMinQty}
+            />
+          </div>
             
             
-            {/* Add to Cart Section - Mobile */}
+          {/* Add to Cart Section - Mobile */}
+          <div className="mt-auto">
             <AddToCartSection
               product={product}
               quantity={quantity}
@@ -141,12 +136,12 @@ export function ProductCard({
             
             {/* Cart indicator if item is in cart */}
             {cartQuantity > 0 && (
-              <div className="text-xs text-green-600 text-center">
+              <div className="text-xs text-green-600 text-center mt-1">
                 {cartQuantity} no carrinho
               </div>
             )}
-            
           </div>
+            
         </div>
       </div>
 
@@ -171,19 +166,13 @@ export function ProductCard({
             </div>
           )}
           
-          {/* Category Badge */}
-          <div className="absolute top-2 left-2">
-            <span className="bg-black/70 text-white text-xs px-2 py-1 rounded">
-              {product.category.name}
-            </span>
-          </div>
         </div>
 
         {/* Content - Bottom on desktop */}
         <div className="p-4 flex flex-col flex-1">
           {/* Product Info */}
           <div className="mb-3">
-            <h3 className="font-semibold text-gray-900 line-clamp-2 mb-1 min-h-[2.5rem]">
+            <h3 className="font-semibold text-lg text-gray-900 text-center whitespace-nowrap overflow-hidden text-ellipsis mb-1">
               {product.name}
             </h3>
           </div>

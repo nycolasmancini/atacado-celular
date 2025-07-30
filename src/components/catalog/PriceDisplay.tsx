@@ -39,26 +39,26 @@ export function PriceDisplay({
 
   return (
     <div className="space-y-2">
-      {/* Always show both prices */}
-      <div className="space-y-1">
+      {/* Mobile: Horizontal layout, Desktop: Vertical */}
+      <div className="flex justify-between items-start md:flex-col md:space-y-1">
         {/* Normal wholesale price */}
         <div className={cn(
-          "flex items-center justify-between text-sm",
+          "flex flex-col text-center md:flex-row md:items-center md:justify-between md:text-left text-sm gap-1",
           isSpecialPriceActive && "line-through text-gray-500"
         )}>
-          <span>Atacado:</span>
-          <span className="font-semibold">{formatPrice(price)}</span>
+          <span className="text-xs md:text-sm">Atacado:</span>
+          <span className="font-semibold text-lg md:text-base">{formatPrice(price)}</span>
         </div>
 
         {/* Special price */}
         <div className={cn(
-          "flex items-center justify-between text-sm",
+          "flex flex-col text-center md:flex-row md:items-center md:justify-between md:text-left text-sm gap-1",
           isSpecialPriceActive 
             ? "text-green-600 font-bold" 
             : "text-gray-600"
         )}>
-          <span>+{specialQty} unidades:</span>
-          <span className="font-semibold">{formatPrice(specialPrice)}</span>
+          <span className="text-xs md:text-sm">+{specialQty} unidades:</span>
+          <span className="font-semibold text-lg md:text-base">{formatPrice(specialPrice)}</span>
         </div>
       </div>
 

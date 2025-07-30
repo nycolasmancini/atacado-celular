@@ -86,9 +86,6 @@ export function AddToCartSection({
       {/* Total Display */}
       {quantity > 0 && (
         <div className="bg-gray-50 rounded-lg p-3 text-center">
-          <div className="text-sm text-gray-600 mb-1">
-            Total ({quantity} unidades):
-          </div>
           <div className="text-lg font-bold text-gray-900">
             {formatPrice(totalPrice)}
           </div>
@@ -125,10 +122,6 @@ export function AddToCartSection({
         )}
       </Button>
 
-      {/* Minimum Order Notice */}
-      <div className="text-xs text-gray-500 text-center">
-        Pedido mínimo: 30 peças no total
-      </div>
     </div>
   );
 }
