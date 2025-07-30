@@ -1,17 +1,26 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { Kit, KitItem, Product } from '@prisma/client'
 import KitCard from './KitCard'
 
 interface KitsSectionProps {
   pricesUnlocked: boolean
-  onRequestWhatsApp: () => void
 }
 
-interface KitWithItems extends Kit {
-  items: (KitItem & { product: Product })[]
+interface Kit {
+  id: number
+  name: string
+  description?: string
+  items: {
+    id: number
+    quantity: number
+    product: {
+      id: number
+      name: string
+      price: number
+      wholesalePrice: number
+    }
+  }[]
 }
 
 // Skeleton Component
@@ -50,8 +59,8 @@ function KitCardSkeleton() {
 }
 
 // Client Component for Data Fetching
-function KitsList({ pricesUnlocked, onRequestWhatsApp }: { pricesUnlocked: boolean, onRequestWhatsApp: () => void }) {
-  const [kits, setKits] = useState<KitWithItems[]>([])
+function KitsList({ pricesUnlocked }: { pricesUnlocked: boolean }) {
+  const [kits, setKits] = useState<Kit[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -131,26 +140,25 @@ function KitsList({ pricesUnlocked, onRequestWhatsApp }: { pricesUnlocked: boole
           kit={kit}
           pricesUnlocked={pricesUnlocked}
           isBestSeller={index === 0}
-          onRequestWhatsApp={onRequestWhatsApp}
         />
       ))}
     </>
   )
 }
 
+// Loading Skeleton Grid
+function KitsLoadingSkeleton() {
+  return (
+    <>
+      {[1, 2, 3].map((i) => (
+        <KitCardSkeleton key={i} />
+      ))}
+    </>
+  )
+}
+
 // Main Component
-export default function KitsSection({ pricesUnlocked, onRequestWhatsApp }: KitsSectionProps) {
-  const router = useRouter()
-
-  const handleCatalogClick = () => {
-    router.push('/catalogo')
-  }
-
-  const handleWhatsAppClick = () => {
-    const message = encodeURIComponent('Olá! Vi o site e gostaria de saber mais sobre kits personalizados para minha revenda.')
-    window.open(`https://wa.me/5511999999999?text=${message}`, '_blank')
-  }
-
+export default function KitsSection({ pricesUnlocked }: KitsSectionProps) {
   return (
     <section id="kits-section" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
@@ -172,10 +180,10 @@ export default function KitsSection({ pricesUnlocked, onRequestWhatsApp }: KitsS
         </div>
 
         {/* Kits Grid */}
-        <div className="flex justify-center mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl" id="kits-grid">
-            <KitsList pricesUnlocked={pricesUnlocked} onRequestWhatsApp={onRequestWhatsApp} />
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <Suspense fallback={<KitsLoadingSkeleton />}>
+            <KitsList pricesUnlocked={pricesUnlocked} />
+          </Suspense>
         </div>
 
         {/* Bottom CTA */}
@@ -197,17 +205,11 @@ export default function KitsSection({ pricesUnlocked, onRequestWhatsApp }: KitsS
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                onClick={handleCatalogClick}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
-              >
+              <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
                 Ver Catálogo Completo
               </button>
               
-              <button 
-                onClick={handleWhatsAppClick}
-                className="border-2 border-purple-600 text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300"
-              >
+              <button className="border-2 border-purple-600 text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300">
                 Falar no WhatsApp
               </button>
             </div>

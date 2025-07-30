@@ -17,6 +17,7 @@ interface AddToCartSectionProps {
   quantity: number;
   pricesUnlocked: boolean;
   onAddToCart: (product: Product, quantity: number) => void;
+  onRequestWhatsApp?: () => void;
   className?: string;
 }
 
@@ -25,6 +26,7 @@ export function AddToCartSection({
   quantity, 
   pricesUnlocked,
   onAddToCart,
+  onRequestWhatsApp,
   className 
 }: AddToCartSectionProps) {
   const [isAdding, setIsAdding] = useState(false);
@@ -70,10 +72,10 @@ export function AddToCartSection({
         <Button 
           variant="outline" 
           fullWidth 
-          disabled
-          className="bg-orange-100 text-orange-800 border-orange-200"
+          onClick={onRequestWhatsApp}
+          className="bg-orange-50 text-orange-700 border-orange-200 hover:bg-orange-100 text-xs py-2"
         >
-          🔒 Libere preços para comprar
+          🔒 Libere para ver preços
         </Button>
       </div>
     );

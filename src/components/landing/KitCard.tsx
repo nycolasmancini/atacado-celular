@@ -8,6 +8,7 @@ interface KitCardProps {
   }
   pricesUnlocked: boolean
   isBestSeller?: boolean
+  onRequestWhatsApp: () => void
 }
 
 const gradientClasses = {
@@ -16,7 +17,7 @@ const gradientClasses = {
   'orange-yellow': 'from-orange-500 to-yellow-500'
 }
 
-export default function KitCard({ kit, pricesUnlocked, isBestSeller = false }: KitCardProps) {
+export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onRequestWhatsApp }: KitCardProps) {
   const { addItem } = useCart()
   const gradientClass = gradientClasses[kit.colorTheme as keyof typeof gradientClasses] || gradientClasses['purple-pink']
   
@@ -27,6 +28,12 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false }: K
   const totalItems = kit.items.reduce((sum, item) => sum + item.quantity, 0)
 
   const handleAddKitToCart = () => {
+    if (!pricesUnlocked) {
+      // Se preços não estão liberados, abrir modal do WhatsApp
+      onRequestWhatsApp()
+      return
+    }
+
     // Adicionar todos os produtos do kit ao carrinho
     kit.items.forEach(item => {
       addItem(item.product, item.quantity)
@@ -86,12 +93,12 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false }: K
           <div className="border-t pt-4">
             {!pricesUnlocked ? (
               <div className="text-center">
-                <div className="bg-gradient-to-r from-gray-100 to-gray-200 rounded-lg p-4 mb-4">
-                  <div className="w-8 h-8 mx-auto mb-2 bg-gray-300 rounded-full flex items-center justify-center">
-                    🔒
+                <div className="bg-gradient-to-r from-orange-50 to-yellow-50 border border-orange-200 rounded-lg p-4 mb-4">
+                  <div className="w-8 h-8 mx-auto mb-2 bg-orange-200 rounded-full flex items-center justify-center">
+                    🚚
                   </div>
-                  <p className="text-gray-600 font-medium">Libere os preços</p>
-                  <p className="text-gray-500 text-xs">Digite seu WhatsApp para ver valores</p>
+                  <p className="text-orange-800 font-medium">Calcular Frete</p>
+                  <p className="text-orange-600 text-xs">Informe seu WhatsApp para calcular o frete e ver preços</p>
                 </div>
               </div>
             ) : (
@@ -122,15 +129,14 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false }: K
 
             {/* Action Button */}
             <button
-              onClick={pricesUnlocked ? handleAddKitToCart : undefined}
+              onClick={handleAddKitToCart}
               className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-all duration-300 ${
                 pricesUnlocked
                   ? `bg-gradient-to-r ${gradientClass} hover:shadow-lg hover:scale-105 active:scale-95`
-                  : 'bg-gray-400 cursor-not-allowed'
+                  : `bg-gradient-to-r ${gradientClass} hover:shadow-lg hover:scale-105 active:scale-95`
               }`}
-              disabled={!pricesUnlocked}
             >
-              {pricesUnlocked ? 'Adicionar Kit ao Carrinho' : 'Libere os Preços Primeiro'}
+              {pricesUnlocked ? 'Adicionar Kit ao Carrinho' : 'Calcular Frete + Adicionar'}
             </button>
           </div>
         </div>

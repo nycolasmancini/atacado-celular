@@ -11,8 +11,23 @@ export default function HeroSection() {
 
   const scrollToKits = () => {
     const kitsSection = document.getElementById('kits-section')
+    const kitsGrid = document.getElementById('kits-grid')
+    
     if (kitsSection) {
       kitsSection.scrollIntoView({ behavior: 'smooth' })
+    }
+
+    // On mobile, scroll to show first kit after a brief delay
+    if (window.innerWidth < 768 && kitsGrid) {
+      setTimeout(() => {
+        const firstKit = kitsGrid.querySelector('.group')
+        if (firstKit) {
+          firstKit.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          })
+        }
+      }, 600)
     }
   }
 

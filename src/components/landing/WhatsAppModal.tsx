@@ -27,9 +27,10 @@ type WhatsAppFormData = z.infer<typeof whatsappSchema>;
 interface WhatsAppModalProps {
   isOpen: boolean;
   onSuccess: (whatsapp: string, expiresAt: number) => void;
+  onClose?: () => void;
 }
 
-export function WhatsAppModal({ isOpen, onSuccess }: WhatsAppModalProps) {
+export function WhatsAppModal({ isOpen, onSuccess, onClose }: WhatsAppModalProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -109,7 +110,7 @@ export function WhatsAppModal({ isOpen, onSuccess }: WhatsAppModalProps) {
   return (
     <Modal 
       isOpen={isOpen} 
-      onClose={() => {}} // Não permite fechar sem submeter
+      onClose={onClose || (() => {})} // Permite fechar se onClose for fornecido
       size="md"
       className="bg-gradient-to-br from-purple-600 to-pink-600 border-0 text-white"
     >
@@ -126,10 +127,10 @@ export function WhatsAppModal({ isOpen, onSuccess }: WhatsAppModalProps) {
         {/* Título e Subtítulo */}
         <div className="space-y-2">
           <h2 className="text-2xl font-bold">
-            🎁 Libere os Preços Exclusivos!
+            📦 Calcular Frete + Ver Preços
           </h2>
           <p className="text-white/90">
-            Insira seu WhatsApp e ganhe acesso aos nossos preços atacadistas por 7 dias
+            Insira seu WhatsApp para calcular o frete e liberar os preços atacadistas por 7 dias
           </p>
         </div>
 
@@ -155,13 +156,13 @@ export function WhatsAppModal({ isOpen, onSuccess }: WhatsAppModalProps) {
             fullWidth
             className="bg-white text-purple-600 hover:bg-white/90 font-semibold text-lg h-12"
           >
-            {isLoading ? "Liberando..." : "🚀 Liberar Preços Agora"}
+{isLoading ? "Calculando..." : "🚚 Calcular Frete + Liberar Preços"}
           </Button>
         </form>
 
         {/* Nota de segurança */}
         <p className="text-xs text-white/70">
-          ✅ Seus dados estão seguros. Utilizamos apenas para liberar acesso aos preços.
+          ✅ Seus dados estão seguros. Utilizamos apenas para calcular o frete e liberar preços.
         </p>
       </div>
     </Modal>

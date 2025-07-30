@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { ProductCard } from "@/components/catalog/ProductCard";
+import { WhatsAppModal } from "@/components/landing/WhatsAppModal";
 import { usePricesUnlocked } from "@/hooks/usePricesUnlocked";
 import { useTracking } from "@/contexts/TrackingContext";
 
@@ -37,9 +38,10 @@ export default function CatalogoPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  const { pricesUnlocked } = usePricesUnlocked();
-  const { trackEvent, trackCustomEvent } = useTracking();
+  const { pricesUnlocked, unlockPrices } = usePricesUnlocked();
+  const { trackEvent, trackCustomEvent, updateTrackingData } = useTracking();
 
   // Fetch products and categories
   useEffect(() => {
@@ -120,6 +122,15 @@ export default function CatalogoPage() {
     return matchesCategory && matchesSearch;
   }) : [];
 
+  const handleWhatsAppSuccess = (whatsapp: string) => {
+    unlockPrices(whatsapp);
+    updateTrackingData({ whatsapp });
+    setModalOpen(false);
+  };
+
+  const openWhatsAppModal = () => {
+    setModalOpen(true);
+  };
 
   if (error) {
     return (
@@ -235,6 +246,7 @@ export default function CatalogoPage() {
                     key={product.id}
                     product={product}
                     pricesUnlocked={pricesUnlocked}
+                    onRequestWhatsApp={openWhatsAppModal}
                   />
                 ))}
               </div>
@@ -272,6 +284,13 @@ export default function CatalogoPage() {
           </>
         )}
       </div>
+
+      {/* WhatsApp Modal */}
+      <WhatsAppModal 
+        isOpen={modalOpen}
+        onSuccess={handleWhatsAppSuccess}
+        onClose={() => setModalOpen(false)}
+      />
     </div>
   );
 }

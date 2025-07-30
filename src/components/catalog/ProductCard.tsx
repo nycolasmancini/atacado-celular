@@ -30,12 +30,14 @@ interface Product {
 interface ProductCardProps {
   product: Product;
   pricesUnlocked: boolean;
+  onRequestWhatsApp?: () => void;
   className?: string;
 }
 
 export function ProductCard({ 
   product, 
-  pricesUnlocked, 
+  pricesUnlocked,
+  onRequestWhatsApp,
   className 
 }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
@@ -58,8 +60,10 @@ export function ProductCard({
   };
   
   // Handle add to cart
-  const handleAddToCart = (product: Product, quantity: number) => {
+  const handleAddToCart = async (product: Product, quantity: number) => {
     addItem(product, quantity);
+    // Reset quantity to 1 after adding to cart
+    setQuantity(1);
   };
 
   return (
@@ -68,8 +72,8 @@ export function ProductCard({
       className={cn(
         "bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200",
         "flex flex-col md:flex-col h-full",
-        // Mobile: horizontal layout (max 120px height)
-        "md:max-h-none max-h-[120px] md:h-auto",
+        // Mobile: horizontal layout with auto height
+        "md:max-h-none min-h-[140px] md:h-auto",
         // Desktop: vertical layout (max 280px height)
         "md:max-h-[280px]",
         className
@@ -140,9 +144,18 @@ export function ProductCard({
                 onAdd={handleQuickAdd}
                 specialQty={product.specialPriceMinQty}
                 currentQty={quantity}
-                className="justify-center"
+                className="justify-center scale-75 -my-1"
               />
             )}
+            
+            {/* Add to Cart Section - Mobile */}
+            <AddToCartSection
+              product={product}
+              quantity={quantity}
+              pricesUnlocked={pricesUnlocked}
+              onAddToCart={handleAddToCart}
+              onRequestWhatsApp={onRequestWhatsApp}
+            />
             
             {/* Cart indicator if item is in cart */}
             {cartQuantity > 0 && (
@@ -154,7 +167,7 @@ export function ProductCard({
             {/* Special price hint */}
             {pricesUnlocked && pricing.unitsToSpecial > 0 && (
               <div className="text-xs text-orange-600 text-center">
-                Faltam {pricing.unitsToSpecial} para preço especial
+                +{pricing.unitsToSpecial} para preço especial
               </div>
             )}
           </div>
@@ -257,6 +270,7 @@ export function ProductCard({
               quantity={quantity}
               pricesUnlocked={pricesUnlocked}
               onAddToCart={handleAddToCart}
+              onRequestWhatsApp={onRequestWhatsApp}
             />
           </div>
         </div>
