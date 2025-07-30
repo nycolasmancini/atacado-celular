@@ -50,7 +50,7 @@ const Modal = ({ isOpen, onClose, title, size = "md", children, className }: Mod
       
       {/* Modal */}
       <div className={cn(
-        "relative bg-white rounded-lg shadow-xl w-full transition-all",
+        "relative bg-white rounded-lg shadow-xl w-full transition-all max-h-[90vh] flex flex-col",
         sizes[size],
         className
       )}>
@@ -86,7 +86,7 @@ const Modal = ({ isOpen, onClose, title, size = "md", children, className }: Mod
         )}
         
         {/* Content */}
-        <div className={cn("p-6", title && "pt-0")}>
+        <div className={cn("p-6 overflow-y-auto flex-1", title && "pt-0")}>
           {children}
         </div>
       </div>
@@ -95,3 +95,4 @@ const Modal = ({ isOpen, onClose, title, size = "md", children, className }: Mod
 };
 
 export { Modal };
+export default Modal;

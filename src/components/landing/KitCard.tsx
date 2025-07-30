@@ -1,5 +1,6 @@
 import { Kit, KitItem, Product } from '@prisma/client'
 import { useCart } from '@/contexts/CartContext'
+import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 
 interface KitCardProps {
@@ -19,6 +20,7 @@ const gradientClasses = {
 
 export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onRequestWhatsApp }: KitCardProps) {
   const { addItem } = useCart()
+  const router = useRouter()
   const gradientClass = gradientClasses[kit.colorTheme as keyof typeof gradientClasses] || gradientClasses['purple-pink']
   
   const totalPrice = kit.items.reduce((sum, item) => 
@@ -41,9 +43,14 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onR
     
     // Mostrar feedback ao usuário
     toast.success(`Kit "${kit.name}" adicionado ao carrinho!`, {
-      duration: 3000,
+      duration: 2000,
       icon: '🛒',
     })
+
+    // Navegar para a página do carrinho após um pequeno delay
+    setTimeout(() => {
+      router.push('/carrinho')
+    }, 500)
   }
 
   return (

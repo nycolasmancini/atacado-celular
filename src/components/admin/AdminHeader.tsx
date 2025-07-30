@@ -1,7 +1,6 @@
 'use client'
 
-import { signOut, useSession } from 'next-auth/react'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 
 interface BreadcrumbItem {
@@ -10,8 +9,8 @@ interface BreadcrumbItem {
 }
 
 export function AdminHeader() {
-  const { data: session } = useSession()
   const pathname = usePathname()
+  const router = useRouter()
 
   const getBreadcrumbs = (): BreadcrumbItem[] => {
     const segments = pathname.split('/').filter(Boolean)
@@ -53,9 +52,11 @@ export function AdminHeader() {
 
   const breadcrumbs = getBreadcrumbs()
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     if (confirm('Tem certeza que deseja sair?')) {
-      await signOut({ callbackUrl: '/admin/login' })
+      localStorage.removeItem('admin_authenticated')
+      localStorage.removeItem('admin_auth_time')
+      router.push('/admin/login')
     }
   }
 
@@ -102,17 +103,17 @@ export function AdminHeader() {
           <div className="flex items-center space-x-3">
             <div className="text-right">
               <div className="text-sm font-medium text-gray-900">
-                {session?.user?.name || 'Admin'}
+                Admin
               </div>
               <div className="text-xs text-gray-500">
-                {session?.user?.email}
+                admin@atacadocelular.com
               </div>
             </div>
             
             {/* User Avatar */}
             <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
               <span className="text-white text-sm font-medium">
-                {session?.user?.name?.charAt(0)?.toUpperCase() || 'A'}
+                A
               </span>
             </div>
           </div>

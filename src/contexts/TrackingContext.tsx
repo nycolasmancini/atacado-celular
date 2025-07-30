@@ -2,7 +2,6 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { event, customEvent, MetaEvents } from "@/lib/meta-pixel";
 
 interface TrackingData {
   sessionId: string;
@@ -80,28 +79,27 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
       pagesVisited: [...new Set([...prev.pagesVisited, currentPath])],
     }));
 
-    // Disparar evento de PageView
-    event(MetaEvents.VIEW_CONTENT, {
-      content_type: 'page',
-      content_name: currentPath,
-    });
+    // Log para desenvolvimento (substitui Meta Pixel por enquanto)
+    console.log('Page View:', currentPath);
   }, []);
 
   const trackEvent = (type: string, data?: any) => {
     try {
-      event(type, {
+      // Log para desenvolvimento (substitui Meta Pixel por enquanto)
+      console.log('Track Event:', type, {
         ...data,
         session_id: trackingData.sessionId,
         timestamp: Date.now(),
       });
     } catch (error) {
-      console.error('Erro ao disparar evento Meta:', error);
+      console.error('Erro ao disparar evento:', error);
     }
   };
 
   const trackCustomEvent = (name: string, data?: any) => {
     try {
-      customEvent(name, {
+      // Log para desenvolvimento (substitui Meta Pixel por enquanto)
+      console.log('Track Custom Event:', name, {
         ...data,
         session_id: trackingData.sessionId,
         timestamp: Date.now(),

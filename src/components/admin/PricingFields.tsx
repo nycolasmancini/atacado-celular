@@ -22,8 +22,13 @@ export default function PricingFields({
 }: PricingFieldsProps) {
   const [discount, setDiscount] = useState('0')
   const [savings, setSavings] = useState(0)
+  const [priceDisplay, setPriceDisplay] = useState('')
+  const [specialPriceDisplay, setSpecialPriceDisplay] = useState('')
 
   useEffect(() => {
+    setPriceDisplay(formatCurrency(price))
+    setSpecialPriceDisplay(formatCurrency(specialPrice))
+    
     if (price > 0 && specialPrice > 0) {
       setDiscount(calculateDiscount(price, specialPrice))
       setSavings(calculateSavings(price, specialPrice, specialPriceMinQty))
@@ -31,17 +36,19 @@ export default function PricingFields({
   }, [price, specialPrice, specialPriceMinQty])
 
   const formatCurrency = (value: number) => {
+    if (value === 0) return ''
     return value.toFixed(2).replace('.', ',')
   }
 
   const parseCurrency = (value: string) => {
+    if (!value || value === '') return 0
     return parseFloat(value.replace(',', '.')) || 0
   }
 
   const validation = validatePricing(price, specialPrice, specialPriceMinQty)
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Preços */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
@@ -54,9 +61,20 @@ export default function PricingFields({
             </span>
             <input
               type="text"
-              value={formatCurrency(price)}
-              onChange={(e) => onChange('price', parseCurrency(e.target.value))}
-              className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={priceDisplay}
+              onChange={(e) => {
+                setPriceDisplay(e.target.value)
+                onChange('price', parseCurrency(e.target.value))
+              }}
+              onBlur={(e) => {
+                if (e.target.value === '') {
+                  setPriceDisplay('')
+                  onChange('price', 0)
+                } else {
+                  setPriceDisplay(formatCurrency(parseCurrency(e.target.value)))
+                }
+              }}
+              className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               placeholder="0,00"
             />
           </div>
@@ -72,9 +90,20 @@ export default function PricingFields({
             </span>
             <input
               type="text"
-              value={formatCurrency(specialPrice)}
-              onChange={(e) => onChange('specialPrice', parseCurrency(e.target.value))}
-              className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={specialPriceDisplay}
+              onChange={(e) => {
+                setSpecialPriceDisplay(e.target.value)
+                onChange('specialPrice', parseCurrency(e.target.value))
+              }}
+              onBlur={(e) => {
+                if (e.target.value === '') {
+                  setSpecialPriceDisplay('')
+                  onChange('specialPrice', 0)
+                } else {
+                  setSpecialPriceDisplay(formatCurrency(parseCurrency(e.target.value)))
+                }
+              }}
+              className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               placeholder="0,00"
             />
           </div>
@@ -88,7 +117,7 @@ export default function PricingFields({
         </label>
         
         {/* Sugestões de quantidade */}
-        <div className="flex flex-wrap gap-2 mb-3">
+        <div className="flex flex-wrap gap-2 mb-2">
           {QUANTITY_SUGGESTIONS.map((qty) => (
             <button
               key={qty}
@@ -124,7 +153,7 @@ export default function PricingFields({
         </div>
 
         {/* Input manual */}
-        <div className="mt-3">
+        <div className="mt-2">
           <input
             type="number"
             min="10"
@@ -138,15 +167,15 @@ export default function PricingFields({
 
       {/* Preview da Economia */}
       {price > 0 && specialPrice > 0 && specialPrice < price && (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-          <div className="flex items-center justify-between mb-2">
-            <h4 className="font-medium text-green-800">Economia para o Cliente</h4>
-            <span className="text-2xl font-bold text-green-600">{discount}% OFF</span>
+        <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+          <div className="flex items-center justify-between mb-1">
+            <h4 className="font-medium text-green-800 text-sm">Economia para o Cliente</h4>
+            <span className="text-xl font-bold text-green-600">{discount}% OFF</span>
           </div>
           <p className="text-sm text-green-700">
             Cliente economiza <strong>R$ {formatCurrency(savings)}</strong> comprando {specialPriceMinQty} unidades
           </p>
-          <div className="mt-2 text-xs text-green-600">
+          <div className="mt-1 text-xs text-green-600">
             Preço unitário: R$ {formatCurrency(specialPrice)} vs R$ {formatCurrency(price)}
           </div>
         </div>
@@ -154,8 +183,8 @@ export default function PricingFields({
 
       {/* Erros de Validação */}
       {!validation.isValid && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-          <h4 className="font-medium text-red-800 mb-2">Problemas encontrados:</h4>
+        <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+          <h4 className="font-medium text-red-800 mb-1 text-sm">Problemas encontrados:</h4>
           <ul className="text-sm text-red-700 space-y-1">
             {validation.errors.map((error, index) => (
               <li key={index} className="flex items-center">
@@ -168,7 +197,7 @@ export default function PricingFields({
       )}
 
       {errors.length > 0 && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-3">
           <ul className="text-sm text-red-700 space-y-1">
             {errors.map((error, index) => (
               <li key={index} className="flex items-center">

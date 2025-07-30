@@ -1,7 +1,6 @@
 'use server'
 
 import { redirect } from 'next/navigation'
-import { signIn as nextAuthSignIn } from 'next-auth/react'
 import bcrypt from 'bcryptjs'
 
 interface SignInState {

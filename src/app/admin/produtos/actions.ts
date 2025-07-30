@@ -34,9 +34,18 @@ export async function getProducts() {
       }
     })
 
+    // Converter Decimal para number para compatibilidade com Client Components
+    const serializedProducts = products.map(product => ({
+      ...product,
+      price: Number(product.price),
+      specialPrice: Number(product.specialPrice),
+      createdAt: product.createdAt.toISOString(),
+      updatedAt: product.updatedAt.toISOString()
+    }))
+
     return {
       success: true,
-      data: products
+      data: serializedProducts
     }
   } catch (error) {
     console.error('Erro ao buscar produtos:', error)
@@ -69,9 +78,18 @@ export async function getProduct(id: number) {
       }
     }
 
+    // Converter Decimal para number para compatibilidade com Client Components
+    const serializedProduct = {
+      ...product,
+      price: Number(product.price),
+      specialPrice: Number(product.specialPrice),
+      createdAt: product.createdAt.toISOString(),
+      updatedAt: product.updatedAt.toISOString()
+    }
+
     return {
       success: true,
-      data: product
+      data: serializedProduct
     }
   } catch (error) {
     console.error('Erro ao buscar produto:', error)
@@ -153,10 +171,19 @@ export async function createProduct(data: ProductData) {
 
     console.log(`Produto criado: ${product.name} - Preços: R$ ${product.price} / R$ ${product.specialPrice} (${product.specialPriceMinQty}+ un)`)
 
+    // Converter Decimal para number para compatibilidade com Client Components
+    const serializedProduct = {
+      ...product,
+      price: Number(product.price),
+      specialPrice: Number(product.specialPrice),
+      createdAt: product.createdAt.toISOString(),
+      updatedAt: product.updatedAt.toISOString()
+    }
+
     revalidatePath('/admin/produtos')
     return {
       success: true,
-      data: product
+      data: serializedProduct
     }
   } catch (error) {
     console.error('Erro ao criar produto:', error)
@@ -240,10 +267,19 @@ export async function updateProduct(id: number, data: ProductData) {
       }
     })
 
+    // Converter Decimal para number para compatibilidade com Client Components
+    const serializedProduct = {
+      ...product,
+      price: Number(product.price),
+      specialPrice: Number(product.specialPrice),
+      createdAt: product.createdAt.toISOString(),
+      updatedAt: product.updatedAt.toISOString()
+    }
+
     revalidatePath('/admin/produtos')
     return {
       success: true,
-      data: product
+      data: serializedProduct
     }
   } catch (error) {
     console.error('Erro ao atualizar produto:', error)
@@ -318,10 +354,19 @@ export async function toggleProductStatus(id: number) {
 
     console.log(`Status do produto alterado: ${product.name} - ${updatedProduct.isActive ? 'Ativo' : 'Inativo'}`)
 
+    // Converter Decimal para number para compatibilidade com Client Components
+    const serializedProduct = {
+      ...updatedProduct,
+      price: Number(updatedProduct.price),
+      specialPrice: Number(updatedProduct.specialPrice),
+      createdAt: updatedProduct.createdAt.toISOString(),
+      updatedAt: updatedProduct.updatedAt.toISOString()
+    }
+
     revalidatePath('/admin/produtos')
     return {
       success: true,
-      data: updatedProduct
+      data: serializedProduct
     }
   } catch (error) {
     console.error('Erro ao alterar status do produto:', error)
