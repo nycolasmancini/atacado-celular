@@ -6,9 +6,7 @@ import { cn } from "@/lib/utils";
 import { PriceDisplay } from "./PriceDisplay";
 import { QuantitySelector } from "./QuantitySelector";
 import { AddToCartSection } from "./AddToCartSection";
-import { QuickAddButtons } from "./QuickAddButtons";
 import { useProductView } from "@/hooks/useProductView";
-import { useProductPricing } from "@/hooks/useProductPricing";
 import { useCart } from "@/contexts/CartContext";
 
 interface Product {
@@ -50,14 +48,7 @@ export function ProductCard({
   // Get current cart quantity for this product
   const cartQuantity = getItemQuantity(product.id);
   
-  // Calculate pricing for current quantity
-  const pricing = useProductPricing(product, quantity);
   
-  // Handle quick add buttons
-  const handleQuickAdd = (amount: number) => {
-    const newQuantity = quantity + amount;
-    setQuantity(newQuantity);
-  };
   
   // Handle add to cart
   const handleAddToCart = async (product: Product, quantity: number) => {
@@ -138,15 +129,6 @@ export function ProductCard({
               </div>
             </div>
             
-            {/* Quick Add Buttons - Mobile */}
-            {pricesUnlocked && (
-              <QuickAddButtons
-                onAdd={handleQuickAdd}
-                specialQty={product.specialPriceMinQty}
-                currentQty={quantity}
-                className="justify-center scale-75 -my-1"
-              />
-            )}
             
             {/* Add to Cart Section - Mobile */}
             <AddToCartSection
@@ -164,12 +146,6 @@ export function ProductCard({
               </div>
             )}
             
-            {/* Special price hint */}
-            {pricesUnlocked && pricing.unitsToSpecial > 0 && (
-              <div className="text-xs text-orange-600 text-center">
-                +{pricing.unitsToSpecial} para preço especial
-              </div>
-            )}
           </div>
         </div>
       </div>
@@ -210,11 +186,6 @@ export function ProductCard({
             <h3 className="font-semibold text-gray-900 line-clamp-2 mb-1 min-h-[2.5rem]">
               {product.name}
             </h3>
-            {product.description && (
-              <p className="text-sm text-gray-600 line-clamp-1">
-                {product.description}
-              </p>
-            )}
           </div>
 
           {/* Price Display */}
@@ -237,17 +208,6 @@ export function ProductCard({
             />
           </div>
 
-          {/* Quick Add Buttons - Desktop */}
-          {pricesUnlocked && (
-            <div className="mb-3 flex-shrink-0">
-              <QuickAddButtons
-                onAdd={handleQuickAdd}
-                specialQty={product.specialPriceMinQty}
-                currentQty={quantity}
-                className="justify-center"
-              />
-            </div>
-          )}
 
           {/* Cart indicator if item is in cart */}
           {cartQuantity > 0 && (
@@ -256,12 +216,6 @@ export function ProductCard({
             </div>
           )}
 
-          {/* Special price hint */}
-          {pricesUnlocked && pricing.unitsToSpecial > 0 && (
-            <div className="mb-3 text-xs text-orange-600 text-center">
-              Faltam {pricing.unitsToSpecial} para preço especial
-            </div>
-          )}
 
           {/* Add to Cart Section */}
           <div className="mt-auto">

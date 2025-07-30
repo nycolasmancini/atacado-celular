@@ -40,17 +40,11 @@ export function QuantitySelector({
     }
   };
 
-  const handleQuickAdd = (amount: number) => {
-    const newValue = value + amount;
-    if (newValue <= max) {
-      onChange(newValue);
-    }
-  };
 
   const isAtSpecialQty = value >= specialQty;
 
   return (
-    <div className={cn("space-y-3", className)}>
+    <div className={cn(className)}>
       {/* Main Quantity Controls */}
       <div className="flex items-center gap-2">
         {/* Decrease Button */}
@@ -67,6 +61,7 @@ export function QuantitySelector({
         {/* Quantity Input */}
         <input
           type="number"
+          inputMode="numeric"
           value={value}
           onChange={handleInputChange}
           min={min}
@@ -76,6 +71,7 @@ export function QuantitySelector({
             "focus:ring-2 focus:ring-orange-500 focus:border-orange-500",
             isAtSpecialQty && "ring-2 ring-green-500 border-green-500 bg-green-50"
           )}
+          style={{ fontSize: '16px' }}
         />
 
         {/* Increase Button */}
@@ -90,39 +86,7 @@ export function QuantitySelector({
         </Button>
       </div>
 
-      {/* Quick Add Buttons */}
-      <div className="flex gap-1">
-        {[5, 10, 20, 50].map(amount => (
-          <Button
-            key={amount}
-            variant="ghost"
-            size="sm"
-            onClick={() => handleQuickAdd(amount)}
-            disabled={value + amount > max}
-            className={cn(
-              "text-xs px-2 py-1 h-6 min-w-[32px]",
-              "hover:bg-orange-100 hover:text-orange-700",
-              value + amount > max && "opacity-30"
-            )}
-          >
-            +{amount}
-          </Button>
-        ))}
-      </div>
 
-      {/* Special Quantity Indicator */}
-      {isAtSpecialQty && (
-        <div className="text-xs text-green-600 text-center font-medium">
-          ✨ Preço especial ativo!
-        </div>
-      )}
-
-      {/* Progress to Special Quantity */}
-      {!isAtSpecialQty && specialQty > 0 && (
-        <div className="text-xs text-gray-500 text-center">
-          +{specialQty - value} para preço especial
-        </div>
-      )}
     </div>
   );
 }

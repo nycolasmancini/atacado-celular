@@ -57,38 +57,12 @@ export function PriceDisplay({
             ? "text-green-600 font-bold" 
             : "text-gray-600"
         )}>
-          <span>Especial (+{specialQty}):</span>
+          <span>+{specialQty} unidades:</span>
           <span className="font-semibold">{formatPrice(specialPrice)}</span>
         </div>
       </div>
 
-      {/* Special price active indicator */}
-      {isSpecialPriceActive && (
-        <div className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs text-center">
-          <span className="font-medium">🎉 Preço Especial Ativo!</span>
-        </div>
-      )}
 
-      {/* Savings calculation */}
-      {savings > 0 && (
-        <div className="bg-green-50 text-green-700 px-2 py-1 rounded text-xs text-center">
-          <span className="font-medium">
-            Economize {formatPrice(savings)}
-          </span>
-        </div>
-      )}
-
-      {/* Unit price display for current quantity */}
-      {currentQty > 0 && (
-        <div className="border-t pt-2 mt-2">
-          <div className="flex items-center justify-between text-lg font-bold text-gray-900">
-            <span>{currentQty}x =</span>
-            <span className="text-orange-600">
-              {formatPrice(applicablePrice * currentQty)}
-            </span>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
