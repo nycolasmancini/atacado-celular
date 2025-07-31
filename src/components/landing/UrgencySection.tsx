@@ -63,7 +63,11 @@ export default function UrgencySection() {
   const formatTime = (time: number) => time.toString().padStart(2, '0')
 
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-br from-red-50 via-orange-50 to-red-50 relative overflow-hidden">
+    <section className="py-12 md:py-16 relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(180deg, #fef2f2 0%, #fed7d7 30%, #fef2f2 70%, #9333ea 95%, #7c3aed 100%)'
+      }}
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-red-600 to-orange-600 rounded-full -translate-x-32 -translate-y-32"></div>

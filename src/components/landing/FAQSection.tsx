@@ -98,7 +98,11 @@ export default function FAQSection() {
         />
       </Head>
       
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 relative overflow-hidden"
+        style={{
+          background: 'linear-gradient(180deg, #fef2f2 0%, #ffffff 30%, #f8fafc 70%, #fef2f2 100%)'
+        }}
+      >
         <div className="container mx-auto px-5 md:px-10">
           {/* Header */}
           <div className="text-center mb-12 md:mb-16">

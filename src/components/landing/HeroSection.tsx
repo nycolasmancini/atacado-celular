@@ -15,7 +15,26 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-purple-600 via-purple-700 to-pink-600">
+    <motion.section 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      initial={{ background: 'linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #ec4899 100%)' }}
+      animate={{ 
+        background: [
+          'linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #ec4899 100%)',
+          'linear-gradient(135deg, #7c3aed 0%, #ec4899 50%, #f97316 100%)',
+          'linear-gradient(135deg, #ec4899 0%, #f97316 50%, #9333ea 100%)',
+          'linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #ec4899 100%)'
+        ]
+      }}
+      transition={{ 
+        duration: 8, 
+        repeat: Infinity, 
+        ease: "easeInOut" 
+      }}
+      style={{
+        background: 'linear-gradient(180deg, #9333ea 0%, #7c3aed 40%, #ec4899 70%, #FF6B35 95%, #F8F9FA 100%)'
+      }}
+    >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 opacity-10">
         <motion.div 
@@ -81,20 +100,41 @@ export default function HeroSection() {
               transition={{ delay: 0.5 }}
               className="flex flex-col sm:flex-row gap-4 mb-8"
             >
-              <button
+              <motion.button
                 onClick={scrollToKits}
-                className="group relative px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold text-lg rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+                className="group relative px-8 py-4 text-white font-bold text-lg rounded-full shadow-xl overflow-hidden"
+                initial={{ 
+                  background: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
+                  scale: 1,
+                  y: 0
+                }}
+                whileHover={{ 
+                  background: 'linear-gradient(135deg, #ea580c 0%, #ec4899 50%, #9333ea 100%)',
+                  scale: 1.05,
+                  y: -4,
+                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 <span className="relative z-10">ESCOLHER MEU KIT AGORA</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-700 opacity-0 group-hover:opacity-100 rounded-full transition-opacity duration-300" />
-              </button>
+              </motion.button>
               
-              <Link
-                href="/catalogo"
-                className="inline-flex items-center justify-center px-6 py-4 text-white border-2 border-white/30 rounded-full font-medium hover:bg-white/10 transition-colors duration-300"
+              <motion.div
+                whileHover={{ 
+                  scale: 1.02,
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  borderColor: 'rgba(255, 255, 255, 0.6)'
+                }}
+                transition={{ duration: 0.2 }}
+                className="inline-flex"
               >
-                Ver Catálogo Completo
-              </Link>
+                <Link
+                  href="/catalogo"
+                  className="inline-flex items-center justify-center px-6 py-4 text-white border-2 border-white/30 rounded-full font-medium transition-colors duration-300"
+                >
+                  Ver Catálogo Completo
+                </Link>
+              </motion.div>
             </motion.div>
 
             {/* Trust Badges */}
@@ -188,6 +228,6 @@ export default function HeroSection() {
           <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse" />
         </div>
       </motion.div>
-    </section>
+    </motion.section>
   )
 }

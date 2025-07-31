@@ -47,7 +47,11 @@ export default function ProblemsSection() {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
 
   return (
-    <section ref={sectionRef} className="py-16 lg:py-24 bg-gradient-to-b from-red-50 to-white relative overflow-hidden">
+    <section ref={sectionRef} className="py-16 lg:py-24 relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(180deg, #fef2f2 0%, #fef2f2 30%, #fee2e2 60%, #f0f9ff 95%, #f0f9ff 100%)'
+      }}
+    >
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-red-100/50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-100/30 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />

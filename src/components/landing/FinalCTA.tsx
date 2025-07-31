@@ -30,7 +30,11 @@ export default function FinalCTA({ onRequestWhatsApp }: FinalCTAProps) {
   }
 
   return (
-    <section id="final-cta" className="py-20 bg-gradient-to-br from-[#FF6B35] to-[#e55a2b] relative overflow-hidden">
+    <section id="final-cta" className="py-20 relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(180deg, #7c3aed 0%, #9333ea 30%, #ec4899 60%, #f97316 90%, #FF6B35 100%)'
+      }}
+    >
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>

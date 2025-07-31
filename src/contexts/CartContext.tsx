@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { useTracking } from "./TrackingContext";
+import { useTracking } from "@/components/providers/TrackingProvider";
 
 interface CartItem {
   productId: number;
@@ -34,7 +34,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
-  const { trackEvent, trackCustomEvent } = useTracking();
+  const { trackEvent } = useTracking();
 
   // Calcular totais do carrinho
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
@@ -135,7 +135,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     // Evento customizado para preço especial
     if (quantity >= product.specialPriceMinQty) {
-      trackCustomEvent('SpecialPriceActivated', {
+      trackEvent('SpecialPriceActivated', {
         product_id: product.id,
         product_name: product.name,
         quantity: quantity,
@@ -161,7 +161,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
           // Track se ativou preço especial
           if (!oldIsSpecialPrice && updatedItem.isSpecialPrice) {
-            trackCustomEvent('SpecialPriceActivated', {
+            trackEvent('SpecialPriceActivated', {
               product_id: productId,
               product_name: item.name,
               quantity: quantity,

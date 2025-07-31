@@ -1,0 +1,92 @@
+
+> atacado-celular@0.1.0 dev
+> next dev
+
+SyntaxError: Expected double-quoted property name in JSON at position 156865 (line 4141 column 1)
+    at JSON.parse (<anonymous>)
+ ⚠ Warning: Found multiple lockfiles. Selecting /Users/nycolasmancini/package-lock.json.
+   Consider removing the lockfiles at:
+   * /Users/nycolasmancini/Desktop/catalogo/atacado-celular/package-lock.json
+
+   ▲ Next.js 15.4.5
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.15.35:3000
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     ✓ optimizeCss
+
+ ✓ Starting...
+SyntaxError: Expected double-quoted property name in JSON at position 156865 (line 4141 column 1)
+    at JSON.parse (<anonymous>)
+ ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` as Turbopack is now stable.
+ ✓ Ready in 1568ms
+ ○ Compiling /api/kits ...
+ ✓ Compiled /api/kits in 1407ms (332 modules)
+ GET /api/kits 200 in 1935ms
+ ✓ Compiled /api/auth/[...nextauth] in 446ms (477 modules)
+ GET /api/auth/session 200 in 944ms
+ ○ Compiling / ...
+ ✓ Compiled / in 3.9s (1731 modules)
+ GET / 200 in 4403ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 952ms (1704 modules)
+ GET /_next/static/chunks/main-app.js?v=1753982442503 404 in 1057ms
+ ✓ Compiled /favicon.ico in 93ms (969 modules)
+ GET /favicon.ico 200 in 157ms
+ ✓ Compiled in 613ms (762 modules)
+ ✓ Compiled in 408ms (762 modules)
+ ✓ Compiled in 344ms (762 modules)
+ ✓ Compiled in 260ms (762 modules)
+ ✓ Compiled in 539ms (762 modules)
+ ✓ Compiled in 506ms (762 modules)
+ ✓ Compiled in 272ms (762 modules)
+ ✓ Compiled in 223ms (762 modules)
+ ✓ Compiled in 396ms (762 modules)
+ ✓ Compiled in 484ms (762 modules)
+ ✓ Compiled in 350ms (762 modules)
+ ✓ Compiled in 387ms (762 modules)
+ ○ Compiling /catalogo ...
+ ✓ Compiled /catalogo in 1405ms (1794 modules)
+ ⨯ Error: useTracking must be used within a TrackingProvider
+    at useTracking (src/contexts/TrackingContext.tsx:163:10)
+    at CatalogoPage (src/app/(public)/catalogo/page.tsx:44:74)
+  161 |   
+  162 |   if (context === undefined) {
+> 163 |     throw new Error('useTracking must be used within a TrackingProvider');
+      |          ^
+  164 |   }
+  165 |   
+  166 |   return context; {
+  digest: '428805612'
+}
+ GET /catalogo 500 in 1706ms
+ ⚠ Cross origin request detected from 192.168.15.35 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ ✓ Compiled /favicon.ico in 452ms (1874 modules)
+ GET /favicon.ico 200 in 452ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ POST /api/tracking 200 in 526ms
+Tracking API error: SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at POST (src/app/api/tracking/route.ts:14:31)
+  12 | export async function POST(request: NextRequest) {
+  13 |   try {
+> 14 |     const body = await request.json()
+     |                               ^
+  15 |     const { sessionId, eventType, eventData, whatsapp } = trackingSchema.parse(body)
+  16 |
+  17 |     // Get user agent and IP for additional context
+ ⨯ Error: useTracking must be used within a TrackingProvider
+    at useTracking (src/contexts/TrackingContext.tsx:163:10)
+    at CatalogoPage (src/app/(public)/catalogo/page.tsx:44:74)
+  161 |   
+  162 |   if (context === undefined) {
+> 163 |     throw new Error('useTracking must be used within a TrackingProvider');
+      |          ^
+  164 |   }
+  165 |   
+  166 |   return context; {
+  digest: '428805612'
+}
+ GET /catalogo 500 in 187ms
+ POST /api/tracking 200 in 28ms

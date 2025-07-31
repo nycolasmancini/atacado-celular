@@ -78,7 +78,11 @@ export default function ComparisonSection() {
   }, [])
 
   return (
-    <section id="comparison-section" className="py-16 md:py-20 bg-white">
+    <section id="comparison-section" className="py-16 md:py-20 relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(180deg, #fff7ed 0%, #ffffff 40%, #f8fafc 70%, #f0f9ff 100%)'
+      }}
+    >
       <div className="container mx-auto px-5 md:px-10">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">

@@ -110,7 +110,11 @@ export default function TestimonialsSection() {
   }
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-br from-blue-50 to-orange-50">
+    <section className="py-16 md:py-20 relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(180deg, #f0f9ff 0%, #dbeafe 30%, #fef3c7 70%, #fff7ed 100%)'
+      }}
+    >
       <div className="container mx-auto mobile-padding md:px-10">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
@@ -235,17 +239,6 @@ function TestimonialCard({ testimonial }: { testimonial: any }) {
             src={testimonial.photo} 
             alt={testimonial.name}
             className="w-full h-full object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-              target.parentElement!.innerHTML = `
-                <div class="w-full h-full bg-gradient-to-br from-primary-orange to-primary-blue flex items-center justify-center">
-                  <span class="text-white font-montserrat font-semibold text-lg">
-                    ${testimonial.name.split(' ').map((n: string) => n[0]).join('')}
-                  </span>
-                </div>
-              `;
-            }}
           />
         </div>
         <h4 className="text-18px font-montserrat font-bold text-black mb-1">

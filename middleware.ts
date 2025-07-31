@@ -2,6 +2,17 @@ import { NextRequest, NextResponse } from "next/server"
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
+  
+  // Skip API routes, static files, and other Next.js internals
+  if (
+    pathname.startsWith("/api/") ||
+    pathname.startsWith("/_next/") ||
+    pathname.startsWith("/static/") ||
+    pathname.includes(".")
+  ) {
+    return NextResponse.next()
+  }
+  
   const isAdminRoute = pathname.startsWith("/admin")
   const isLoginPage = pathname === "/admin/login"
   

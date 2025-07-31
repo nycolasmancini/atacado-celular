@@ -72,6 +72,11 @@ module.exports = {
             transform: 'translateY(0)'
           },
         },
+        'gradient-shift': {
+          '0%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' },
+          '100%': { 'background-position': '0% 50%' },
+        },
       },
       spacing: {
         '18': '4.5rem',
@@ -96,6 +101,7 @@ module.exports = {
         },
         '.btn-primary-interactive:hover': {
           '@apply bg-orange-600 shadow-xl': {},
+          'transform': 'scale(1.05) translateY(-2px)',
         },
         '.btn-secondary-interactive': {
           '@apply btn-interactive border-2 border-primary-orange text-primary-orange font-semibold py-3 px-6 rounded-full': {},

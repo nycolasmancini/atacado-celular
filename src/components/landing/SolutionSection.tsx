@@ -95,7 +95,11 @@ export default function SolutionSection() {
   }
 
   return (
-    <section ref={sectionRef} className="py-16 lg:py-24 bg-gradient-to-b from-white to-green-50 relative overflow-hidden">
+    <section ref={sectionRef} className="py-16 lg:py-24 relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(180deg, #f0f9ff 0%, #ecfdf5 40%, #f0fdf4 70%, #f0fdf4 100%)'
+      }}
+    >
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-green-100/50 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />

@@ -39,7 +39,10 @@ export default function ProfitCalculator() {
   return (
     <section 
       ref={sectionRef}
-      className="py-16 lg:py-24 bg-gradient-to-br from-blue-50 to-purple-50 relative overflow-hidden"
+      className="py-16 lg:py-24 relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(180deg, #f0fdf4 0%, #dbeafe 30%, #ede9fe 70%, #fef3c7 100%)'
+      }}
     >
       {/* Background Decorations */}
       <div className="absolute top-10 left-10 w-32 h-32 bg-purple-200/30 rounded-full blur-2xl" />

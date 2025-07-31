@@ -65,6 +65,25 @@ body {
   background-clip: text;
 }
 
+/* Smooth Gradient Transitions */
+.gradient-smooth {
+  background-size: 200% 200%;
+  transition: background-position 0.8s ease-in-out;
+}
+
+.gradient-smooth:hover {
+  background-position: 100% 50%;
+}
+
+/* Smooth Color Transitions */
+.transition-colors-smooth {
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.transition-gradient {
+  transition: background-image 0.6s ease-in-out, background-position 0.6s ease-in-out;
+}
+
 /* Improved Button States */
 @layer components {
   .btn-primary {
