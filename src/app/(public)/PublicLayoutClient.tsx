@@ -101,7 +101,7 @@ export default function PublicLayoutClient({
             <div>
               <h3 className="font-semibold text-lg mb-4">Contato</h3>
               <p className="text-gray-400 text-sm mb-2">
-                WhatsApp: (11) 99999-9999
+                WhatsApp: (11) 98132-6609
               </p>
               <p className="text-gray-400 text-sm">
                 Email: contato@atacadocelular.com

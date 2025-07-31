@@ -1,100 +1,73 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
+import dynamic from 'next/dynamic'
 import HeroSection from '@/components/landing/HeroSection'
-import SocialProofSection from '@/components/landing/SocialProofSection'
-import ProblemsSection from '@/components/landing/ProblemsSection'
-import SolutionSection from '@/components/landing/SolutionSection'
-import ProfitCalculator from '@/components/landing/ProfitCalculator'
-import KitsSection from '@/components/landing/KitsSection'
-import TestimonialsSection from '@/components/landing/TestimonialsSection'
-import ComparisonSection from '@/components/landing/ComparisonSection'
-import ProcessSection from '@/components/landing/ProcessSection'
-import FAQSection from '@/components/landing/FAQSection'
-import UrgencySection from '@/components/landing/UrgencySection'
-import FinalCTA from '@/components/landing/FinalCTA'
 import { WhatsAppButton } from '@/components/landing/WhatsAppButton'
 import { WhatsAppModal } from '@/components/landing/WhatsAppModal'
 import StickyMobileCTA from '@/components/landing/StickyMobileCTA'
 import { usePricesUnlocked } from '@/hooks/usePricesUnlocked'
 
-export default function SimpleLandingPage() {
+// Lazy load componentes não críticos
+const SocialProofSection = dynamic(() => import('@/components/landing/SocialProofSection'))
+const ProblemsSection = dynamic(() => import('@/components/landing/ProblemsSection'))
+const SolutionSection = dynamic(() => import('@/components/landing/SolutionSection'))
+const ProfitCalculator = dynamic(() => import('@/components/landing/ProfitCalculator'))
+const KitsSection = dynamic(() => import('@/components/landing/KitsSection'))
+const TestimonialsSection = dynamic(() => import('@/components/landing/TestimonialsSection'))
+const ComparisonSection = dynamic(() => import('@/components/landing/ComparisonSection'))
+const ProcessSection = dynamic(() => import('@/components/landing/ProcessSection'))
+const FAQSection = dynamic(() => import('@/components/landing/FAQSection'))
+const UrgencySection = dynamic(() => import('@/components/landing/UrgencySection'))
+const FinalCTA = dynamic(() => import('@/components/landing/FinalCTA'))
+
+export default function LandingPage() {
   const { pricesUnlocked, unlockPrices } = usePricesUnlocked()
   const [modalOpen, setModalOpen] = useState(false)
 
-  const handleWhatsAppSuccess = (whatsapp: string) => {
+  const handleWhatsAppSuccess = useCallback((whatsapp: string) => {
     unlockPrices(whatsapp)
     setModalOpen(false)
-  }
+  }, [unlockPrices])
 
-  const openWhatsAppModal = () => {
+  const openWhatsAppModal = useCallback(() => {
     setModalOpen(true)
-  }
+  }, [])
 
-  const scrollToKits = () => {
-    const kitsSection = document.getElementById('kits-section')
-    if (kitsSection) {
-      kitsSection.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+  const scrollToKits = useCallback(() => {
+    document.getElementById('kits-section')?.scrollIntoView({ behavior: 'smooth' })
+  }, [])
 
 
   return (
-    <>
-      {/* Hero Section */}
+    <main className="overflow-x-hidden">
       <HeroSection />
-      
-      {/* Social Proof */}
       <SocialProofSection />
-      
-      {/* Problems Section */}
       <ProblemsSection />
-      
-      {/* Solution Section */}
       <SolutionSection />
-      
-      {/* Profit Calculator */}
       <ProfitCalculator />
-      
-      {/* Kits Section */}
       <KitsSection 
         pricesUnlocked={pricesUnlocked} 
         onRequestWhatsApp={openWhatsAppModal}
       />
-      
-      {/* Testimonials */}
       <TestimonialsSection />
-      
-      {/* Comparison Table */}
       <ComparisonSection />
-      
-      {/* How it Works Process */}
       <ProcessSection />
-      
-      {/* FAQ Section */}
       <FAQSection />
-      
-      {/* Urgency/Scarcity Section */}
       <UrgencySection />
-      
-      {/* Final CTA */}
       <FinalCTA onKitClick={scrollToKits} />
       
-      {/* WhatsApp Float Button */}
       <WhatsAppButton onClick={openWhatsAppModal} />
-      
-      {/* Mobile Sticky CTA */}
       <StickyMobileCTA 
         onKitClick={scrollToKits}
         onWhatsAppClick={openWhatsAppModal}
       />
       
-      {/* WhatsApp Modal */}
       <WhatsAppModal 
         isOpen={modalOpen}
         onSuccess={handleWhatsAppSuccess}
         onClose={() => setModalOpen(false)}
       />
-    </>
+    </main>
   )
 }

@@ -105,21 +105,21 @@ export default function ProblemsSection() {
                 y: -5,
                 transition: { duration: 0.2 }
               }}
-              className="group bg-white p-4 lg:p-5 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-red-200 hover:bg-red-50/30 cursor-pointer"
+              className="group bg-white p-3 lg:p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-red-200 hover:bg-red-50/30 cursor-pointer"
             >
               {/* Icon */}
               <motion.div 
                 whileHover={{ scale: 1.2, rotate: 10 }}
-                className="text-4xl lg:text-5xl mb-4"
+                className="text-3xl lg:text-4xl mb-3"
               >
                 {problem.icon}
               </motion.div>
 
               {/* Content */}
-              <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors duration-300">
+              <h3 className="text-base lg:text-lg font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors duration-300">
                 {problem.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+              <p className="text-sm lg:text-base text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
                 {problem.description}
               </p>
 
@@ -127,7 +127,7 @@ export default function ProblemsSection() {
               <motion.div 
                 initial={{ width: 0 }}
                 whileHover={{ width: '100%' }}
-                className="mt-4 h-0.5 bg-gradient-to-r from-red-500 to-red-600"
+                className="mt-3 h-0.5 bg-gradient-to-r from-red-500 to-red-600"
                 transition={{ duration: 0.3 }}
               />
             </motion.div>

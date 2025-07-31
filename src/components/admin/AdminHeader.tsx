@@ -42,6 +42,9 @@ export function AdminHeader() {
         case 'relatorios':
           breadcrumbs.push({ label: 'Relatórios' })
           break
+        case 'configuracoes':
+          breadcrumbs.push({ label: 'Configurações' })
+          break
         default:
           breadcrumbs.push({ label: section.charAt(0).toUpperCase() + section.slice(1) })
       }

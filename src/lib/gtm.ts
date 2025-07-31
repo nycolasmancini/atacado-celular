@@ -232,7 +232,15 @@ export const trackEcommerce = (
 
 // Initialize GTM
 export const initGTM = () => {
-  if (typeof window === 'undefined' || !GTM_ID || GTM_ID === 'GTM-XXXXXXX') {
+  if (typeof window === 'undefined') return
+  
+  if (!GTM_ID || GTM_ID === 'GTM-XXXXXXX') {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('GTM not initialized: Running in development mode without GTM_ID')
+      // Initialize mock dataLayer for development
+      initDataLayer()
+      return
+    }
     console.warn('GTM not initialized: Invalid or missing GTM_ID')
     return
   }

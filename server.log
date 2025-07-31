@@ -90,3 +90,226 @@ Tracking API error: SyntaxError: Unexpected end of JSON input
 }
  GET /catalogo 500 in 187ms
  POST /api/tracking 200 in 28ms
+ ✓ Compiled in 403ms (812 modules)
+ ✓ Compiled in 285ms (812 modules)
+ ✓ Compiled in 244ms (812 modules)
+ ✓ Compiled in 197ms (812 modules)
+ ✓ Compiled in 173ms (812 modules)
+ ✓ Compiled in 311ms (809 modules)
+ ✓ Compiled in 207ms (809 modules)
+ ✓ Compiled in 497ms (1795 modules)
+ ✓ Compiled in 197ms (809 modules)
+ ✓ Compiled in 453ms (1795 modules)
+ ✓ Compiled in 423ms (1795 modules)
+ ✓ Compiled in 198ms (809 modules)
+ ✓ Compiled in 494ms (1792 modules)
+ ✓ Compiled in 510ms (807 modules)
+ ✓ Compiled in 250ms (807 modules)
+ ✓ Compiled in 294ms (807 modules)
+ ✓ Compiled in 557ms (807 modules)
+ ✓ Compiled in 238ms (807 modules)
+ ✓ Compiled in 470ms (807 modules)
+ ✓ Compiled in 243ms (807 modules)
+ ✓ Compiled in 212ms (807 modules)
+ ✓ Compiled in 212ms (807 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 519ms (1006 modules)
+ GET / 200 in 883ms
+ ✓ Compiled /api/tracking in 247ms (1094 modules)
+ POST /api/tracking 200 in 338ms
+ ✓ Compiled /api/auth/[...nextauth] in 102ms (1096 modules)
+ ✓ Compiled (1233 modules)
+ GET /api/kits 200 in 442ms
+ GET /api/kits 200 in 561ms
+ GET /api/auth/session 200 in 502ms
+ GET /api/auth/session 200 in 409ms
+ GET /api/auth/session 200 in 7ms
+ GET /api/auth/session 200 in 10ms
+ ⨯ Error: useTracking must be used within a TrackingProvider
+    at useTracking (src/contexts/TrackingContext.tsx:163:10)
+    at CatalogoPage (src/app/(public)/catalogo/page.tsx:44:74)
+  161 |   
+  162 |   if (context === undefined) {
+> 163 |     throw new Error('useTracking must be used within a TrackingProvider');
+      |          ^
+  164 |   }
+  165 |   
+  166 |   return context; {
+  digest: '428805612'
+}
+ ⚠ Unsupported metadata viewport is configured in metadata export in /catalogo. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata viewport is configured in metadata export in /catalogo. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /catalogo 500 in 308ms
+ ✓ Compiled /_not-found in 435ms (1804 modules)
+ GET /_next/static/chunks/app/(public)/layout.js 404 in 601ms
+ GET /_next/static/chunks/app/(public)/catalogo/page.js 404 in 544ms
+ ✓ Compiled /favicon.ico in 117ms (1024 modules)
+ GET /favicon.ico 200 in 185ms
+ ⨯ Error: useTracking must be used within a TrackingProvider
+    at useTracking (src/contexts/TrackingContext.tsx:163:10)
+    at CatalogoPage (src/app/(public)/catalogo/page.tsx:44:74)
+  161 |   
+  162 |   if (context === undefined) {
+> 163 |     throw new Error('useTracking must be used within a TrackingProvider');
+      |          ^
+  164 |   }
+  165 |   
+  166 |   return context; {
+  digest: '428805612'
+}
+ ⚠ Unsupported metadata viewport is configured in metadata export in /catalogo. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata viewport is configured in metadata export in /catalogo. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /catalogo 500 in 495ms
+ GET /_next/static/chunks/app/(public)/layout.js 404 in 97ms
+ GET /_next/static/chunks/app/(public)/catalogo/page.js 404 in 95ms
+ GET /favicon.ico 200 in 10ms
+ ✓ Compiled in 2.4s (1813 modules)
+ ✓ Compiled in 735ms (807 modules)
+ GET / 200 in 558ms
+ ✓ Compiled /favicon.ico in 202ms (1094 modules)
+ ✓ Compiled (1096 modules)
+ GET /favicon.ico 200 in 348ms
+ POST /api/tracking 200 in 514ms
+ GET /favicon.ico 200 in 7ms
+ GET /favicon.ico 200 in 13ms
+ GET /favicon.ico 200 in 9ms
+ GET /favicon.ico 200 in 10ms
+ GET /favicon.ico 200 in 7ms
+ ✓ Compiled in 3.5s (1813 modules)
+ ✓ Compiled in 1922ms (1813 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: unexpected end of file
+ ✓ Compiled in 2.4s (1813 modules)
+ ✓ Compiled in 1155ms (1813 modules)
+ ✓ Compiled in 1241ms (1813 modules)
+ ✓ Compiled in 1202ms (1813 modules)
+ ✓ Compiled in 646ms (807 modules)
+ ✓ Compiled in 508ms (807 modules)
+ ✓ Compiled in 641ms (807 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/cache/webpack/server-development/10.pack.gz_' -> '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/cache/webpack/server-development/10.pack.gz'
+ ✓ Compiled in 966ms (1813 modules)
+ ✓ Compiled in 1340ms (1813 modules)
+ ✓ Compiled in 650ms (1813 modules)
+ ✓ Compiled in 711ms (1813 modules)
+ ✓ Compiled in 1212ms (1813 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/cache/webpack/client-development/0.pack.gz'
+ ✓ Compiled / in 391ms (1007 modules)
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page.js',
+  page: '/'
+}
+ GET / 500 in 1103ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2s (2128 modules)
+ ⨯ [Error: Cannot find module 'critters'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/pages.runtime.dev.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_document.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/require.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/utils.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/options.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/index.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/config.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module 'critters'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/pages.runtime.dev.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_document.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/require.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/utils.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/options.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/index.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/config.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module 'critters'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/post-process.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/render.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/module.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/builtin/_error.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-default-error-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page.js',
+  page: '/'
+}
+ ⨯ [TypeError: __webpack_require__(...) is not a constructor]
+ ⨯ [TypeError: __webpack_require__(...) is not a constructor]
+ ⨯ [Error: Cannot find module 'critters'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/post-process.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/render.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/module.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/builtin/_error.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-default-error-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: Cannot find module 'critters'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/post-process.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/render.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/module.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/builtin/_error.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-default-error-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ✓ Compiled in 1801ms (2054 modules)
+ ✓ Compiled in 656ms (953 modules)
+ ✓ Compiled in 1017ms (2054 modules)
+ ✓ Compiled in 565ms (953 modules)
+ ✓ Compiled in 703ms (2054 modules)
+ ✓ Compiled in 1371ms (2054 modules)
+ ✓ Compiled in 13.8s (2054 modules)
+ ✓ Compiled in 1621ms (953 modules)
+   Reload env: .env
+ ✓ Compiled in 586ms (2040 modules)
+ ✓ Compiled in 1349ms (953 modules)
+ ✓ Compiled in 2.9s (2031 modules)
+ ✓ Compiled in 1273ms (2045 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/cache/webpack/client-development/0.pack.gz'
+ ✓ Compiled in 6.9s (2045 modules)
+ ✓ Compiled in 1470ms (2045 modules)
+ ✓ Compiled in 923ms (2045 modules)
+ ✓ Compiled in 877ms (2045 modules)
+ ✓ Compiled in 667ms (2045 modules)
+ ✓ Compiled in 1504ms (2045 modules)
+ ✓ Compiled in 3.2s (949 modules)
+   Reload env: .env
+ ✓ Compiled in 2.2s (2031 modules)
+   Reload env: .env.local
+ ✓ Compiled in 1469ms (2031 modules)
+[?25h

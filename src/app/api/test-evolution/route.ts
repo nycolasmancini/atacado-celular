@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { auth } from '@/lib/auth';
 import { evolutionClient } from '@/lib/evolution';
 
 export async function GET(request: NextRequest) {
   try {
     // Verificar se é admin
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.isAdmin) {
       return NextResponse.json({
         success: false,

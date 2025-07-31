@@ -20,7 +20,7 @@ export default function ProcessSection() {
     {
       number: 2,
       title: "Pague em até 12x",
-      description: "Parcele sua compra em até 12x sem juros e comece a lucrar antes de pagar",
+      description: "Parcele sua compra em até 12x e comece a lucrar antes de pagar",
       icon: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
           <path d="M20 4H4C2.89 4 2.01 4.89 2.01 6L2 18C2 19.11 2.89 20 4 20H20C21.11 20 22 19.11 22 18V6C22 4.89 21.11 4 20 4ZM20 18H4V12H20V18ZM20 8H4V6H20V8Z"/>
@@ -220,9 +220,9 @@ export default function ProcessSection() {
         <div className={`text-center mt-12 md:mt-16 transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`} style={{ transitionDelay: '1200ms' }}>
-          <button className="bg-primary-orange hover:bg-orange-600 text-white font-montserrat font-semibold text-18px px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+          <a href="#kits" className="inline-block bg-primary-orange hover:bg-orange-600 text-white font-montserrat font-semibold text-18px px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
             Começar Agora Mesmo
-          </button>
+          </a>
         </div>
       </div>
     </section>

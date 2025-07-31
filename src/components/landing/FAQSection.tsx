@@ -14,32 +14,32 @@ export default function FAQSection() {
     },
     {
       question: "Como funciona o processo de troca e devolução?",
-      answer: "O processo é muito simples:\n\n1. **Entre em contato** pelo WhatsApp (11) 99999-9999\n2. **Informe o problema** e envie fotos se necessário\n3. **Receba autorização** para devolução\n4. **Enviamos um novo produto** ou estornamos o valor\n\nTodo o processo é feito em até **48 horas úteis** e o frete de retorno é por nossa conta.",
+      answer: "O processo é muito simples:\n\n1. **Entre em contato** pelo WhatsApp (11) 98132-6609 ou (11) 91130-4693\n2. **Informe o problema** e envie fotos se necessário\n3. **Receba autorização** para devolução\n4. **Enviamos um novo produto** ou estornamos o valor\n\nTodo o processo é feito em até **48 horas úteis** e o frete de retorno é por nossa conta.",
       category: "troca"
     },
     {
       question: "Qual o prazo e valor do frete?",
-      answer: "**Entrega em 24h para São Paulo e região metropolitana** com frete a partir de R$ 15,00.\n\nPara outras regiões:\n• **Sul e Sudeste**: 2-3 dias úteis\n• **Nordeste e Centro-Oeste**: 3-5 dias úteis\n• **Norte**: 5-7 dias úteis\n\n**Frete GRÁTIS** para pedidos acima de R$ 500,00 em todo o Brasil.",
+      answer: "**Entrega em 24h para São Paulo e região metropolitana** com frete a partir de R$ 15,00.\n\nPara outras regiões:\n• **Sul e Sudeste**: 2-3 dias úteis\n• **Nordeste e Centro-Oeste**: 3-5 dias úteis\n• **Norte**: 5-7 dias úteis\n\nFrete calculado conforme destino e peso do pedido.",
       category: "frete"
     },
     {
       question: "Vocês emitem nota fiscal?",
-      answer: "**Sim, sempre!** Emitimos nota fiscal para 100% das vendas. Isso garante:\n\n• **Segurança jurídica** para sua loja\n• **Cobertura da garantia** do fabricante\n• **Comprovação** para seu contador\n• **Credibilidade** com seus clientes\n\nA nota fiscal é enviada por email automaticamente após a confirmação do pagamento.",
+      answer: "**Sim, sempre!** Emitimos nota fiscal para 100% das vendas. Isso garante:\n\n• **Segurança jurídica** para sua loja\n• **Cobertura da garantia** do fabricante\n• **Comprovação** para seu contador\n• **Credibilidade** com seus clientes\n\nA nota fiscal é processada após a confirmação do pagamento.",
       category: "fiscal"
     },
     {
       question: "Posso parcelar a compra? Como funciona?",
-      answer: "**Sim! Parcelamos em até 12x sem juros** no cartão de crédito.\n\n**Formas de pagamento aceitas:**\n• Cartão de crédito (até 12x sem juros)\n• PIX (5% de desconto)\n• Boleto bancário (à vista)\n• Transferência bancária (à vista)\n\n**Vantagem especial:** Com o parcelamento, você pode começar a lucrar e vender os produtos antes mesmo de quitar o pagamento!",
+      answer: "**Sim! Parcelamos em até 12x** no cartão de crédito.\n\n**Formas de pagamento aceitas:**\n• Cartão de crédito (até 12x)\n• PIX (à vista)\n• Transferência bancária (à vista)\n\n**Vantagem especial:** Com o parcelamento, você pode começar a lucrar e vender os produtos antes mesmo de quitar o pagamento!",
       category: "parcelamento"
     },
     {
       question: "A PMCELL é uma empresa confiável?",
-      answer: "**Absolutamente!** Somos uma empresa estabelecida há mais de 8 anos no mercado com:\n\n• **CNPJ ativo** e regularizado\n• **4.8 estrelas** no Google Reviews\n• **+340 lojistas parceiros** ativos\n• **Certificação ANATEL** em todos os produtos\n• **Suporte humanizado** com atendimento por videochamada\n\n[Ver nossos depoimentos no Google](https://google.com) | [Consultar CNPJ na Receita Federal](https://cnpj.com)",
+      answer: "**Absolutamente!** Somos uma empresa estabelecida há mais de 8 anos no mercado com:\n\n• **CNPJ 29.734.462/0003-86** ativo e regularizado\n• **4.8 estrelas** no Google Reviews\n• **+340 lojistas parceiros** ativos\n• **Certificação ANATEL** em todos os produtos\n• **Suporte humanizado** com atendimento por videochamada\n\n[Ver nossa empresa no Google](https://share.google/CE3XD0Dd9mmQYW0xI)",
       category: "confiabilidade"
     },
     {
       question: "Os produtos têm certificação ANATEL?",
-      answer: "**Sim, 100% dos nossos produtos são certificados pela ANATEL!**\n\nIsso significa:\n• **Conformidade** com as normas brasileiras\n• **Segurança** para você e seus clientes\n• **Proteção legal** contra fiscalizações\n• **Qualidade garantida** nos produtos eletrônicos\n\nTodos os certificados ANATEL estão disponíveis em nosso site e são enviados junto com os produtos.",
+      answer: "**Sim, nossos produtos possuem certificação ANATEL!**\n\nIsso significa:\n• **Conformidade** com as normas brasileiras\n• **Segurança** para você e seus clientes\n• **Proteção legal** contra fiscalizações\n• **Qualidade garantida** nos produtos eletrônicos\n\nTodos os certificados ANATEL estão disponíveis em nosso site e são enviados junto com os produtos.",
       category: "certificacao"
     },
     {
@@ -111,7 +111,7 @@ export default function FAQSection() {
               <span className="text-primary-orange">Frequentes</span>
             </h2>
             <p className="text-16px md:text-18px font-inter text-gray-600 max-w-2xl mx-auto">
-              Tire suas dúvidas sobre como ser parceiro PMCELL e multiplicar seus lucros
+              Tire suas dúvidas sobre nossos produtos e como acessar o catálogo completo
             </p>
           </div>
 

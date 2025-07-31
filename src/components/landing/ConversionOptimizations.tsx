@@ -28,7 +28,7 @@ const socialProofMessages: SocialProofData[] = [
   },
   {
     type: 'review',
-    message: '⭐ Ana avaliou com 5 estrelas',
+    message: '⭐ Ana avaliou com 5.0 estrelas',
     location: 'Belo Horizonte - MG',
     timeAgo: '8 minutos atrás'
   },

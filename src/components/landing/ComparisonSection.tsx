@@ -43,7 +43,7 @@ export default function ComparisonSection() {
     },
     {
       diferencial: "Parcelamento",
-      pmcell: "Até 12x sem juros",
+      pmcell: "Até 12x no cartão",
       pmcellIcon: "✓",
       others: "À vista ou 3x",
       othersIcon: "✗"
@@ -225,7 +225,7 @@ export default function ComparisonSection() {
             Faça parte dos lojistas que escolheram a melhor opção do mercado
           </p>
           <button className="bg-primary-orange hover:bg-orange-600 text-white font-montserrat font-semibold text-18px px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-            Quero Ser Parceiro PMCELL
+            Quero ver o catálogo completo
           </button>
         </div>
       </div>

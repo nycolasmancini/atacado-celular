@@ -8,6 +8,7 @@ export default function ProfitCalculator() {
   const [monthlyProfit, setMonthlyProfit] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+  const resultRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
 
   useEffect(() => {
@@ -34,6 +35,34 @@ export default function ProfitCalculator() {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(value)
+  }
+
+  const handleSliderRelease = () => {
+    // Scroll to show the results section
+    setTimeout(() => {
+      if (resultRef.current) {
+        // Scroll directly to the results section
+        resultRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'nearest'
+        })
+      } else if (sectionRef.current) {
+        // Fallback: scroll to bottom of calculator section
+        const rect = sectionRef.current.getBoundingClientRect()
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+        const elementTop = rect.top + scrollTop
+        const elementHeight = rect.height
+        const viewportHeight = window.innerHeight
+        
+        const targetScrollTop = elementTop + elementHeight - viewportHeight + 100
+        
+        window.scrollTo({
+          top: Math.max(targetScrollTop, elementTop - 50),
+          behavior: 'smooth'
+        })
+      }
+    }, 150)
   }
 
   return (
@@ -98,7 +127,9 @@ export default function ProfitCalculator() {
                       max="50"
                       value={dailySales}
                       onChange={(e) => setDailySales(Number(e.target.value))}
-                      className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+                      onMouseUp={handleSliderRelease}
+                      onTouchEnd={handleSliderRelease}
+                      className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-orange-500 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-orange-500 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:shadow-md [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white"
                       style={{
                         background: `linear-gradient(to right, #FF6B35 0%, #FF6B35 ${((dailySales - 5) / 45) * 100}%, #e5e7eb ${((dailySales - 5) / 45) * 100}%, #e5e7eb 100%)`
                       }}
@@ -143,7 +174,7 @@ export default function ProfitCalculator() {
               </div>
 
               {/* Right Side - Result */}
-              <div className="text-center">
+              <div ref={resultRef} className="text-center">
                 <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-100">
                   <div className="mb-4">
                     <div className="text-sm font-medium text-green-600 uppercase tracking-wide mb-2">
@@ -208,27 +239,6 @@ export default function ProfitCalculator() {
         </motion.div>
       </div>
 
-      <style jsx>{`
-        .slider::-webkit-slider-thumb {
-          appearance: none;
-          height: 24px;
-          width: 24px;
-          border-radius: 50%;
-          background: #FF6B35;
-          cursor: pointer;
-          box-shadow: 0 4px 8px rgba(255, 107, 53, 0.3);
-          border: 2px solid white;
-        }
-        .slider::-moz-range-thumb {
-          height: 24px;
-          width: 24px;
-          border-radius: 50%;
-          background: #FF6B35;
-          cursor: pointer;
-          box-shadow: 0 4px 8px rgba(255, 107, 53, 0.3);
-          border: 2px solid white;
-        }
-      `}</style>
     </section>
   )
 }

@@ -95,7 +95,7 @@ body {
   }
   
   .card-hover {
-    @apply transition-all duration-500 hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transform-gpu;
+    @apply transition-all duration-500 hover:shadow-2xl transform-gpu;
   }
 }
 

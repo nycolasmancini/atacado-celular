@@ -2,7 +2,7 @@ import { trackEvent } from './tracking'
 
 // Configurações do WhatsApp
 const WHATSAPP_CONFIG = {
-  businessNumber: '5511999999999', // Substituir pelo número real
+  businessNumber: '5511981326609', // Número principal do WhatsApp
   baseUrl: 'https://wa.me',
   webUrl: 'https://web.whatsapp.com/send',
   apiUrl: 'https://api.whatsapp.com/send'

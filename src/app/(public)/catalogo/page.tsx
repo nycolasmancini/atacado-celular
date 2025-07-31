@@ -122,7 +122,7 @@ export default function CatalogoPage() {
     return matchesCategory && matchesSearch;
   }) : [];
 
-  const handleWhatsAppSuccess = (whatsapp: string, expiresAt: number) => {
+  const handleWhatsAppSuccess = (whatsapp: string) => {
     unlockPrices(whatsapp);
     updateTrackingData({ whatsapp });
     setModalOpen(false);

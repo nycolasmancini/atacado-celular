@@ -3,6 +3,12 @@ import { prisma } from '@/lib/prisma'
 
 export async function GET() {
   try {
+    console.log('Fetching kits from database...')
+    
+    // Test database connection first
+    await prisma.$connect()
+    console.log('Database connected successfully')
+    
     const kits = await prisma.kit.findMany({
       take: 3,
       include: {
@@ -16,6 +22,8 @@ export async function GET() {
         id: 'asc'
       }
     })
+
+    console.log(`Found ${kits.length} kits`)
 
     // Converter Decimal para number para serialização JSON
     const serializedKits = kits.map(kit => ({
@@ -32,12 +40,24 @@ export async function GET() {
       }))
     }))
 
+    console.log('Returning serialized kits')
     return NextResponse.json(serializedKits)
   } catch (error) {
     console.error('Error fetching kits:', error)
+    console.error('Error details:', {
+      name: error?.name,
+      message: error?.message,
+      stack: error?.stack
+    })
+    
     return NextResponse.json(
-      { error: 'Failed to fetch kits' },
+      { 
+        error: 'Failed to fetch kits',
+        details: error?.message || 'Unknown error'
+      },
       { status: 500 }
     )
+  } finally {
+    await prisma.$disconnect()
   }
 }

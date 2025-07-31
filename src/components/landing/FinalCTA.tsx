@@ -3,10 +3,11 @@
 import { useTracking } from '@/components/providers/TrackingProvider'
 
 interface FinalCTAProps {
-  onRequestWhatsApp: () => void
+  onRequestWhatsApp?: () => void
+  onKitClick?: () => void
 }
 
-export default function FinalCTA({ onRequestWhatsApp }: FinalCTAProps) {
+export default function FinalCTA({ onRequestWhatsApp, onKitClick }: FinalCTAProps) {
   const { trackEvent } = useTracking()
 
   const handleCTAClick = () => {
@@ -17,7 +18,11 @@ export default function FinalCTA({ onRequestWhatsApp }: FinalCTAProps) {
       cta_location: 'final_section',
       cta_text: 'ESCOLHER MEU KIT AGORA'
     })
-    onRequestWhatsApp()
+    if (onRequestWhatsApp) {
+      onRequestWhatsApp()
+    } else if (onKitClick) {
+      onKitClick()
+    }
   }
 
   const handleCatalogClick = () => {

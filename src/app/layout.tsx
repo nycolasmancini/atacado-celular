@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { TrackingProvider } from "@/components/providers/TrackingProvider";
 import { CartProvider } from "@/contexts/CartContext";
-import { SessionProvider } from "@/components/providers/SessionProvider";
 import { ABTestingProvider } from "@/contexts/ABTestingContext";
 import { Toaster } from "react-hot-toast";
 import WebVitalsReporter from "@/components/optimization/WebVitalsReporter";
@@ -123,7 +122,7 @@ export default function RootLayout({
     url: process.env.NEXT_PUBLIC_BASE_URL || 'https://atacado-celular.com',
     logo: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://atacado-celular.com'}/images/logo.png`,
     image: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://atacado-celular.com'}/images/og-image.jpg`,
-    telephone: '+55-11-99999-9999', // Replace with actual phone
+    telephone: '+55-11-98132-6609', // WhatsApp principal
     email: 'contato@atacado-celular.com', // Replace with actual email
     address: {
       '@type': 'PostalAddress',
@@ -194,25 +193,23 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {/* <WebVitalsReporter /> */}
-        <SessionProvider>
-          {/* <ABTestingProvider> */}
-            <TrackingProvider>
-              <CartProvider>
-                {children}
-                <Toaster 
-                  position="top-right"
-                  toastOptions={{
-                    duration: 4000,
-                    style: {
-                      background: '#363636',
-                      color: '#fff',
-                    },
-                  }}
-                />
-              </CartProvider>
-            </TrackingProvider>
-          {/* </ABTestingProvider> */}
-        </SessionProvider>
+        {/* <ABTestingProvider> */}
+          <TrackingProvider>
+            <CartProvider>
+              {children}
+              <Toaster 
+                position="top-right"
+                toastOptions={{
+                  duration: 4000,
+                  style: {
+                    background: '#363636',
+                    color: '#fff',
+                  },
+                }}
+              />
+            </CartProvider>
+          </TrackingProvider>
+        {/* </ABTestingProvider> */}
       </body>
     </html>
   );

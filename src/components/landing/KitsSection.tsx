@@ -5,6 +5,68 @@ import { useRouter } from 'next/navigation'
 import { Kit, KitItem, Product } from '@prisma/client'
 import KitCard from './KitCard'
 
+// Mock data fallback
+const MOCK_KITS = [
+  {
+    id: 1,
+    name: 'Kit Proteção iPhone',
+    slug: 'kit-protecao-iphone',
+    description: 'Kit completo: capinha + película + carregador',
+    totalPrice: 40.00,
+    discount: 0,
+    colorTheme: 'purple-pink',
+    imageUrl: 'https://via.placeholder.com/400x300',
+    items: [
+      {
+        id: 1,
+        kitId: 1,
+        productId: 1,
+        quantity: 1,
+        product: {
+          id: 1,
+          name: 'Capinha iPhone 15',
+          slug: 'capinha-iphone-15',
+          description: 'Capinha transparente para iPhone 15',
+          price: 15.00,
+          specialPrice: 12.00,
+          specialPriceMinQty: 100,
+          categoryId: 1,
+          imageUrl: 'https://via.placeholder.com/300x300'
+        }
+      }
+    ]
+  },
+  {
+    id: 2,
+    name: 'Kit Básico Android',
+    slug: 'kit-basico-android',
+    description: 'Kit essencial: capinha + carregador',
+    totalPrice: 35.00,
+    discount: 0,
+    colorTheme: 'blue-green',
+    imageUrl: 'https://via.placeholder.com/400x300',
+    items: [
+      {
+        id: 2,
+        kitId: 2,
+        productId: 2,
+        quantity: 1,
+        product: {
+          id: 2,
+          name: 'Carregador USB-C 20W',
+          slug: 'carregador-usb-c-20w',
+          description: 'Carregador rápido USB-C 20W',
+          price: 25.00,
+          specialPrice: 20.00,
+          specialPriceMinQty: 50,
+          categoryId: 2,
+          imageUrl: 'https://via.placeholder.com/300x300'
+        }
+      }
+    ]
+  }
+] as KitWithItems[]
+
 interface KitsSectionProps {
   pricesUnlocked: boolean
   onRequestWhatsApp: () => void
@@ -54,26 +116,67 @@ function KitsList({ pricesUnlocked, onRequestWhatsApp }: { pricesUnlocked: boole
   const [kits, setKits] = useState<KitWithItems[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [retryCount, setRetryCount] = useState(0)
 
   useEffect(() => {
     async function fetchKits() {
       try {
-        const response = await fetch('/api/kits')
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+        
+        // Use relative URL to avoid redirect issues
+        const apiUrl = '/api/kits'
+        console.log('Fetching from:', apiUrl)
+        
+        const response = await fetch(apiUrl, {
+          signal: controller.signal,
+          cache: 'no-store',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        
+        clearTimeout(timeoutId)
+        
         if (!response.ok) {
-          throw new Error('Failed to fetch kits')
+          throw new Error(`HTTP error! status: ${response.status}`)
         }
+        
         const data = await response.json()
         setKits(data)
       } catch (err) {
         console.error('Error fetching kits:', err)
-        setError(err instanceof Error ? err.message : 'Failed to fetch kits')
+        console.error('Error type:', typeof err)
+        console.error('Error name:', err?.name)
+        console.error('Error message:', err?.message)
+        console.error('Full error object:', err)
+        console.error('Current URL:', window.location.href)
+        
+        // After 3 failed attempts, use mock data
+        if (retryCount >= 2) {
+          console.warn('Using mock data after failed API requests')
+          setKits(MOCK_KITS)
+          setError(null)
+        } else {
+          if (err instanceof Error) {
+            if (err.name === 'AbortError') {
+              setError('Request timed out. Please check your connection.')
+            } else if (err.message.includes('NetworkError') || err.message.includes('Failed to fetch')) {
+              setError('Network error. Please check your internet connection.')
+            } else {
+              setError(err.message)
+            }
+          } else {
+            setError('Failed to fetch kits')
+          }
+        }
       } finally {
         setLoading(false)
       }
     }
 
     fetchKits()
-  }, [])
+  }, [retryCount])
 
   if (loading) {
     return (
@@ -97,12 +200,24 @@ function KitsList({ pricesUnlocked, onRequestWhatsApp }: { pricesUnlocked: boole
         <p className="text-gray-500 mb-4">
           Não foi possível carregar os kits. Tente recarregar a página.
         </p>
-        <button 
-          onClick={() => window.location.reload()} 
-          className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors"
-        >
-          Recarregar
-        </button>
+        <div className="flex gap-2 justify-center">
+          <button 
+            onClick={() => {
+              setError(null)
+              setLoading(true)
+              setRetryCount(prev => prev + 1)
+            }} 
+            className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors"
+          >
+            Tentar Novamente
+          </button>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="border border-purple-600 text-purple-600 px-4 py-2 rounded-lg hover:bg-purple-50 transition-colors"
+          >
+            Recarregar Página
+          </button>
+        </div>
       </div>
     )
   }
@@ -141,6 +256,23 @@ function KitsList({ pricesUnlocked, onRequestWhatsApp }: { pricesUnlocked: boole
 // Main Component
 export default function KitsSection({ pricesUnlocked, onRequestWhatsApp }: KitsSectionProps) {
   const router = useRouter()
+  const [avatarUrl, setAvatarUrl] = useState('/images/whatsapp-avatar.svg')
+
+  // Buscar configurações do site
+  useEffect(() => {
+    async function fetchConfig() {
+      try {
+        const response = await fetch('/api/config')
+        if (response.ok) {
+          const config = await response.json()
+          setAvatarUrl(config.avatarWhatsappUrl || '/images/whatsapp-avatar.svg')
+        }
+      } catch (error) {
+        console.error('Erro ao buscar configurações:', error)
+      }
+    }
+    fetchConfig()
+  }, [])
 
   const handleCatalogClick = () => {
     router.push('/catalogo')
@@ -185,10 +317,17 @@ export default function KitsSection({ pricesUnlocked, onRequestWhatsApp }: KitsS
         {/* Bottom CTA */}
         <div className="text-center">
           <div className="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
-            <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+            <div className="w-12 h-12 mx-auto mb-4 rounded-full border-2 border-green-400 relative overflow-hidden">
+              <img 
+                src={avatarUrl} 
+                alt="WhatsApp Avatar" 
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement
+                  target.src = '/images/whatsapp-avatar.svg'
+                }}
+              />
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border border-white"></div>
             </div>
             
             <h3 className="text-2xl font-bold text-gray-800 mb-2">
@@ -231,7 +370,7 @@ export default function KitsSection({ pricesUnlocked, onRequestWhatsApp }: KitsS
           </div>
           
           <div className="text-center">
-            <div className="text-3xl font-bold text-purple-600 mb-2">48h</div>
+            <div className="text-3xl font-bold text-purple-600 mb-2">24h</div>
             <div className="text-gray-600 text-sm">Envio Garantido</div>
           </div>
           

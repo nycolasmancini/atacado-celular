@@ -1,11 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
 import Link from 'next/link'
 
 export default function HeroSection() {
-  const [isVisible, setIsVisible] = useState(true)
 
   const scrollToKits = () => {
     const kitsSection = document.getElementById('kits-section')
@@ -18,19 +16,6 @@ export default function HeroSection() {
     <motion.section 
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       initial={{ background: 'linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #ec4899 100%)' }}
-      animate={{ 
-        background: [
-          'linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #ec4899 100%)',
-          'linear-gradient(135deg, #7c3aed 0%, #ec4899 50%, #f97316 100%)',
-          'linear-gradient(135deg, #ec4899 0%, #f97316 50%, #9333ea 100%)',
-          'linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #ec4899 100%)'
-        ]
-      }}
-      transition={{ 
-        duration: 8, 
-        repeat: Infinity, 
-        ease: "easeInOut" 
-      }}
       style={{
         background: 'linear-gradient(180deg, #9333ea 0%, #7c3aed 40%, #ec4899 70%, #FF6B35 95%, #F8F9FA 100%)'
       }}
@@ -82,7 +67,6 @@ export default function HeroSection() {
               com Acessórios que Vendem Sozinhos
             </motion.h1>
 
-            {/* Sub-headline */}
             <motion.p 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -102,19 +86,11 @@ export default function HeroSection() {
             >
               <motion.button
                 onClick={scrollToKits}
-                className="group relative px-8 py-4 text-white font-bold text-lg rounded-full shadow-xl overflow-hidden"
-                initial={{ 
+                className="group relative px-8 py-4 text-white font-bold text-lg rounded-full shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl"
+                style={{
                   background: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
-                  scale: 1,
-                  y: 0
+                  transform: 'none'
                 }}
-                whileHover={{ 
-                  background: 'linear-gradient(135deg, #ea580c 0%, #ec4899 50%, #9333ea 100%)',
-                  scale: 1.05,
-                  y: -4,
-                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
-                }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 <span className="relative z-10">ESCOLHER MEU KIT AGORA</span>
               </motion.button>
@@ -203,7 +179,6 @@ export default function HeroSection() {
                 </motion.div>
               </div>
               
-              {/* Floating Elements */}
               <motion.div 
                 animate={{ y: [-10, 10, -10] }}
                 transition={{ duration: 3, repeat: Infinity }}
@@ -216,7 +191,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

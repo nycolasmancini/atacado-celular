@@ -26,7 +26,7 @@ type WhatsAppFormData = z.infer<typeof whatsappSchema>;
 
 interface WhatsAppModalProps {
   isOpen: boolean;
-  onSuccess: (whatsapp: string, expiresAt: number) => void;
+  onSuccess: (whatsapp: string, expiresAt?: number) => void;
   onClose?: () => void;
 }
 
