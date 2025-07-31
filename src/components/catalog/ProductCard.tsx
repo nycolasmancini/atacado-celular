@@ -2,10 +2,12 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import { Eye } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PriceDisplay } from "./PriceDisplay";
 import { QuantitySelector } from "./QuantitySelector";
 import { AddToCartSection } from "./AddToCartSection";
+import { ProductDetailModal } from "./ProductDetailModal";
 import { useProductView } from "@/hooks/useProductView";
 import { useCart } from "@/contexts/CartContext";
 
@@ -18,6 +20,7 @@ interface Product {
   specialPrice: number;
   specialPriceMinQty: number;
   imageUrl?: string;
+  images?: string[];
   category: {
     id: number;
     name: string;
@@ -39,6 +42,7 @@ export function ProductCard({
   className 
 }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
+  const [showDetailModal, setShowDetailModal] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const { addItem, getItemQuantity } = useCart();
   
@@ -57,6 +61,20 @@ export function ProductCard({
     setQuantity(1);
   };
 
+  // Handle image click - show detail modal
+  const handleImageClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowDetailModal(true);
+  };
+
+  // Handle eye icon click - show detail modal
+  const handleEyeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowDetailModal(true);
+  };
+
   return (
     <div
       ref={cardRef}
@@ -73,14 +91,17 @@ export function ProductCard({
       {/* Mobile Layout - Horizontal */}
       <div className="flex md:hidden h-full">
         {/* Image - Left side on mobile */}
-        <div className="flex-shrink-0 w-24 h-full relative">
-          <div className="absolute inset-0 bg-gray-100 rounded-l-lg overflow-hidden">
+        <div className="flex-shrink-0 w-24 h-full relative group">
+          <div 
+            className="absolute inset-0 bg-gray-100 rounded-l-lg overflow-hidden cursor-pointer"
+            onClick={handleImageClick}
+          >
             {product.imageUrl ? (
               <Image
                 src={product.imageUrl}
                 alt={product.name}
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-200 group-hover:scale-105"
                 sizes="96px"
               />
             ) : (
@@ -92,6 +113,15 @@ export function ProductCard({
               </div>
             )}
           </div>
+          
+          {/* Eye icon - Mobile */}
+          <button
+            onClick={handleEyeClick}
+            className="absolute top-1 right-1 bg-white/90 hover:bg-white rounded-full p-1.5 shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200 z-10"
+            title="Ver detalhes do produto"
+          >
+            <Eye className="w-3 h-3 text-gray-700" />
+          </button>
         </div>
 
         {/* Content - Right side on mobile */}
@@ -148,24 +178,32 @@ export function ProductCard({
       {/* Desktop Layout - Vertical */}
       <div className="hidden md:flex flex-col h-full">
         {/* Image - Top on desktop */}
-        <div className="relative aspect-square bg-gray-100 rounded-t-lg overflow-hidden flex-shrink-0">
+        <div className="relative aspect-square bg-gray-100 rounded-t-lg overflow-hidden flex-shrink-0 group cursor-pointer" onClick={handleImageClick}>
           {product.imageUrl ? (
             <Image
               src={product.imageUrl}
               alt={product.name}
               fill
-              className="object-cover hover:scale-105 transition-transform duration-200"
+              className="object-cover group-hover:scale-105 transition-transform duration-200"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-gray-400">
               <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
-                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </div>
           )}
           
+          {/* Eye icon - Desktop */}
+          <button
+            onClick={handleEyeClick}
+            className="absolute top-2 right-2 bg-white/90 hover:bg-white rounded-full p-2 shadow-md opacity-0 group-hover:opacity-100 transition-all duration-200 z-10"
+            title="Ver detalhes do produto"
+          >
+            <Eye className="w-4 h-4 text-gray-700" />
+          </button>
         </div>
 
         {/* Content - Bottom on desktop */}
@@ -218,6 +256,13 @@ export function ProductCard({
           </div>
         </div>
       </div>
+
+      {/* Product Detail Modal */}
+      <ProductDetailModal
+        product={product}
+        isOpen={showDetailModal}
+        onClose={() => setShowDetailModal(false)}
+      />
     </div>
   );
 }

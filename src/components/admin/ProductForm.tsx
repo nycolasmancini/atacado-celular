@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { validatePricing } from '@/lib/pricing'
 import PricingFields from './PricingFields'
+import ImageUpload from './ImageUpload'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 
@@ -177,36 +178,33 @@ export default function ProductForm({
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Categoria *
-            </label>
-            <select
-              value={formData.categoryId}
-              onChange={(e) => handleInputChange('categoryId', parseInt(e.target.value))}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">Selecione uma categoria</option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-            {errors.categoryId && (
-              <p className="text-sm text-red-600 mt-1">{errors.categoryId}</p>
-            )}
-          </div>
+        <div className="mt-3">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Categoria *
+          </label>
+          <select
+            value={formData.categoryId}
+            onChange={(e) => handleInputChange('categoryId', parseInt(e.target.value))}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">Selecione uma categoria</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+          {errors.categoryId && (
+            <p className="text-sm text-red-600 mt-1">{errors.categoryId}</p>
+          )}
+        </div>
 
-          <div>
-            <Input
-              label="URL da Imagem"
-              value={formData.imageUrl}
-              onChange={(e) => handleInputChange('imageUrl', e.target.value)}
-              placeholder="https://exemplo.com/imagem.jpg"
-            />
-          </div>
+        <div className="mt-4">
+          <ImageUpload
+            value={formData.imageUrl}
+            onChange={(url) => handleInputChange('imageUrl', url)}
+            disabled={loading}
+          />
         </div>
 
         <div className="mt-3">
