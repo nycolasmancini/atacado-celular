@@ -55,19 +55,31 @@ class TrackingService {
         whatsapp
       }
 
-      await fetch('/api/tracking', {
+      // Use timeout and don't wait for response to avoid blocking UI
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 3000) // 3 second timeout
+
+      fetch('/api/tracking', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'x-session-id': this.sessionId
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        signal: controller.signal
+      }).then(() => {
+        clearTimeout(timeoutId)
+      }).catch(error => {
+        clearTimeout(timeoutId)
+        console.warn('Tracking request failed (non-blocking):', error.name)
       })
 
-      // Update local tracking data
+      // Update local tracking data immediately (don't wait for API)
       this.updateLocalTracking(eventType, eventData)
     } catch (error) {
-      console.error('Failed to track event:', error)
+      console.warn('Failed to prepare tracking event:', error)
+      // Still update local tracking even if API fails
+      this.updateLocalTracking(eventType, eventData)
     }
   }
 

@@ -1,0 +1,589 @@
+
+> atacado-celular@0.1.0 dev
+> next dev --turbopack
+
+ ⚠ Warning: Found multiple lockfiles. Selecting /Users/nycolasmancini/package-lock.json.
+   Consider removing the lockfiles at:
+   * /Users/nycolasmancini/Desktop/catalogo/atacado-celular/package-lock.json
+
+   ▲ Next.js 15.4.5 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.15.35:3000
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     ✓ optimizeCss
+     ✓ scrollRestoration
+
+ ✓ Starting...
+ ✓ Compiled middleware in 84ms
+ ✓ Ready in 1287ms
+ ⚠ Webpack is configured while Turbopack is not, which may cause problems.
+ ⚠ See instructions if you need to configure Turbopack:
+  https://nextjs.org/docs/app/api-reference/next-config-js/turbopack
+
+ ○ Compiling / ...
+ ✓ Compiled / in 1928ms
+ GET / 200 in 2206ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 637ms
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_document.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/require.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/utils.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/options.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/index.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/config.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js
+    at Object.<anonymous> (.next/server/pages/_document.js:2:17) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module 'critters'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/post-process.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/render.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/module.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/builtin/_error.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-default-error-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_document.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/require.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/utils.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/options.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/index.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/config.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js
+    at Object.<anonymous> (.next/server/pages/_document.js:2:17) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module 'critters'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/post-process.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/render.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/module.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/builtin/_error.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-default-error-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: Cannot find module 'critters'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/post-process.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/render.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/module.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/builtin/_error.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-default-error-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 952ms
+ GET / 500 in 69ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_document.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/require.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/utils.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/options.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/index.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/config.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js
+    at Object.<anonymous> (.next/server/pages/_document.js:2:17) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module 'critters'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/post-process.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/render.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/module.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/builtin/_error.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-default-error-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_document.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/require.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/utils.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/options.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/index.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/config.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js
+    at Object.<anonymous> (.next/server/pages/_document.js:2:17) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module 'critters'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/post-process.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/render.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/module.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/builtin/_error.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-default-error-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: Cannot find module 'critters'
+Require stack:
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/post-process.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/render.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/module.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/builtin/_error.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-default-error-components.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
+- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 134ms
+ GET / 500 in 55ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_app/build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_app/build-manifest.json'
+}
+[Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_app/build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_app/build-manifest.json'
+}
+[Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_app/build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_app/build-manifest.json'
+}
+ ✓ Compiled /favicon.ico in 161ms
+ GET /favicon.ico 200 in 459ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_app/build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_app/build-manifest.json'
+}
+[Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page/app-build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_app/build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_app/build-manifest.json'
+}
+[Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_app/build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_app/build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/favicon.ico/[__metadata_id__]/route/app-paths-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/favicon.ico/[__metadata_id__]/route/app-paths-manifest.json'
+}
+ ⨯ ./src/components/landing/WhatsAppModal.tsx:6:1
+Module not found: Can't resolve 'zod'
+[0m [90m 4 |[39m [36mimport[39m { useForm } [36mfrom[39m [32m"react-hook-form"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { zodResolver } [36mfrom[39m [32m"@hookform/resolvers/zod"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { z } [36mfrom[39m [32m"zod"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m { [33mModal[39m } [36mfrom[39m [32m"@/components/ui/Modal"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { [33mInput[39m } [36mfrom[39m [32m"@/components/ui/Input"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m"@/components/ui/Button"[39m[33m;[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/landing/WhatsAppModal.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/landing/WhatsAppModal.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/components/landing/WhatsAppModal.tsx:6:1
+Module not found: Can't resolve 'zod'
+[0m [90m 4 |[39m [36mimport[39m { useForm } [36mfrom[39m [32m"react-hook-form"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { zodResolver } [36mfrom[39m [32m"@hookform/resolvers/zod"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { z } [36mfrom[39m [32m"zod"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m { [33mModal[39m } [36mfrom[39m [32m"@/components/ui/Modal"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { [33mInput[39m } [36mfrom[39m [32m"@/components/ui/Input"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m"@/components/ui/Button"[39m[33m;[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/landing/WhatsAppModal.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/landing/WhatsAppModal.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/components/landing/WhatsAppModal.tsx:6:1
+Module not found: Can't resolve 'zod'
+[0m [90m 4 |[39m [36mimport[39m { useForm } [36mfrom[39m [32m"react-hook-form"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { zodResolver } [36mfrom[39m [32m"@hookform/resolvers/zod"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { z } [36mfrom[39m [32m"zod"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m { [33mModal[39m } [36mfrom[39m [32m"@/components/ui/Modal"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { [33mInput[39m } [36mfrom[39m [32m"@/components/ui/Input"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m"@/components/ui/Button"[39m[33m;[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/landing/WhatsAppModal.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/landing/WhatsAppModal.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/components/landing/WhatsAppModal.tsx:6:1
+Module not found: Can't resolve 'zod'
+[0m [90m 4 |[39m [36mimport[39m { useForm } [36mfrom[39m [32m"react-hook-form"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { zodResolver } [36mfrom[39m [32m"@hookform/resolvers/zod"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { z } [36mfrom[39m [32m"zod"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m { [33mModal[39m } [36mfrom[39m [32m"@/components/ui/Modal"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m { [33mInput[39m } [36mfrom[39m [32m"@/components/ui/Input"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { [33mButton[39m } [36mfrom[39m [32m"@/components/ui/Button"[39m[33m;[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/landing/WhatsAppModal.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/landing/WhatsAppModal.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./node_modules/@hookform/resolvers/zod/dist/zod.mjs:1:127
+Module not found: Can't resolve 'zod/v4/core'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m{validateFieldsNatively [36mas[39m r[33m,[39mtoNestErrors [36mas[39m e}[36mfrom[39m[32m"@hookform/resolvers"[39m[33m;[39m[36mimport[39m{appendErrors [36mas[39m o}[36mfrom[39m[32m"react-hook-form"[39m[33m;[39m[36mimport[39m[33m*[39m[36mas[39m n [36mfrom[39m[32m"zod/v4/core"[39m[33m;[39m[36mfunction[39m t(r[33m,[39me){[36mtry[39m{[36mvar[39m o[33m=[39mr()}[36mcatch[39m(r){[36mreturn[39m e(r)}[36mreturn[39m o[33m&&[39mo[33m.[39mthen[33m?[39mo[33m.[39mthen([36mvoid[39m [35m0[39m[33m,[39me)[33m:[39mo}[36mfunction[39m s(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"unionErrors"[39m[36min[39m t){[36mvar[39m u[33m=[39mt[33m.[39munionErrors[[35m0[39m][33m.[39merrors[[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"unionErrors"[39m[36min[39m t[33m&&[39mt[33m.[39munionErrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m i(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mlength[33m>[39m[35m0[39m){[36mvar[39m u[33m=[39mt[33m.[39merrors[[35m0[39m][[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m a(o[33m,[39ma[33m,[39mu){[36mif[39m([36mvoid[39m [35m0[39m[33m===[39mu[33m&&[39m(u[33m=[39m{})[33m,[39m[36mfunction[39m(r){[36mreturn[39m[32m"_def"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_def[33m&&[39m[32m"typeName"[39m[36min[39m r[33m.[39m_def}(o))[36mreturn[39m [36mfunction[39m(n[33m,[39mi[33m,[39mc){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(o[[32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39m[32m"parse"[39m[33m:[39m[32m"parseAsync"[39m](n[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m c[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mc)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39mn)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m [33mArray[39m[33m.[39misArray([36mnull[39m[33m==[39mr[33m?[39m[36mvoid[39m [35m0[39m[33m:[39mr[33m.[39missues)}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(s(r[33m.[39merrors[33m,[39m[33m![39mc[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mc[33m.[39mcriteriaMode)[33m,[39mc)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mif[39m([36mfunction[39m(r){[36mreturn[39m[32m"_zod"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_zod}(o))[36mreturn[39m [36mfunction[39m(s[33m,[39mc[33m,[39mf){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(([32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39mn[33m.[39mparse[33m:[39mn[33m.[39mparseAsync)(o[33m,[39ms[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m f[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mf)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39ms)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m r [36minstanceof[39m n[33m.[39m$ZodError}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(i(r[33m.[39missues[33m,[39m[33m![39mf[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mf[33m.[39mcriteriaMode)[33m,[39mf)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mthrow[39m [36mnew[39m [33mError[39m([32m"Invalid input: not a Zod schema"[39m)}[36mexport[39m{a [36mas[39m zodResolver}[33m;[39m
+ [90m   |[39m                                                                                                                               [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 2 |[39m [90m//# sourceMappingURL=zod.module.js.map[39m
+ [90m 3 |[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component Browser]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component SSR]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./node_modules/@hookform/resolvers/zod/dist/zod.mjs:1:127
+Module not found: Can't resolve 'zod/v4/core'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m{validateFieldsNatively [36mas[39m r[33m,[39mtoNestErrors [36mas[39m e}[36mfrom[39m[32m"@hookform/resolvers"[39m[33m;[39m[36mimport[39m{appendErrors [36mas[39m o}[36mfrom[39m[32m"react-hook-form"[39m[33m;[39m[36mimport[39m[33m*[39m[36mas[39m n [36mfrom[39m[32m"zod/v4/core"[39m[33m;[39m[36mfunction[39m t(r[33m,[39me){[36mtry[39m{[36mvar[39m o[33m=[39mr()}[36mcatch[39m(r){[36mreturn[39m e(r)}[36mreturn[39m o[33m&&[39mo[33m.[39mthen[33m?[39mo[33m.[39mthen([36mvoid[39m [35m0[39m[33m,[39me)[33m:[39mo}[36mfunction[39m s(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"unionErrors"[39m[36min[39m t){[36mvar[39m u[33m=[39mt[33m.[39munionErrors[[35m0[39m][33m.[39merrors[[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"unionErrors"[39m[36min[39m t[33m&&[39mt[33m.[39munionErrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m i(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mlength[33m>[39m[35m0[39m){[36mvar[39m u[33m=[39mt[33m.[39merrors[[35m0[39m][[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m a(o[33m,[39ma[33m,[39mu){[36mif[39m([36mvoid[39m [35m0[39m[33m===[39mu[33m&&[39m(u[33m=[39m{})[33m,[39m[36mfunction[39m(r){[36mreturn[39m[32m"_def"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_def[33m&&[39m[32m"typeName"[39m[36min[39m r[33m.[39m_def}(o))[36mreturn[39m [36mfunction[39m(n[33m,[39mi[33m,[39mc){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(o[[32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39m[32m"parse"[39m[33m:[39m[32m"parseAsync"[39m](n[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m c[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mc)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39mn)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m [33mArray[39m[33m.[39misArray([36mnull[39m[33m==[39mr[33m?[39m[36mvoid[39m [35m0[39m[33m:[39mr[33m.[39missues)}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(s(r[33m.[39merrors[33m,[39m[33m![39mc[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mc[33m.[39mcriteriaMode)[33m,[39mc)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mif[39m([36mfunction[39m(r){[36mreturn[39m[32m"_zod"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_zod}(o))[36mreturn[39m [36mfunction[39m(s[33m,[39mc[33m,[39mf){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(([32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39mn[33m.[39mparse[33m:[39mn[33m.[39mparseAsync)(o[33m,[39ms[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m f[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mf)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39ms)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m r [36minstanceof[39m n[33m.[39m$ZodError}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(i(r[33m.[39missues[33m,[39m[33m![39mf[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mf[33m.[39mcriteriaMode)[33m,[39mf)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mthrow[39m [36mnew[39m [33mError[39m([32m"Invalid input: not a Zod schema"[39m)}[36mexport[39m{a [36mas[39m zodResolver}[33m;[39m
+ [90m   |[39m                                                                                                                               [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 2 |[39m [90m//# sourceMappingURL=zod.module.js.map[39m
+ [90m 3 |[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component Browser]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component SSR]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./node_modules/@hookform/resolvers/zod/dist/zod.mjs:1:127
+Module not found: Can't resolve 'zod/v4/core'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m{validateFieldsNatively [36mas[39m r[33m,[39mtoNestErrors [36mas[39m e}[36mfrom[39m[32m"@hookform/resolvers"[39m[33m;[39m[36mimport[39m{appendErrors [36mas[39m o}[36mfrom[39m[32m"react-hook-form"[39m[33m;[39m[36mimport[39m[33m*[39m[36mas[39m n [36mfrom[39m[32m"zod/v4/core"[39m[33m;[39m[36mfunction[39m t(r[33m,[39me){[36mtry[39m{[36mvar[39m o[33m=[39mr()}[36mcatch[39m(r){[36mreturn[39m e(r)}[36mreturn[39m o[33m&&[39mo[33m.[39mthen[33m?[39mo[33m.[39mthen([36mvoid[39m [35m0[39m[33m,[39me)[33m:[39mo}[36mfunction[39m s(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"unionErrors"[39m[36min[39m t){[36mvar[39m u[33m=[39mt[33m.[39munionErrors[[35m0[39m][33m.[39merrors[[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"unionErrors"[39m[36min[39m t[33m&&[39mt[33m.[39munionErrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m i(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mlength[33m>[39m[35m0[39m){[36mvar[39m u[33m=[39mt[33m.[39merrors[[35m0[39m][[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m a(o[33m,[39ma[33m,[39mu){[36mif[39m([36mvoid[39m [35m0[39m[33m===[39mu[33m&&[39m(u[33m=[39m{})[33m,[39m[36mfunction[39m(r){[36mreturn[39m[32m"_def"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_def[33m&&[39m[32m"typeName"[39m[36min[39m r[33m.[39m_def}(o))[36mreturn[39m [36mfunction[39m(n[33m,[39mi[33m,[39mc){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(o[[32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39m[32m"parse"[39m[33m:[39m[32m"parseAsync"[39m](n[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m c[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mc)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39mn)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m [33mArray[39m[33m.[39misArray([36mnull[39m[33m==[39mr[33m?[39m[36mvoid[39m [35m0[39m[33m:[39mr[33m.[39missues)}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(s(r[33m.[39merrors[33m,[39m[33m![39mc[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mc[33m.[39mcriteriaMode)[33m,[39mc)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mif[39m([36mfunction[39m(r){[36mreturn[39m[32m"_zod"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_zod}(o))[36mreturn[39m [36mfunction[39m(s[33m,[39mc[33m,[39mf){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(([32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39mn[33m.[39mparse[33m:[39mn[33m.[39mparseAsync)(o[33m,[39ms[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m f[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mf)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39ms)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m r [36minstanceof[39m n[33m.[39m$ZodError}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(i(r[33m.[39missues[33m,[39m[33m![39mf[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mf[33m.[39mcriteriaMode)[33m,[39mf)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mthrow[39m [36mnew[39m [33mError[39m([32m"Invalid input: not a Zod schema"[39m)}[36mexport[39m{a [36mas[39m zodResolver}[33m;[39m
+ [90m   |[39m                                                                                                                               [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 2 |[39m [90m//# sourceMappingURL=zod.module.js.map[39m
+ [90m 3 |[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component Browser]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component SSR]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./node_modules/@hookform/resolvers/zod/dist/zod.mjs:1:127
+Module not found: Can't resolve 'zod/v4/core'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m{validateFieldsNatively [36mas[39m r[33m,[39mtoNestErrors [36mas[39m e}[36mfrom[39m[32m"@hookform/resolvers"[39m[33m;[39m[36mimport[39m{appendErrors [36mas[39m o}[36mfrom[39m[32m"react-hook-form"[39m[33m;[39m[36mimport[39m[33m*[39m[36mas[39m n [36mfrom[39m[32m"zod/v4/core"[39m[33m;[39m[36mfunction[39m t(r[33m,[39me){[36mtry[39m{[36mvar[39m o[33m=[39mr()}[36mcatch[39m(r){[36mreturn[39m e(r)}[36mreturn[39m o[33m&&[39mo[33m.[39mthen[33m?[39mo[33m.[39mthen([36mvoid[39m [35m0[39m[33m,[39me)[33m:[39mo}[36mfunction[39m s(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"unionErrors"[39m[36min[39m t){[36mvar[39m u[33m=[39mt[33m.[39munionErrors[[35m0[39m][33m.[39merrors[[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"unionErrors"[39m[36min[39m t[33m&&[39mt[33m.[39munionErrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m i(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mlength[33m>[39m[35m0[39m){[36mvar[39m u[33m=[39mt[33m.[39merrors[[35m0[39m][[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m a(o[33m,[39ma[33m,[39mu){[36mif[39m([36mvoid[39m [35m0[39m[33m===[39mu[33m&&[39m(u[33m=[39m{})[33m,[39m[36mfunction[39m(r){[36mreturn[39m[32m"_def"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_def[33m&&[39m[32m"typeName"[39m[36min[39m r[33m.[39m_def}(o))[36mreturn[39m [36mfunction[39m(n[33m,[39mi[33m,[39mc){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(o[[32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39m[32m"parse"[39m[33m:[39m[32m"parseAsync"[39m](n[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m c[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mc)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39mn)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m [33mArray[39m[33m.[39misArray([36mnull[39m[33m==[39mr[33m?[39m[36mvoid[39m [35m0[39m[33m:[39mr[33m.[39missues)}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(s(r[33m.[39merrors[33m,[39m[33m![39mc[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mc[33m.[39mcriteriaMode)[33m,[39mc)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mif[39m([36mfunction[39m(r){[36mreturn[39m[32m"_zod"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_zod}(o))[36mreturn[39m [36mfunction[39m(s[33m,[39mc[33m,[39mf){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(([32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39mn[33m.[39mparse[33m:[39mn[33m.[39mparseAsync)(o[33m,[39ms[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m f[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mf)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39ms)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m r [36minstanceof[39m n[33m.[39m$ZodError}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(i(r[33m.[39missues[33m,[39m[33m![39mf[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mf[33m.[39mcriteriaMode)[33m,[39mf)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mthrow[39m [36mnew[39m [33mError[39m([32m"Invalid input: not a Zod schema"[39m)}[36mexport[39m{a [36mas[39m zodResolver}[33m;[39m
+ [90m   |[39m                                                                                                                               [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 2 |[39m [90m//# sourceMappingURL=zod.module.js.map[39m
+ [90m 3 |[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component Browser]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component SSR]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./node_modules/@hookform/resolvers/zod/dist/zod.mjs:1:127
+Module not found: Can't resolve 'zod/v4/core'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m{validateFieldsNatively [36mas[39m r[33m,[39mtoNestErrors [36mas[39m e}[36mfrom[39m[32m"@hookform/resolvers"[39m[33m;[39m[36mimport[39m{appendErrors [36mas[39m o}[36mfrom[39m[32m"react-hook-form"[39m[33m;[39m[36mimport[39m[33m*[39m[36mas[39m n [36mfrom[39m[32m"zod/v4/core"[39m[33m;[39m[36mfunction[39m t(r[33m,[39me){[36mtry[39m{[36mvar[39m o[33m=[39mr()}[36mcatch[39m(r){[36mreturn[39m e(r)}[36mreturn[39m o[33m&&[39mo[33m.[39mthen[33m?[39mo[33m.[39mthen([36mvoid[39m [35m0[39m[33m,[39me)[33m:[39mo}[36mfunction[39m s(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"unionErrors"[39m[36min[39m t){[36mvar[39m u[33m=[39mt[33m.[39munionErrors[[35m0[39m][33m.[39merrors[[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"unionErrors"[39m[36min[39m t[33m&&[39mt[33m.[39munionErrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m i(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mlength[33m>[39m[35m0[39m){[36mvar[39m u[33m=[39mt[33m.[39merrors[[35m0[39m][[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m a(o[33m,[39ma[33m,[39mu){[36mif[39m([36mvoid[39m [35m0[39m[33m===[39mu[33m&&[39m(u[33m=[39m{})[33m,[39m[36mfunction[39m(r){[36mreturn[39m[32m"_def"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_def[33m&&[39m[32m"typeName"[39m[36min[39m r[33m.[39m_def}(o))[36mreturn[39m [36mfunction[39m(n[33m,[39mi[33m,[39mc){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(o[[32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39m[32m"parse"[39m[33m:[39m[32m"parseAsync"[39m](n[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m c[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mc)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39mn)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m [33mArray[39m[33m.[39misArray([36mnull[39m[33m==[39mr[33m?[39m[36mvoid[39m [35m0[39m[33m:[39mr[33m.[39missues)}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(s(r[33m.[39merrors[33m,[39m[33m![39mc[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mc[33m.[39mcriteriaMode)[33m,[39mc)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mif[39m([36mfunction[39m(r){[36mreturn[39m[32m"_zod"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_zod}(o))[36mreturn[39m [36mfunction[39m(s[33m,[39mc[33m,[39mf){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(([32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39mn[33m.[39mparse[33m:[39mn[33m.[39mparseAsync)(o[33m,[39ms[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m f[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mf)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39ms)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m r [36minstanceof[39m n[33m.[39m$ZodError}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(i(r[33m.[39missues[33m,[39m[33m![39mf[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mf[33m.[39mcriteriaMode)[33m,[39mf)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mthrow[39m [36mnew[39m [33mError[39m([32m"Invalid input: not a Zod schema"[39m)}[36mexport[39m{a [36mas[39m zodResolver}[33m;[39m
+ [90m   |[39m                                                                                                                               [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 2 |[39m [90m//# sourceMappingURL=zod.module.js.map[39m
+ [90m 3 |[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component Browser]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component SSR]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./node_modules/@hookform/resolvers/zod/dist/zod.mjs:1:127
+Module not found: Can't resolve 'zod/v4/core'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m{validateFieldsNatively [36mas[39m r[33m,[39mtoNestErrors [36mas[39m e}[36mfrom[39m[32m"@hookform/resolvers"[39m[33m;[39m[36mimport[39m{appendErrors [36mas[39m o}[36mfrom[39m[32m"react-hook-form"[39m[33m;[39m[36mimport[39m[33m*[39m[36mas[39m n [36mfrom[39m[32m"zod/v4/core"[39m[33m;[39m[36mfunction[39m t(r[33m,[39me){[36mtry[39m{[36mvar[39m o[33m=[39mr()}[36mcatch[39m(r){[36mreturn[39m e(r)}[36mreturn[39m o[33m&&[39mo[33m.[39mthen[33m?[39mo[33m.[39mthen([36mvoid[39m [35m0[39m[33m,[39me)[33m:[39mo}[36mfunction[39m s(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"unionErrors"[39m[36min[39m t){[36mvar[39m u[33m=[39mt[33m.[39munionErrors[[35m0[39m][33m.[39merrors[[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"unionErrors"[39m[36min[39m t[33m&&[39mt[33m.[39munionErrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m i(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mlength[33m>[39m[35m0[39m){[36mvar[39m u[33m=[39mt[33m.[39merrors[[35m0[39m][[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m a(o[33m,[39ma[33m,[39mu){[36mif[39m([36mvoid[39m [35m0[39m[33m===[39mu[33m&&[39m(u[33m=[39m{})[33m,[39m[36mfunction[39m(r){[36mreturn[39m[32m"_def"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_def[33m&&[39m[32m"typeName"[39m[36min[39m r[33m.[39m_def}(o))[36mreturn[39m [36mfunction[39m(n[33m,[39mi[33m,[39mc){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(o[[32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39m[32m"parse"[39m[33m:[39m[32m"parseAsync"[39m](n[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m c[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mc)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39mn)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m [33mArray[39m[33m.[39misArray([36mnull[39m[33m==[39mr[33m?[39m[36mvoid[39m [35m0[39m[33m:[39mr[33m.[39missues)}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(s(r[33m.[39merrors[33m,[39m[33m![39mc[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mc[33m.[39mcriteriaMode)[33m,[39mc)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mif[39m([36mfunction[39m(r){[36mreturn[39m[32m"_zod"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_zod}(o))[36mreturn[39m [36mfunction[39m(s[33m,[39mc[33m,[39mf){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(([32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39mn[33m.[39mparse[33m:[39mn[33m.[39mparseAsync)(o[33m,[39ms[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m f[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mf)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39ms)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m r [36minstanceof[39m n[33m.[39m$ZodError}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(i(r[33m.[39missues[33m,[39m[33m![39mf[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mf[33m.[39mcriteriaMode)[33m,[39mf)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mthrow[39m [36mnew[39m [33mError[39m([32m"Invalid input: not a Zod schema"[39m)}[36mexport[39m{a [36mas[39m zodResolver}[33m;[39m
+ [90m   |[39m                                                                                                                               [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 2 |[39m [90m//# sourceMappingURL=zod.module.js.map[39m
+ [90m 3 |[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component Browser]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component SSR]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./node_modules/@hookform/resolvers/zod/dist/zod.mjs:1:127
+Module not found: Can't resolve 'zod/v4/core'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m{validateFieldsNatively [36mas[39m r[33m,[39mtoNestErrors [36mas[39m e}[36mfrom[39m[32m"@hookform/resolvers"[39m[33m;[39m[36mimport[39m{appendErrors [36mas[39m o}[36mfrom[39m[32m"react-hook-form"[39m[33m;[39m[36mimport[39m[33m*[39m[36mas[39m n [36mfrom[39m[32m"zod/v4/core"[39m[33m;[39m[36mfunction[39m t(r[33m,[39me){[36mtry[39m{[36mvar[39m o[33m=[39mr()}[36mcatch[39m(r){[36mreturn[39m e(r)}[36mreturn[39m o[33m&&[39mo[33m.[39mthen[33m?[39mo[33m.[39mthen([36mvoid[39m [35m0[39m[33m,[39me)[33m:[39mo}[36mfunction[39m s(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"unionErrors"[39m[36min[39m t){[36mvar[39m u[33m=[39mt[33m.[39munionErrors[[35m0[39m][33m.[39merrors[[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"unionErrors"[39m[36min[39m t[33m&&[39mt[33m.[39munionErrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m i(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mlength[33m>[39m[35m0[39m){[36mvar[39m u[33m=[39mt[33m.[39merrors[[35m0[39m][[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m a(o[33m,[39ma[33m,[39mu){[36mif[39m([36mvoid[39m [35m0[39m[33m===[39mu[33m&&[39m(u[33m=[39m{})[33m,[39m[36mfunction[39m(r){[36mreturn[39m[32m"_def"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_def[33m&&[39m[32m"typeName"[39m[36min[39m r[33m.[39m_def}(o))[36mreturn[39m [36mfunction[39m(n[33m,[39mi[33m,[39mc){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(o[[32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39m[32m"parse"[39m[33m:[39m[32m"parseAsync"[39m](n[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m c[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mc)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39mn)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m [33mArray[39m[33m.[39misArray([36mnull[39m[33m==[39mr[33m?[39m[36mvoid[39m [35m0[39m[33m:[39mr[33m.[39missues)}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(s(r[33m.[39merrors[33m,[39m[33m![39mc[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mc[33m.[39mcriteriaMode)[33m,[39mc)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mif[39m([36mfunction[39m(r){[36mreturn[39m[32m"_zod"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_zod}(o))[36mreturn[39m [36mfunction[39m(s[33m,[39mc[33m,[39mf){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(([32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39mn[33m.[39mparse[33m:[39mn[33m.[39mparseAsync)(o[33m,[39ms[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m f[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mf)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39ms)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m r [36minstanceof[39m n[33m.[39m$ZodError}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(i(r[33m.[39missues[33m,[39m[33m![39mf[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mf[33m.[39mcriteriaMode)[33m,[39mf)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mthrow[39m [36mnew[39m [33mError[39m([32m"Invalid input: not a Zod schema"[39m)}[36mexport[39m{a [36mas[39m zodResolver}[33m;[39m
+ [90m   |[39m                                                                                                                               [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 2 |[39m [90m//# sourceMappingURL=zod.module.js.map[39m
+ [90m 3 |[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component Browser]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component SSR]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./node_modules/@hookform/resolvers/zod/dist/zod.mjs:1:127
+Module not found: Can't resolve 'zod/v4/core'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m{validateFieldsNatively [36mas[39m r[33m,[39mtoNestErrors [36mas[39m e}[36mfrom[39m[32m"@hookform/resolvers"[39m[33m;[39m[36mimport[39m{appendErrors [36mas[39m o}[36mfrom[39m[32m"react-hook-form"[39m[33m;[39m[36mimport[39m[33m*[39m[36mas[39m n [36mfrom[39m[32m"zod/v4/core"[39m[33m;[39m[36mfunction[39m t(r[33m,[39me){[36mtry[39m{[36mvar[39m o[33m=[39mr()}[36mcatch[39m(r){[36mreturn[39m e(r)}[36mreturn[39m o[33m&&[39mo[33m.[39mthen[33m?[39mo[33m.[39mthen([36mvoid[39m [35m0[39m[33m,[39me)[33m:[39mo}[36mfunction[39m s(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"unionErrors"[39m[36min[39m t){[36mvar[39m u[33m=[39mt[33m.[39munionErrors[[35m0[39m][33m.[39merrors[[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"unionErrors"[39m[36min[39m t[33m&&[39mt[33m.[39munionErrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m i(r[33m,[39me){[36mfor[39m([36mvar[39m n[33m=[39m{}[33m;[39mr[33m.[39mlength[33m;[39m){[36mvar[39m t[33m=[39mr[[35m0[39m][33m,[39ms[33m=[39mt[33m.[39mcode[33m,[39mi[33m=[39mt[33m.[39mmessage[33m,[39ma[33m=[39mt[33m.[39mpath[33m.[39mjoin([32m"."[39m)[33m;[39m[36mif[39m([33m![39mn[a])[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mlength[33m>[39m[35m0[39m){[36mvar[39m u[33m=[39mt[33m.[39merrors[[35m0[39m][[35m0[39m][33m;[39mn[a][33m=[39m{message[33m:[39mu[33m.[39mmessage[33m,[39mtype[33m:[39mu[33m.[39mcode}}[36melse[39m n[a][33m=[39m{message[33m:[39mi[33m,[39mtype[33m:[39ms}[33m;[39m[36mif[39m([32m"invalid_union"[39m[33m===[39mt[33m.[39mcode[33m&&[39mt[33m.[39merrors[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m e[33m.[39mforEach([36mfunction[39m(e){[36mreturn[39m r[33m.[39mpush(e)})})[33m,[39me){[36mvar[39m c[33m=[39mn[a][33m.[39mtypes[33m,[39mf[33m=[39mc[33m&&[39mc[t[33m.[39mcode][33m;[39mn[a][33m=[39mo(a[33m,[39me[33m,[39mn[33m,[39ms[33m,[39mf[33m?[39m[][33m.[39mconcat(f[33m,[39mt[33m.[39mmessage)[33m:[39mt[33m.[39mmessage)}r[33m.[39mshift()}[36mreturn[39m n}[36mfunction[39m a(o[33m,[39ma[33m,[39mu){[36mif[39m([36mvoid[39m [35m0[39m[33m===[39mu[33m&&[39m(u[33m=[39m{})[33m,[39m[36mfunction[39m(r){[36mreturn[39m[32m"_def"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_def[33m&&[39m[32m"typeName"[39m[36min[39m r[33m.[39m_def}(o))[36mreturn[39m [36mfunction[39m(n[33m,[39mi[33m,[39mc){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(o[[32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39m[32m"parse"[39m[33m:[39m[32m"parseAsync"[39m](n[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m c[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mc)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39mn)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m [33mArray[39m[33m.[39misArray([36mnull[39m[33m==[39mr[33m?[39m[36mvoid[39m [35m0[39m[33m:[39mr[33m.[39missues)}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(s(r[33m.[39merrors[33m,[39m[33m![39mc[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mc[33m.[39mcriteriaMode)[33m,[39mc)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mif[39m([36mfunction[39m(r){[36mreturn[39m[32m"_zod"[39m[36min[39m r[33m&&[39m[32m"object"[39m[33m==[39m[36mtypeof[39m r[33m.[39m_zod}(o))[36mreturn[39m [36mfunction[39m(s[33m,[39mc[33m,[39mf){[36mtry[39m{[36mreturn[39m [33mPromise[39m[33m.[39mresolve(t([36mfunction[39m(){[36mreturn[39m [33mPromise[39m[33m.[39mresolve(([32m"sync"[39m[33m===[39mu[33m.[39mmode[33m?[39mn[33m.[39mparse[33m:[39mn[33m.[39mparseAsync)(o[33m,[39ms[33m,[39ma))[33m.[39mthen([36mfunction[39m(e){[36mreturn[39m f[33m.[39mshouldUseNativeValidation[33m&&[39mr({}[33m,[39mf)[33m,[39m{errors[33m:[39m{}[33m,[39mvalues[33m:[39mu[33m.[39mraw[33m?[39m[33mObject[39m[33m.[39massign({}[33m,[39ms)[33m:[39me}})}[33m,[39m[36mfunction[39m(r){[36mif[39m([36mfunction[39m(r){[36mreturn[39m r [36minstanceof[39m n[33m.[39m$ZodError}(r))[36mreturn[39m{values[33m:[39m{}[33m,[39merrors[33m:[39me(i(r[33m.[39missues[33m,[39m[33m![39mf[33m.[39mshouldUseNativeValidation[33m&&[39m[32m"all"[39m[33m===[39mf[33m.[39mcriteriaMode)[33m,[39mf)}[33m;[39m[36mthrow[39m r}))}[36mcatch[39m(r){[36mreturn[39m [33mPromise[39m[33m.[39mreject(r)}}[33m;[39m[36mthrow[39m [36mnew[39m [33mError[39m([32m"Invalid input: not a Zod schema"[39m)}[36mexport[39m{a [36mas[39m zodResolver}[33m;[39m
+ [90m   |[39m                                                                                                                               [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 2 |[39m [90m//# sourceMappingURL=zod.module.js.map[39m
+ [90m 3 |[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component Browser]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/@hookform/resolvers/zod/dist/zod.mjs [Client Component SSR]
+    ./src/components/landing/WhatsAppModal.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to /var/folders/tq/fq8tf7993t142855lp883d400000gn/T/next-panic-817e5206f2366b004513765215a58343.log.
+
+To help make Turbopack better, report this error by clicking here: https://github.com/vercel/next.js/discussions/new?category=turbopack-error-report&title=Turbopack%20Error%3A%20Next.js%20package%20not%20found&body=Turbopack%20version%3A%20%60v15.4.4-5-g55a7568e9%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ATurbopack%20Error%3A%20Next.js%20package%20not%20found%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Error [TurbopackInternalError]: Next.js package not found
+
+Debug info:
+- Execution of get_entrypoints_with_issues_operation failed
+- Execution of EntrypointsOperation::new failed
+- Execution of Project::entrypoints failed
+- Execution of AppProject::routes failed
+- Execution of directory_tree_to_entrypoints_internal failed
+- Execution of directory_tree_to_loader_tree failed
+- Execution of get_next_package failed
+- Next.js package not found]
+[?25h

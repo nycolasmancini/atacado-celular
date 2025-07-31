@@ -1,0 +1,30 @@
+{
+  "name": "Atacado Acessórios Celular",
+  "short_name": "Atacado Celular",
+  "description": "Kits exclusivos de acessórios para celular no atacado. Aumente seu lucro em até 600%.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff6b35",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "pt-BR",
+  "categories": ["business", "shopping"],
+  "icons": [],
+  "screenshots": [
+    {
+      "src": "/images/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Desktop view of Atacado Celular"
+    },
+    {
+      "src": "/images/screenshot-mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Mobile view of Atacado Celular"
+    }
+  ]
+}

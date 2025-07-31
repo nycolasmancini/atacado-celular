@@ -20,17 +20,32 @@ export async function POST(request: NextRequest) {
                      request.headers.get('x-real-ip') || 
                      undefined
 
-    // Save tracking event to database
-    await prisma.trackingEvent.create({
-      data: {
+    // Save tracking event to database (with error handling)
+    try {
+      await prisma.trackingEvent.create({
+        data: {
+          sessionId,
+          eventType,
+          phoneNumber: whatsapp,
+          userAgent,
+          ipAddress,
+          metadata: eventData || {}
+        }
+      })
+    } catch (dbError) {
+      // If database is not available, just log the event but don't fail
+      console.warn('Database not available for tracking:', dbError)
+      
+      // Log to console for development
+      console.log('Tracking Event:', {
         sessionId,
         eventType,
-        phoneNumber: whatsapp,
+        eventData,
+        whatsapp,
         userAgent,
-        ipAddress,
-        metadata: eventData || {}
-      }
-    })
+        ipAddress
+      })
+    }
 
     return NextResponse.json({
       success: true
