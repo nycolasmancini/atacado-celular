@@ -15,7 +15,7 @@ export default function TestimonialsSection() {
       name: "Carlos Silva",
       business: "Silva Celulares",
       city: "São Paulo - SP",
-      photo: "https://via.placeholder.com/60x60/FF6B35/FFFFFF?text=CS",
+      photo: "https://placehold.co/60x60/FF6B35/FFFFFF?text=CS",
       quote: "Desde que comecei a trabalhar com a PMCELL, minha margem de lucro aumentou 400%. Os produtos chegam super rápido e a qualidade é excepcional. Meus clientes sempre voltam!",
       rating: 5
     },
@@ -24,7 +24,7 @@ export default function TestimonialsSection() {
       name: "Maria Santos",
       business: "Tech Store Santos",
       city: "Santos - SP",
-      photo: "https://via.placeholder.com/60x60/58A55C/FFFFFF?text=MS",
+      photo: "https://placehold.co/60x60/58A55C/FFFFFF?text=MS",
       quote: "A qualidade dos produtos é impressionante! Nunca tive problemas com defeitos e a garantia de 90 dias me dá total segurança. Recomendo de olhos fechados!",
       rating: 5
     },
@@ -34,7 +34,7 @@ export default function TestimonialsSection() {
       business: "JO Acessórios",
       city: "Campinas - SP",
       quote: "Trabalho há 3 anos com a PMCELL e posso dizer que revolucionou meu negócio. Margem de 500% em alguns produtos e entrega sempre no prazo. Parceria de sucesso!",
-      photo: "https://via.placeholder.com/60x60/2E86AB/FFFFFF?text=JO",
+      photo: "https://placehold.co/60x60/2E86AB/FFFFFF?text=JO",
       rating: 5
     }
   ]

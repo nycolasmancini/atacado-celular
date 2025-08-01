@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { TrackingProvider } from "@/components/providers/TrackingProvider";
+import { TrackingProvider } from "@/contexts/TrackingContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { ABTestingProvider } from "@/contexts/ABTestingContext";
 import { Toaster } from "react-hot-toast";

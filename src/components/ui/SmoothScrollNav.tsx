@@ -11,7 +11,6 @@ export function SmoothScrollNav({ className = '' }: SmoothScrollNavProps) {
 
   const navItems = [
     { label: 'Início', target: 'hero-section' },
-    { label: 'Problemas', target: 'problems-section' },
     { label: 'Soluções', target: 'benefits-section' },
     { label: 'Produtos', target: 'kits-section' },
     { label: 'Depoimentos', target: 'testimonials-section' },

@@ -34,7 +34,16 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
-  const { trackEvent } = useTracking();
+  
+  // Try to use tracking, but don't break if not available
+  let trackEvent: ((event: string, data?: any) => void) | null = null;
+  try {
+    const tracking = useTracking();
+    trackEvent = tracking.trackEvent;
+  } catch (error) {
+    // Tracking not available, continue without it
+    trackEvent = () => {};
+  }
 
   // Calcular totais do carrinho
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);

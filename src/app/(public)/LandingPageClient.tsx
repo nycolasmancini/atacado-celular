@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import HeroSection from '@/components/landing/HeroSection'
 import SocialProofSection from '@/components/landing/SocialProofSection'
-import ProblemsSection from '@/components/landing/ProblemsSection'
 import SolutionSection from '@/components/landing/SolutionSection'
 import KitsSection from '@/components/landing/KitsSection'
 import TestimonialsSection from '@/components/landing/TestimonialsSection'
@@ -45,11 +44,7 @@ export default function LandingPageClient() {
         {/* 2. Social Proof (340+ lojistas, 4.8 Google Reviews) */}
         <SocialProofSection />
         
-        {/* 3. Problema/Agitação (dores dos lojistas) */}
-        <ProblemsSection />
-        
-        {/* 4. Solução/Benefícios (margem 100-600%, garantia 90 dias, entrega 24h) */}
-        <SolutionSection />
+        {/* 4. Solução/Benefícios - REMOVIDO */}
         
         {/* 5. Product Showcase com 3 Kits (NÃO ALTERAR - JÁ ESTÁ PRONTA) */}
         <KitsSection 

@@ -15,7 +15,7 @@ const MOCK_KITS = [
     totalPrice: 40.00,
     discount: 0,
     colorTheme: 'purple-pink',
-    imageUrl: 'https://via.placeholder.com/400x300',
+    imageUrl: 'https://placehold.co/400x300',
     items: [
       {
         id: 1,
@@ -31,7 +31,7 @@ const MOCK_KITS = [
           specialPrice: 12.00,
           specialPriceMinQty: 100,
           categoryId: 1,
-          imageUrl: 'https://via.placeholder.com/300x300'
+          imageUrl: 'https://placehold.co/300x300'
         }
       }
     ]
@@ -44,7 +44,7 @@ const MOCK_KITS = [
     totalPrice: 35.00,
     discount: 0,
     colorTheme: 'blue-green',
-    imageUrl: 'https://via.placeholder.com/400x300',
+    imageUrl: 'https://placehold.co/400x300',
     items: [
       {
         id: 2,
@@ -60,7 +60,7 @@ const MOCK_KITS = [
           specialPrice: 20.00,
           specialPriceMinQty: 50,
           categoryId: 2,
-          imageUrl: 'https://via.placeholder.com/300x300'
+          imageUrl: 'https://placehold.co/300x300'
         }
       }
     ]
@@ -122,11 +122,10 @@ function KitsList({ pricesUnlocked, onRequestWhatsApp }: { pricesUnlocked: boole
     async function fetchKits() {
       try {
         const controller = new AbortController()
-        const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+        const timeoutId = setTimeout(() => controller.abort(), 2000) // 2 second timeout
         
         // Use relative URL to avoid redirect issues
         const apiUrl = '/api/kits'
-        console.log('Fetching from:', apiUrl)
         
         const response = await fetch(apiUrl, {
           signal: controller.signal,
@@ -145,15 +144,10 @@ function KitsList({ pricesUnlocked, onRequestWhatsApp }: { pricesUnlocked: boole
         const data = await response.json()
         setKits(data)
       } catch (err) {
-        console.error('Error fetching kits:', err)
-        console.error('Error type:', typeof err)
-        console.error('Error name:', err?.name)
-        console.error('Error message:', err?.message)
-        console.error('Full error object:', err)
-        console.error('Current URL:', window.location.href)
+        console.warn('API /api/kits não disponível, usando dados mock')
         
-        // After 3 failed attempts, use mock data
-        if (retryCount >= 2) {
+        // After 1 failed attempt, use mock data immediately  
+        if (retryCount >= 0) {
           console.warn('Using mock data after failed API requests')
           setKits(MOCK_KITS)
           setError(null)

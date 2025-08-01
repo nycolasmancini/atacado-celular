@@ -1,5 +1,5 @@
 // Simple Service Worker for performance optimization
-const CACHE_NAME = 'atacado-celular-v1'
+const CACHE_NAME = 'atacado-celular-v2'
 const STATIC_CACHE = [
   '/',
   '/catalogo',

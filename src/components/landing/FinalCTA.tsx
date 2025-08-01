@@ -8,7 +8,14 @@ interface FinalCTAProps {
 }
 
 export default function FinalCTA({ onRequestWhatsApp, onKitClick }: FinalCTAProps) {
-  const { trackEvent } = useTracking()
+  // Try to use tracking, but don't break if not available
+  let trackEvent: ((event: string, data?: any) => void) = () => {};
+  try {
+    const tracking = useTracking();
+    trackEvent = tracking.trackEvent;
+  } catch (error) {
+    // Tracking not available, continue without it
+  }
 
   const handleCTAClick = () => {
     trackEvent('cta_click_final', {

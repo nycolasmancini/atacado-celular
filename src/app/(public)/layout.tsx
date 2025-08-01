@@ -35,11 +35,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://pmcell.com.br',
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-  },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function PublicLayout({
@@ -52,7 +53,7 @@ export default function PublicLayout({
           {/* Scroll Progress Bar */}
           <ScrollProgressBar />
           
-          {/* Header Navigation */}
+          {/* Header Navigation - será posicionado dinamicamente pelo componente */}
           <HeaderNavigation />
 
           {/* Main Content */}

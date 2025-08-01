@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import HeroSection from '@/components/landing/HeroSection'
 import SocialProofSection from '@/components/landing/SocialProofSection'
-import ProblemsSection from '@/components/landing/ProblemsSection'
 import SolutionSection from '@/components/landing/SolutionSection'
 import ProfitCalculator from '@/components/landing/ProfitCalculator'
 import KitsSection from '@/components/landing/KitsSection'
@@ -50,9 +49,6 @@ export default function LandingPage() {
       
       {/* Social Proof Section */}
       <SocialProofSection />
-      
-      {/* Problems/Agitação Section */}
-      <ProblemsSection />
       
       {/* Solution/Benefits Section */}
       <SolutionSection />
