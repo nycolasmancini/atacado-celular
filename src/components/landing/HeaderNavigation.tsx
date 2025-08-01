@@ -26,15 +26,21 @@ export default function HeaderNavigation() {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false)
+  const [mounted, setMounted] = useState(false)
   
   const router = useRouter()
   const pathname = usePathname()
   const isOnCatalogPage = pathname === '/catalogo'
   const isOnHomePage = pathname === '/'
 
+  // Handle client-side mounting
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   // Sync with URL parameters when on catalog page
   useEffect(() => {
-    if (isOnCatalogPage) {
+    if (isOnCatalogPage && mounted) {
       const updateFromURL = () => {
         const searchParams = new URLSearchParams(window.location.search);
         const categoryParam = searchParams.get('category');
@@ -55,22 +61,37 @@ export default function HeaderNavigation() {
         window.removeEventListener('popstate', handlePopState);
       };
     }
-  }, [isOnCatalogPage, pathname])
+  }, [isOnCatalogPage, pathname, mounted])
 
   useEffect(() => {
+    if (!mounted) return
+
     const handleScroll = () => {
       if (isOnHomePage) {
         // Na página inicial, só fica sticky após rolar mais, permitindo que o hero seja visto
         setIsScrolled(window.scrollY > window.innerHeight * 0.8)
       } else {
-        // Em outras páginas, comportamento normal
-        setIsScrolled(window.scrollY > 50)
+        // Em outras páginas, sempre visível com fundo sólido
+        setIsScrolled(true)
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [isOnHomePage])
+    // Trigger initial state
+    handleScroll()
+    
+    // Only add scroll listener for home page, other pages are always scrolled
+    if (isOnHomePage) {
+      window.addEventListener('scroll', handleScroll)
+      return () => window.removeEventListener('scroll', handleScroll)
+    }
+  }, [isOnHomePage, mounted])
+
+  // Force scrolled state for non-home pages
+  useEffect(() => {
+    if (!isOnHomePage && mounted) {
+      setIsScrolled(true)
+    }
+  }, [isOnHomePage, pathname, mounted])
 
   // Fetch categories and products for search
   useEffect(() => {
@@ -119,7 +140,7 @@ export default function HeaderNavigation() {
     setShowSearchSuggestions(false)
     if (!isOnCatalogPage) {
       router.push(`/catalogo?search=${encodeURIComponent(product.name)}`)
-    } else {
+    } else if (mounted) {
       // If already on catalog page, trigger search via URL params
       const url = new URL(window.location.href)
       url.searchParams.set('search', product.name)
@@ -133,7 +154,7 @@ export default function HeaderNavigation() {
       setShowSearchSuggestions(false)
       if (!isOnCatalogPage) {
         router.push(`/catalogo?search=${encodeURIComponent(searchQuery.trim())}`)
-      } else {
+      } else if (mounted) {
         const url = new URL(window.location.href)
         url.searchParams.set('search', searchQuery.trim())
         router.replace(url.toString())
@@ -145,7 +166,7 @@ export default function HeaderNavigation() {
     setSelectedCategory(categorySlug)
     if (!isOnCatalogPage) {
       router.push(`/catalogo${categorySlug !== 'all' ? `?category=${categorySlug}` : ''}`)
-    } else {
+    } else if (mounted) {
       const url = new URL(window.location.href)
       if (categorySlug === 'all') {
         url.searchParams.delete('category')
@@ -156,34 +177,41 @@ export default function HeaderNavigation() {
     }
   }
 
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return null
+  }
+
   return (
     <>
       <motion.header
-        initial={{ y: isOnHomePage ? 0 : -100 }}
+        initial={{ y: isOnHomePage ? 0 : 0 }}
         animate={{ y: 0 }}
         className={`${
           isOnHomePage 
             ? (isScrolled ? 'fixed top-0 left-0 right-0' : 'hidden')
             : 'fixed top-0 left-0 right-0'
         } z-50 transition-all duration-500 ${
-          isScrolled 
+          !isOnHomePage
             ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-            : 'bg-transparent'
+            : isScrolled 
+              ? 'bg-white/95 backdrop-blur-md shadow-lg'
+              : 'bg-transparent'
         }`}
       >
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-3">
+            <Link href="/catalogo" className="flex items-center space-x-3">
               <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl transition-colors duration-300 ${
-                isScrolled 
+                isScrolled || !isOnHomePage
                   ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' 
                   : 'bg-white/20 backdrop-blur-sm text-white'
               }`}>
                 P
               </div>
               <span className={`font-bold text-xl transition-colors duration-300 ${
-                isScrolled ? 'text-gray-900' : 'text-white'
+                isScrolled || !isOnHomePage ? 'text-gray-900' : 'text-white'
               }`}>
                 PMCELL
               </span>
@@ -202,13 +230,13 @@ export default function HeaderNavigation() {
                     onFocus={() => setShowSearchSuggestions(searchQuery.length > 0)}
                     onBlur={() => setTimeout(() => setShowSearchSuggestions(false), 200)}
                     className={`pl-10 ${
-                      isScrolled 
+                      isScrolled || !isOnHomePage
                         ? 'bg-white border-gray-300' 
                         : 'bg-white/20 backdrop-blur-sm border-white/30 text-white placeholder-white/70'
                     }`}
                   />
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg className={`w-5 h-5 ${isScrolled ? 'text-gray-400' : 'text-white/70'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className={`w-5 h-5 ${isScrolled || !isOnHomePage ? 'text-gray-400' : 'text-white/70'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                   </div>
@@ -242,7 +270,7 @@ export default function HeaderNavigation() {
                 value={selectedCategory}
                 onChange={(e) => handleCategoryChange(e.target.value)}
                 className={`px-3 py-2 rounded-lg font-medium transition-all duration-300 focus:ring-2 focus:ring-purple-500 ${
-                  isScrolled
+                  isScrolled || !isOnHomePage
                     ? 'bg-white border border-gray-300 text-gray-900'
                     : 'bg-white/20 backdrop-blur-sm border-white/30 text-white'
                 }`}
@@ -260,7 +288,7 @@ export default function HeaderNavigation() {
             <button
               onClick={openWhatsApp}
               className={`hidden md:flex items-center space-x-2 px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 ${
-                isScrolled
+                isScrolled || !isOnHomePage
                   ? 'bg-green-500 text-white hover:bg-green-600'
                   : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30'
               }`}
@@ -275,7 +303,7 @@ export default function HeaderNavigation() {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`md:hidden w-10 h-10 rounded-lg flex items-center justify-center transition-colors duration-300 ${
-                isScrolled
+                isScrolled || !isOnHomePage
                   ? 'text-gray-900 hover:bg-gray-100'
                   : 'text-white hover:bg-white/20'
               }`}

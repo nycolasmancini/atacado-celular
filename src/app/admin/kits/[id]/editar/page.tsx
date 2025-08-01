@@ -4,9 +4,9 @@ import { KitEditor } from '@/components/admin/KitEditor'
 import { updateKit } from '../../actions'
 
 interface EditKitPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 async function getKit(id: number) {
@@ -64,7 +64,8 @@ async function getProducts() {
 }
 
 export default async function EditKitPage({ params }: EditKitPageProps) {
-  const id = parseInt(params.id)
+  const resolvedParams = await params
+  const id = parseInt(resolvedParams.id)
   
   if (isNaN(id)) {
     notFound()

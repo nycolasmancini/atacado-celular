@@ -5,6 +5,13 @@ import { useState, useEffect } from 'react'
 export default function ProcessSection() {
   const [isVisible, setIsVisible] = useState(false)
 
+  const scrollToKits = () => {
+    const kitsSection = document.getElementById('kits-section')
+    if (kitsSection) {
+      kitsSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   const steps = [
     {
       number: 1,
@@ -220,9 +227,9 @@ export default function ProcessSection() {
         <div className={`text-center mt-12 md:mt-16 transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`} style={{ transitionDelay: '1200ms' }}>
-          <a href="#kits" className="inline-block bg-primary-orange hover:bg-orange-600 text-white font-montserrat font-semibold text-18px px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+          <button onClick={scrollToKits} className="inline-block bg-primary-orange hover:bg-orange-600 text-white font-montserrat font-semibold text-18px px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
             Começar Agora Mesmo
-          </a>
+          </button>
         </div>
       </div>
     </section>

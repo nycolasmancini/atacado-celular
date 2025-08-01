@@ -1,6 +1,7 @@
+import 'server-only'
 import { v2 as cloudinary } from 'cloudinary'
 
-// Configuração do Cloudinary
+// Configuração do Cloudinary com env vars
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -9,23 +10,27 @@ cloudinary.config({
 
 export { cloudinary }
 
-// Função para fazer upload de uma imagem
+// Função para fazer upload de uma imagem com otimizações automáticas
 export async function uploadImage(
-  file: Buffer,
-  filename: string,
+  file: Buffer | string,
   folder: string = 'produtos'
 ): Promise<{ url: string; publicId: string }> {
   try {
-    const result = await cloudinary.uploader.upload(`data:image/jpeg;base64,${file.toString('base64')}`, {
+    const fileData = Buffer.isBuffer(file) 
+      ? `data:image/jpeg;base64,${file.toString('base64')}`
+      : file
+
+    const result = await cloudinary.uploader.upload(fileData, {
       folder: `atacado-celular/${folder}`,
-      public_id: filename,
       overwrite: true,
       resource_type: 'image',
-      quality: 'auto',
+      // Otimizações automáticas
+      quality: 'auto:eco',
       fetch_format: 'auto',
       width: 800,
-      height: 800,
-      crop: 'limit'
+      crop: 'limit',
+      // Garantir formato webp quando possível
+      format: 'auto'
     })
 
     return {

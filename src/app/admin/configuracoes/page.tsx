@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
-import AdminHeader from '@/components/admin/AdminHeader'
+import { AdminHeader } from '@/components/admin/AdminHeader'
 import ImageUpload from '@/components/admin/ImageUpload'
 
 interface SiteConfig {

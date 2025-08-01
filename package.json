@@ -7,13 +7,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "postinstall": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:seed": "prisma db seed",
     "analyze": "ANALYZE=true npm run build",
     "build:analyze": "cross-env ANALYZE=true next build",
     "lighthouse": "npm run build && npm run start & sleep 10 && lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html --chrome-flags='--headless' && kill %1",
     "perf": "npm run build && npm run start & sleep 5 && node scripts/performance-audit.js && kill %1",
     "bundle-stats": "npx next-bundle-analyzer",
     "type-check": "tsc --noEmit",
-    "build:prod": "npm run type-check && npm run lint && npm run build"
+    "build:prod": "npm run type-check && npm run lint && npm run build",
+    "analyze:custom": "node scripts/analyze-bundle.js"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

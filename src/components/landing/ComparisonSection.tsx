@@ -1,9 +1,15 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function ComparisonSection() {
   const [isVisible, setIsVisible] = useState(false)
+  const router = useRouter()
+
+  const handleCatalogClick = () => {
+    router.push('/catalogo')
+  }
 
   const comparisons = [
     {
@@ -224,7 +230,10 @@ export default function ComparisonSection() {
           <p className="text-16px font-inter text-gray-600 mb-6">
             Faça parte dos lojistas que escolheram a melhor opção do mercado
           </p>
-          <button className="bg-primary-orange hover:bg-orange-600 text-white font-montserrat font-semibold text-18px px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+          <button 
+            onClick={handleCatalogClick}
+            className="bg-primary-orange hover:bg-orange-600 text-white font-montserrat font-semibold text-18px px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+          >
             Quero ver o catálogo completo
           </button>
         </div>

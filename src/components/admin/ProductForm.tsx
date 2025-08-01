@@ -23,6 +23,7 @@ interface Product {
   specialPriceMinQty: number
   categoryId: number
   imageUrl: string
+  imagePublicId?: string
   isActive: boolean
 }
 
@@ -50,10 +51,12 @@ export default function ProductForm({
     specialPriceMinQty: 100,
     categoryId: categories[0]?.id || 0,
     imageUrl: '',
+    imagePublicId: '',
     isActive: true
   })
 
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [previousImagePublicId, setPreviousImagePublicId] = useState<string>('')
 
   useEffect(() => {
     if (product) {
@@ -66,8 +69,10 @@ export default function ProductForm({
         specialPriceMinQty: product.specialPriceMinQty,
         categoryId: product.categoryId,
         imageUrl: product.imageUrl || '',
+        imagePublicId: product.imagePublicId || '',
         isActive: product.isActive
       })
+      setPreviousImagePublicId(product.imagePublicId || '')
     }
   }, [product])
 
@@ -92,6 +97,43 @@ export default function ProductForm({
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }))
     }
+  }
+
+  const handleImageChange = async (url: string, publicId?: string) => {
+    // Se havia uma imagem anterior e uma nova foi carregada, deletar a antiga
+    if (previousImagePublicId && publicId && previousImagePublicId !== publicId) {
+      try {
+        await deleteImage(previousImagePublicId)
+      } catch (error) {
+        console.error('Erro ao deletar imagem anterior:', error)
+      }
+    }
+
+    setFormData(prev => ({ 
+      ...prev, 
+      imageUrl: url,
+      imagePublicId: publicId || ''
+    }))
+
+    if (publicId) {
+      setPreviousImagePublicId(publicId)
+    }
+  }
+
+  const handleImageRemove = async () => {
+    if (formData.imagePublicId) {
+      try {
+        await deleteImage(formData.imagePublicId)
+      } catch (error) {
+        console.error('Erro ao deletar imagem:', error)
+      }
+    }
+
+    setFormData(prev => ({ 
+      ...prev, 
+      imageUrl: '',
+      imagePublicId: ''
+    }))
   }
 
   const validateForm = (): boolean => {
@@ -202,7 +244,8 @@ export default function ProductForm({
         <div className="mt-4">
           <ImageUpload
             value={formData.imageUrl}
-            onChange={(url) => handleInputChange('imageUrl', url)}
+            onChange={handleImageChange}
+            onRemove={handleImageRemove}
             disabled={loading}
           />
         </div>

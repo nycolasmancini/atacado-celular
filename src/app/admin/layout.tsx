@@ -1,20 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import Link from "next/link";
-import { Inter } from "next/font/google";
 import { useState, useEffect } from "react";
-import { AdminHeader } from "@/components/admin/AdminHeader";
-
-const inter = Inter({ subsets: ["latin"] });
-
-const menuItems = [
-  { href: "/admin", label: "Dashboard", icon: "📊" },
-  { href: "/admin/produtos", label: "Produtos", icon: "📱" },
-  { href: "/admin/categorias", label: "Categorias", icon: "🏷️" },
-  { href: "/admin/kits", label: "Kits", icon: "📦" },
-  { href: "/admin/relatorios", label: "Relatórios", icon: "📈" },
-];
 
 export default function AdminLayout({
   children,
@@ -23,16 +10,19 @@ export default function AdminLayout({
 }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Se estiver na página de login, não aplicar autenticação
-  if (pathname === '/admin/login') {
-    return children;
-  }
+  const isLoginPage = pathname === '/admin/login';
 
   useEffect(() => {
+    // Se for página de login, não verificar autenticação
+    if (isLoginPage) {
+      setIsLoading(false);
+      setIsAuthenticated(true); // Permite acesso à página de login
+      return;
+    }
+
     // Verificar se está no cliente antes de acessar localStorage
     if (typeof window === 'undefined') {
       return;
@@ -66,7 +56,7 @@ export default function AdminLayout({
     }, 100);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [isLoginPage]);
 
   useEffect(() => {
     if (isAuthenticated === false && !isLoading && typeof window !== 'undefined') {
@@ -74,6 +64,11 @@ export default function AdminLayout({
       window.location.href = "/admin/login";
     }
   }, [isAuthenticated, isLoading]);
+
+  // Se for página de login, renderizar sem layout
+  if (isLoginPage) {
+    return children;
+  }
 
   if (isLoading || isAuthenticated === null) {
     return (

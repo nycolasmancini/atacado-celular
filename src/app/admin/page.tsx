@@ -61,6 +61,17 @@ export default function AdminDashboard() {
             <p className="text-gray-600 text-sm">Configurar aparência e conteúdo do site</p>
           </div>
         </Link>
+
+        {/* Card Backup */}
+        <Link href="/admin/backup">
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow cursor-pointer">
+            <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+              💾
+            </div>
+            <h3 className="font-semibold text-gray-900 mb-2">Backup</h3>
+            <p className="text-gray-600 text-sm">Backup automático e manual do sistema</p>
+          </div>
+        </Link>
       </div>
 
       <div style={{ background: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
