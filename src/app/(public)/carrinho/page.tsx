@@ -7,7 +7,6 @@ import { useCart } from "@/contexts/CartContext";
 import { useTracking } from "@/contexts/TrackingContext";
 import { CartItem } from "@/components/cart/CartItem";
 import { CartSummary } from "@/components/cart/CartSummary";
-import { SpecialPriceAlert } from "@/components/cart/SpecialPriceAlert";
 import { PricingBreakdown } from "@/components/cart/PricingBreakdown";
 import { getSavingSuggestions } from "@/utils/savingSuggestions";
 import { useEffect } from "react";
@@ -125,13 +124,6 @@ export default function CarrinhoPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left Column - Cart Items */}
             <div className="lg:col-span-2 space-y-6">
-              {/* Special Price Alerts */}
-              {savingOpportunities.length > 0 && (
-                <SpecialPriceAlert
-                  opportunities={savingOpportunities}
-                  onApplyQuantity={handleAddQuantity}
-                />
-              )}
 
               {/* Cart Items */}
               <div className="bg-white rounded-lg shadow-sm">

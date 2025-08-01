@@ -1,6 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+// Temporariamente comentado para debug
+// import { AdminHeader } from '@/components/admin/AdminHeader' 
+// import ImageUpload from '@/components/admin/ImageUpload'
 
 interface SiteConfig {
   id?: string
@@ -15,7 +18,6 @@ export default function ConfiguracoesPage() {
   })
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
-  const [uploading, setUploading] = useState(false)
   const [message, setMessage] = useState('')
 
   useEffect(() => {
@@ -33,51 +35,6 @@ export default function ConfiguracoesPage() {
       console.error('Erro ao carregar configurações:', error)
     } finally {
       setLoading(false)
-    }
-  }
-
-  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (!file) return
-
-    // Validar tipo de arquivo
-    if (!file.type.startsWith('image/')) {
-      setMessage('Por favor, selecione apenas arquivos de imagem')
-      return
-    }
-
-    // Validar tamanho (máximo 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      setMessage('A imagem deve ter no máximo 5MB')
-      return
-    }
-
-    setUploading(true)
-    setMessage('')
-
-    try {
-      const formData = new FormData()
-      formData.append('file', file)
-
-      const response = await fetch('/api/admin/upload', {
-        method: 'POST',
-        body: formData,
-      })
-
-      if (response.ok) {
-        const data = await response.json()
-        setConfig(prev => ({ ...prev, avatarWhatsappUrl: data.url }))
-        setMessage('Imagem enviada com sucesso!')
-        setTimeout(() => setMessage(''), 3000)
-      } else {
-        const errorData = await response.json()
-        setMessage(errorData.error || 'Erro ao enviar imagem')
-      }
-    } catch (error) {
-      console.error('Erro no upload:', error)
-      setMessage('Erro ao enviar imagem')
-    } finally {
-      setUploading(false)
     }
   }
 
@@ -108,9 +65,17 @@ export default function ConfiguracoesPage() {
     }
   }
 
+  const handleImageUpload = (url: string) => {
+    setConfig(prev => ({
+      ...prev,
+      avatarWhatsappUrl: url
+    }))
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50">
+        <AdminHeader />
         <div className="flex justify-center items-center h-64">
           <div className="text-gray-600">Carregando...</div>
         </div>
@@ -120,6 +85,11 @@ export default function ConfiguracoesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* <AdminHeader /> */}
+      <header className="bg-white border-b border-gray-200 px-6 py-4">
+        <h1 className="text-xl font-bold">Configurações - Debug</h1>
+      </header>
+      
       <div className="max-w-4xl mx-auto p-6">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
           <div className="p-6 border-b border-gray-200">
@@ -141,7 +111,7 @@ export default function ConfiguracoesPage() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Preview atual */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -164,59 +134,35 @@ export default function ConfiguracoesPage() {
                   </div>
                 </div>
 
-                {/* Upload de arquivo */}
+                {/* Upload de nova imagem */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Upload de Imagem
+                    Alterar Imagem
                   </label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-purple-400 transition-colors">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleFileUpload}
-                      disabled={uploading}
-                      className="hidden"
-                      id="avatar-upload"
-                    />
-                    <label 
-                      htmlFor="avatar-upload" 
-                      className={`cursor-pointer ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                      <div className="w-12 h-12 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
-                        {uploading ? (
-                          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-purple-600"></div>
-                        ) : (
-                          <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                          </svg>
-                        )}
-                      </div>
-                      <p className="text-sm text-gray-600 mb-1">
-                        {uploading ? 'Enviando...' : 'Clique para enviar'}
-                      </p>
-                      <p className="text-xs text-gray-500">
-                        PNG, JPG até 5MB
-                      </p>
-                    </label>
-                  </div>
-                </div>
-
-                {/* URL manual */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    URL da Imagem
-                  </label>
-                  <input
-                    type="url"
+                  {/* Temporariamente comentado para debug */}
+                  {/* <ImageUpload
                     value={config.avatarWhatsappUrl}
-                    onChange={(e) => setConfig(prev => ({ ...prev, avatarWhatsappUrl: e.target.value }))}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    placeholder="https://exemplo.com/imagem.jpg"
-                  />
-                  <p className="text-xs text-gray-500 mt-1">
-                    Ou cole uma URL externa
-                  </p>
+                    onChange={handleImageUpload}
+                  /> */}
+                  <p>ImageUpload temporariamente desabilitado para debug</p>
                 </div>
+              </div>
+
+              {/* URL manual */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  URL da Imagem (opcional)
+                </label>
+                <input
+                  type="url"
+                  value={config.avatarWhatsappUrl}
+                  onChange={(e) => setConfig(prev => ({ ...prev, avatarWhatsappUrl: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="https://exemplo.com/imagem.jpg"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Cole uma URL de imagem externa ou use o upload acima
+                </p>
               </div>
             </div>
 

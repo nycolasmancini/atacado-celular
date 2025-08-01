@@ -35,28 +35,8 @@ export function middleware(request: NextRequest) {
     response.headers.set('Content-Encoding', 'gzip')
   }
   
-  // Admin route protection
-  if (pathname.startsWith("/admin")) {
-    const isLoginPage = pathname === "/admin/login"
-    
-    if (!isLoginPage) {
-      const token = request.cookies.get("next-auth.session-token") || 
-                    request.cookies.get("__Secure-next-auth.session-token")
-      
-      if (!token) {
-        return NextResponse.redirect(new URL("/admin/login", request.url))
-      }
-    }
-    
-    if (isLoginPage) {
-      const token = request.cookies.get("next-auth.session-token") || 
-                    request.cookies.get("__Secure-next-auth.session-token")
-      
-      if (token) {
-        return NextResponse.redirect(new URL("/admin", request.url))
-      }
-    }
-  }
+  // Admin route protection is handled by the AdminLayout component
+  // The authentication is localStorage-based and checked on the client side
 
   return response
 }

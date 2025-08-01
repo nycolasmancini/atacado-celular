@@ -118,10 +118,16 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onR
                     </div>
                   </div>
                   
-                  {/* Product Name */}
-                  <span className="text-gray-700 flex-1 leading-tight font-medium truncate">
-                    {item.product.name}
-                  </span>
+                  {/* Product Name and Price */}
+                  <div className="flex-1">
+                    <span className="text-gray-700 leading-tight font-medium truncate block">
+                      {item.product.name}
+                    </span>
+                    {/* Individual Product Price */}
+                    <div className="text-xs font-bold text-green-600 mt-0.5">
+                      R$ {item.product.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                    </div>
+                  </div>
                   
                   {/* Quantity Badge */}
                   <span className={`font-semibold px-2.5 py-1 rounded-full text-xs text-white shadow-sm flex-shrink-0 ${gradientClass.includes('purple') ? 'bg-purple-500' : gradientClass.includes('blue') ? 'bg-blue-500' : 'bg-orange-500'}`}>

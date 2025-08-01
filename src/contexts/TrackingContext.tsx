@@ -23,6 +23,7 @@ interface TrackingContextType {
 const TrackingContext = createContext<TrackingContextType | undefined>(undefined);
 
 export function TrackingProvider({ children }: { children: React.ReactNode }) {
+  const [isInitialized, setIsInitialized] = useState(false);
   const [trackingData, setTrackingData] = useState<TrackingData>({
     sessionId: "",
     timeOnSite: 0,
@@ -35,6 +36,9 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
 
   // Inicializar sessionId
   useEffect(() => {
+    // Only run on client side to avoid hydration issues
+    if (typeof window === 'undefined') return;
+    
     let sessionId = localStorage.getItem('session_id');
     
     if (!sessionId) {
@@ -55,6 +59,8 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
         whatsapp,
       }));
     }
+
+    setIsInitialized(true);
   }, []);
 
   // Atualizar tempo no site a cada 10 segundos
@@ -72,6 +78,9 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
 
   // Track page views automaticamente
   useEffect(() => {
+    // Only run on client side and when initialized
+    if (typeof window === 'undefined' || !isInitialized) return;
+    
     const currentPath = window.location.pathname;
     
     setTrackingData(prev => ({
@@ -81,7 +90,7 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
 
     // Log para desenvolvimento (substitui Meta Pixel por enquanto)
     console.log('Page View:', currentPath);
-  }, []);
+  }, [isInitialized]);
 
   const trackEvent = (type: string, data?: any) => {
     try {
@@ -160,7 +169,23 @@ export function useTracking() {
   const context = useContext(TrackingContext);
   
   if (context === undefined) {
-    throw new Error('useTracking must be used within a TrackingProvider');
+    // Only show warning on client side to avoid hydration issues
+    if (typeof window !== 'undefined') {
+      console.warn('useTracking called outside TrackingProvider - tracking will be disabled');
+    }
+    // Return a mock implementation for compatibility
+    return {
+      trackingData: {
+        sessionId: "",
+        timeOnSite: 0,
+        pagesVisited: [],
+        productsViewed: [],
+        searches: [],
+      },
+      trackEvent: () => {},
+      trackCustomEvent: () => {},
+      updateTrackingData: () => {},
+    };
   }
   
   return context;

@@ -27,6 +27,7 @@ export default function HeaderNavigation() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [avatarUrl, setAvatarUrl] = useState('/images/whatsapp-avatar.svg')
   
   const router = useRouter()
   const pathname = usePathname()
@@ -93,13 +94,14 @@ export default function HeaderNavigation() {
     }
   }, [isOnHomePage, pathname, mounted])
 
-  // Fetch categories and products for search
+  // Fetch categories, products and site config
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [categoriesRes, productsRes] = await Promise.all([
+        const [categoriesRes, productsRes, configRes] = await Promise.all([
           fetch('/api/categories'),
-          fetch('/api/products')
+          fetch('/api/products'),
+          fetch('/api/config')
         ])
 
         if (categoriesRes.ok) {
@@ -112,6 +114,11 @@ export default function HeaderNavigation() {
           const productsData = await productsRes.json()
           const products = Array.isArray(productsData) ? productsData : productsData.products
           setProducts(products)
+        }
+
+        if (configRes.ok) {
+          const config = await configRes.json()
+          setAvatarUrl(config.avatarWhatsappUrl || '/images/whatsapp-avatar.svg')
         }
       } catch (error) {
         console.error('Error fetching data for header search:', error)
@@ -203,12 +210,16 @@ export default function HeaderNavigation() {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link href="/catalogo" className="flex items-center space-x-3">
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl transition-colors duration-300 ${
-                isScrolled || !isOnHomePage
-                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' 
-                  : 'bg-white/20 backdrop-blur-sm text-white'
-              }`}>
-                P
+              <div className="w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-300 overflow-hidden bg-white">
+                <img 
+                  src={avatarUrl} 
+                  alt="PMCELL Logo" 
+                  className="w-10 h-10 object-contain"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement
+                    target.src = '/images/whatsapp-avatar.svg'
+                  }}
+                />
               </div>
               <span className={`font-bold text-xl transition-colors duration-300 ${
                 isScrolled || !isOnHomePage ? 'text-gray-900' : 'text-white'

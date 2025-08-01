@@ -39,7 +39,9 @@ export function CartItem({ item, onQuantityChange, onRemove }: CartItemProps) {
 
   const getSuggestedIncrements = () => {
     const increments = [];
-    if (qtyToSpecialPrice > 0) {
+    // Only suggest special price increment if criteria is met
+    if (qtyToSpecialPrice > 0 && qtyToSpecialPrice <= 100 && 
+        item.quantity >= (item.specialPriceMinQty * 0.8)) {
       increments.push(qtyToSpecialPrice); // Exact amount to reach special price
     }
     if (item.quantity < 50) increments.push(10);
@@ -112,7 +114,8 @@ export function CartItem({ item, onQuantityChange, onRemove }: CartItemProps) {
           </div>
 
           {/* Special Price Opportunity */}
-          {!item.isSpecialPrice && qtyToSpecialPrice > 0 && qtyToSpecialPrice <= 100 && (
+          {!item.isSpecialPrice && qtyToSpecialPrice > 0 && qtyToSpecialPrice <= 100 && 
+           item.quantity >= (item.specialPriceMinQty * 0.8) && (
             <div className="mt-2 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs">
               <span className="text-yellow-800">
                 💡 Adicione <strong>+{qtyToSpecialPrice}</strong> para preço especial
@@ -130,7 +133,7 @@ export function CartItem({ item, onQuantityChange, onRemove }: CartItemProps) {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => onQuantityChange(item.productId, Math.max(1, item.quantity - (item.quantity >= 10 ? 5 : 1)))}
+                  onClick={() => onQuantityChange(item.productId, Math.max(1, item.quantity - 1))}
                   className="w-8 h-8 p-0"
                 >
                   −
@@ -143,7 +146,7 @@ export function CartItem({ item, onQuantityChange, onRemove }: CartItemProps) {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => onQuantityChange(item.productId, item.quantity + (item.quantity >= 10 ? 5 : 1))}
+                  onClick={() => onQuantityChange(item.productId, item.quantity + 1)}
                   className="w-8 h-8 p-0"
                 >
                   +

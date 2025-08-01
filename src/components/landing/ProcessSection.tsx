@@ -227,9 +227,16 @@ export default function ProcessSection() {
         <div className={`text-center mt-12 md:mt-16 transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`} style={{ transitionDelay: '1200ms' }}>
-          <button onClick={scrollToKits} className="inline-block bg-primary-orange hover:bg-orange-600 text-white font-montserrat font-semibold text-18px px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+          <a 
+            href="#kits" 
+            onClick={(e) => {
+              e.preventDefault()
+              scrollToKits()
+            }} 
+            className="inline-block bg-primary-orange hover:bg-orange-600 text-white font-montserrat font-semibold text-18px px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer"
+          >
             Começar Agora Mesmo
-          </button>
+          </a>
         </div>
       </div>
     </section>

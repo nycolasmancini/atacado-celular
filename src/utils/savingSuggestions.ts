@@ -28,9 +28,15 @@ export function getSavingSuggestions(cartItems: CartItem[]): SavingSuggestion[] 
       // Só sugerir para itens que não têm preço especial ativo
       if (item.isSpecialPrice) return false;
       
-      // Só sugerir se o usuário já tem pelo menos 70% da quantidade mínima
-      const progressThreshold = item.specialPriceMinQty * 0.7;
-      if (item.quantity < progressThreshold) return false;
+      // Só sugerir se o cliente já tem pelo menos 80% da quantidade e falta 20% ou menos
+      const currentPercentage = item.quantity / item.specialPriceMinQty;
+      const missingPercentage = (item.specialPriceMinQty - item.quantity) / item.specialPriceMinQty;
+      
+      // Cliente deve ter pelo menos 80% da quantidade necessária
+      if (currentPercentage < 0.8) return false;
+      
+      // E faltar no máximo 20%
+      if (missingPercentage > 0.2) return false;
       
       // Não sugerir se a quantidade necessária for muito alta (>100 unidades)
       const qtyNeeded = item.specialPriceMinQty - item.quantity;
@@ -100,9 +106,12 @@ export function hasEconomyOpportunity(item: CartItem): boolean {
   if (item.isSpecialPrice) return false;
   
   const qtyNeeded = item.specialPriceMinQty - item.quantity;
-  const progressThreshold = item.specialPriceMinQty * 0.7;
+  const currentPercentage = item.quantity / item.specialPriceMinQty;
+  const missingPercentage = qtyNeeded / item.specialPriceMinQty;
   
-  return item.quantity >= progressThreshold && qtyNeeded <= 100;
+  // Cliente deve ter pelo menos 80% da quantidade necessária
+  // E faltar no máximo 20%
+  return currentPercentage >= 0.8 && missingPercentage <= 0.2 && qtyNeeded <= 100;
 }
 
 /**

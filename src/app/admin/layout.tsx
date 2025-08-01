@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
+import { TrackingProvider } from "@/contexts/TrackingContext";
 import { useState, useEffect } from "react";
 
 export default function AdminLayout({
@@ -87,27 +88,29 @@ export default function AdminLayout({
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f3f4f6' }}>
-      <div style={{ background: 'white', padding: '20px', marginBottom: '20px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-        <h1 style={{ margin: 0, fontSize: '20px' }}>Admin Panel</h1>
+    <TrackingProvider>
+      <div style={{ minHeight: '100vh', background: '#f3f4f6' }}>
+        <div style={{ background: 'white', padding: '20px', marginBottom: '20px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+          <h1 style={{ margin: 0, fontSize: '20px' }}>Admin Panel</h1>
+        </div>
+        
+        <div style={{ padding: '20px' }}>
+          {children}
+        </div>
+        
+        <div style={{ position: 'fixed', bottom: '20px', right: '20px' }}>
+          <button 
+            onClick={() => {
+              localStorage.removeItem('admin_authenticated');
+              localStorage.removeItem('admin_auth_time');
+              window.location.href = '/admin/login';
+            }}
+            style={{ background: '#dc2626', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '8px' }}
+          >
+            Logout
+          </button>
+        </div>
       </div>
-      
-      <div style={{ padding: '20px' }}>
-        {children}
-      </div>
-      
-      <div style={{ position: 'fixed', bottom: '20px', right: '20px' }}>
-        <button 
-          onClick={() => {
-            localStorage.removeItem('admin_authenticated');
-            localStorage.removeItem('admin_auth_time');
-            window.location.href = '/admin/login';
-          }}
-          style={{ background: '#dc2626', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '8px' }}
-        >
-          Logout
-        </button>
-      </div>
-    </div>
+    </TrackingProvider>
   );
 }

@@ -7,7 +7,6 @@ import { useCart } from "@/contexts/CartContext";
 import { useTracking } from "@/contexts/TrackingContext";
 import { CartItem } from "@/components/cart/CartItem";
 import { CartSummary } from "@/components/cart/CartSummary";
-import { SpecialPriceAlert } from "@/components/cart/SpecialPriceAlert";
 import { PricingBreakdown } from "@/components/cart/PricingBreakdown";
 import { getSavingSuggestions } from "@/utils/savingSuggestions";
 
@@ -132,13 +131,6 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               </div>
             ) : (
               <>
-                {/* Special Price Alerts */}
-                {savingOpportunities.length > 0 && (
-                  <SpecialPriceAlert
-                    opportunities={savingOpportunities}
-                    onApplyQuantity={handleAddQuantity}
-                  />
-                )}
 
                 {/* Cart Items */}
                 <div className="p-4 space-y-4">

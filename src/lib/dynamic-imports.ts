@@ -10,12 +10,36 @@ export function createDynamicComponent<P = {}>(
     name?: string
   }
 ) {
-  return dynamic(importFunction, {
-    loading: options?.loading || (() => <LoadingSkeleton />),
-    ssr: options?.ssr ?? true,
-    // Add displayName for debugging
-    ...(options?.name && { displayName: options.name })
-  })
+  return dynamic(
+    async () => {
+      try {
+        const module = await importFunction();
+        return module;
+      } catch (error) {
+        console.error(`Failed to load dynamic component ${options?.name || 'Unknown'}:`, error);
+        // Return a fallback component instead of throwing
+        return {
+          default: () => (
+            <div className="p-4 text-center text-red-600 bg-red-50 rounded-lg">
+              <p className="text-sm">Erro ao carregar componente {options?.name || 'desconhecido'}</p>
+              <button 
+                onClick={() => window.location.reload()}
+                className="mt-2 px-3 py-1 text-xs bg-red-600 text-white rounded hover:bg-red-700"
+              >
+                Recarregar página
+              </button>
+            </div>
+          )
+        };
+      }
+    },
+    {
+      loading: options?.loading || (() => <LoadingSkeleton />),
+      ssr: options?.ssr ?? true,
+      // Add displayName for debugging
+      ...(options?.name && { displayName: options.name })
+    }
+  )
 }
 
 // Heavy components that should be lazy loaded
