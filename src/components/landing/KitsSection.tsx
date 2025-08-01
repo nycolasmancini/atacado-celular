@@ -273,8 +273,8 @@ export default function KitsSection({ pricesUnlocked, onRequestWhatsApp }: KitsS
   }
 
   const handleWhatsAppClick = () => {
-    const message = encodeURIComponent('Olá! Vi o site e gostaria de saber mais sobre kits personalizados para minha revenda.')
-    window.open(`https://wa.me/5511999999999?text=${message}`, '_blank')
+    const message = encodeURIComponent('Oi, vim pelo site e estou com dúvidas')
+    window.open(`https://wa.me/5511981326609?text=${message}`, '_blank')
   }
 
   return (

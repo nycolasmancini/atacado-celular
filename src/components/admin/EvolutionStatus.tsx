@@ -41,7 +41,7 @@ export function EvolutionStatus() {
   };
 
   const sendTestMessage = async () => {
-    const number = prompt('Digite o número para teste (formato: 5511999999999):');
+    const number = prompt('Digite o número para teste (formato: 5511981326609):');
     if (!number) return;
 
     const message = prompt('Digite a mensagem de teste:');

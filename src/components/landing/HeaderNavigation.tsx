@@ -129,7 +129,7 @@ export default function HeaderNavigation() {
   }, [])
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre os kits PMCELL', '_blank')
+    window.open('https://wa.me/5511981326609?text=Oi, vim pelo site e estou com dúvidas', '_blank')
   }
 
   // Search autocomplete logic

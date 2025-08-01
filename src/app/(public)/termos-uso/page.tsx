@@ -232,7 +232,7 @@ export default function TermosUso() {
               <div className="bg-gray-100 p-4 rounded-lg">
                 <p><strong>PMCELL São Paulo (V.Zabin Tecnologia e Comércio)</strong></p>
                 <p>Email: nycolas@pmcellsaopaulo.com.br</p>
-                <p>WhatsApp: (11) 98132-6609 ou (11) 911304693</p>
+                <p>WhatsApp: (11) 98132-6609</p>
                 <p>Endereço: Rua Comendador Abdo Schahin, 62, Loja 4, CEP 01023-050, Centro, São Paulo/SP</p>
                 <p>Horário de atendimento: Segunda a Sexta, das 8h às 18h</p>
               </div>

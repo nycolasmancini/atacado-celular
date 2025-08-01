@@ -57,7 +57,7 @@ export default function Error({
         <div className="mt-8 text-sm text-gray-500">
           <p>Precisa de ajuda urgente?</p>
           <a 
-            href="https://wa.me/5511999999999?text=Olá, tive um erro no sistema!" 
+            href="https://wa.me/5511981326609?text=Oi, vim pelo site e estou com dúvidas" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-red-600 hover:text-red-800 font-medium"

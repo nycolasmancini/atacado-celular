@@ -39,7 +39,7 @@ export default function NotFound() {
         <div className="mt-8 text-sm text-gray-500">
           <p>Precisa de ajuda?</p>
           <a 
-            href="https://wa.me/5511999999999?text=Olá, preciso de ajuda!" 
+            href="https://wa.me/5511981326609?text=Oi, vim pelo site e estou com dúvidas" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-indigo-600 hover:text-indigo-800 font-medium"

@@ -55,12 +55,12 @@ export default function GlobalError({
             <div className="mt-8 text-sm text-gray-500">
               <p>Suporte técnico:</p>
               <a 
-                href="https://wa.me/5511999999999?text=Erro crítico no sistema - ID: ${error.digest}" 
+                href="https://wa.me/5511981326609?text=Oi, vim pelo site e estou com dúvidas" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-red-600 hover:text-red-800 font-medium"
               >
-                WhatsApp: (11) 99999-9999
+                WhatsApp: (11) 98132-6609
               </a>
             </div>
           </div>

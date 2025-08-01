@@ -28,7 +28,7 @@ async function main() {
     update: {},
     create: {
       key: 'whatsapp_number',
-      value: '5511999999999',
+      value: '5511981326609',
       description: 'Número do WhatsApp para contato'
     }
   })

@@ -280,7 +280,7 @@ export default function TrocasDevolucoes() {
               <div className="bg-blue-100 p-6 rounded-lg">
                 <h3 className="text-lg font-semibold text-blue-900 mb-3">💬 Fale Conosco</h3>
                 <div className="text-blue-800">
-                  <p><strong>WhatsApp:</strong> (11) 98132-6609 ou (11) 911304693</p>
+                  <p><strong>WhatsApp:</strong> (11) 98132-6609</p>
                   <p><strong>Email:</strong> nycolas@pmcellsaopaulo.com.br</p>
                   <p><strong>Horário:</strong> Segunda a Sexta, das 8h às 18h</p>
                   <p className="mt-3 text-sm">

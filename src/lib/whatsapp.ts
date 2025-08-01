@@ -35,15 +35,7 @@ interface MessageContext {
 // Mensagens personalizadas baseadas no contexto
 const MessageTemplates = {
   [MessageType.INITIAL_INTEREST]: (ctx: MessageContext) => {
-    const base = `🔥 *Olá! Vim pelo site e tenho interesse nos acessórios para revenda!*
-
-📱 Quero saber mais sobre:
-• Preços especiais para atacado
-• Kits disponíveis  
-• Formas de pagamento
-• Prazo de entrega
-
-${ctx.utm_source ? `\n📊 _Fonte: ${ctx.utm_source}_` : ''}`
+    const base = `Oi, vim pelo site e estou com dúvidas`
 
     return base.trim()
   },
