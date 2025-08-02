@@ -14,22 +14,22 @@ export default function HeroSection() {
 
   return (
     <motion.section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      initial={{ background: 'linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #ec4899 100%)' }}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50"
+      initial={{ background: '#F8F8F8' }}
       style={{
-        background: 'linear-gradient(180deg, #9333ea 0%, #7c3aed 40%, #ec4899 70%, #FF6B35 95%, #F8F9FA 100%)'
+        background: '#F8F8F8'
       }}
     >
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 opacity-10">
+      {/* Subtle Background Elements */}
+      <div className="absolute inset-0 opacity-5">
         <motion.div 
-          className="absolute top-1/4 left-1/4 w-64 h-64 bg-white rounded-full blur-3xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+          className="absolute top-1/4 left-1/4 w-64 h-64 bg-orange-500 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
           transition={{ duration: 4, repeat: Infinity }}
         />
         <motion.div 
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl"
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.1, 0.2] }}
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-500 rounded-full blur-3xl"
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.1, 0.05, 0.1] }}
           transition={{ duration: 4, repeat: Infinity, delay: 2 }}
         />
       </div>
@@ -48,9 +48,9 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white/90 text-sm font-medium mb-6"
+              className="inline-flex items-center px-5 py-2 bg-orange-50 border border-orange-500/20 text-gray-600 text-sm font-medium mb-6 rounded-full"
             >
-              ⚡ Produto ANATEL | 90 dias garantia | Entrega 24h
+              <span className="text-orange-500">⚡</span> Produto ANATEL | 90 dias garantia | Entrega 24h
             </motion.div>
 
             {/* Main Headline */}
@@ -58,10 +58,10 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight"
             >
               Aumente Seu Lucro em até{' '}
-              <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
+              <span className="text-orange-500 font-bold">
                 600%
               </span>{' '}
               com Acessórios que Vendem Sozinhos
@@ -71,10 +71,10 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-lg lg:text-xl text-white/90 mb-8 leading-relaxed max-w-2xl"
+              className="text-lg lg:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl"
             >
               Kits completos de acessórios para celular com produtos ANATEL, garantia de 90 dias e entrega em 24h. 
-              <strong className="text-white"> Ideal para lojistas que querem lucrar mais vendendo o que todo mundo precisa.</strong>
+              <strong className="text-black"> Ideal para lojistas que querem lucrar mais vendendo o que todo mundo precisa.</strong>
             </motion.p>
 
             {/* CTAs */}
@@ -86,10 +86,9 @@ export default function HeroSection() {
             >
               <motion.button
                 onClick={scrollToKits}
-                className="group relative px-8 py-4 text-white font-bold text-lg rounded-full shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl"
+                className="group relative px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg rounded-lg shadow-md hover:shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105"
                 style={{
-                  background: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
-                  transform: 'none'
+                  boxShadow: '0 4px 14px rgba(252, 109, 54, 0.25)'
                 }}
               >
                 <span className="relative z-10">ESCOLHER MEU KIT AGORA</span>
@@ -106,7 +105,7 @@ export default function HeroSection() {
               >
                 <Link
                   href="/catalogo"
-                  className="inline-flex items-center justify-center px-6 py-4 text-white border-2 border-white/30 rounded-full font-medium transition-colors duration-300"
+                  className="inline-flex items-center justify-center px-6 py-4 text-orange-500 hover:text-orange-600 border-2 border-orange-500/30 rounded-lg font-medium transition-colors duration-300 underline"
                 >
                   Ver Catálogo Completo
                 </Link>
@@ -118,28 +117,28 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-white/80 text-sm"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-gray-600 text-sm"
             >
               <div className="flex items-center space-x-2">
-                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
                 </svg>
                 <span>✓ Produtos ANATEL</span>
               </div>
               <div className="flex items-center space-x-2">
-                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
                 </svg>
                 <span>✓ Garantia 90 dias</span>
               </div>
               <div className="flex items-center space-x-2">
-                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
                 </svg>
                 <span>✓ Envio em até 24h*</span>
               </div>
               <div className="flex items-center space-x-2">
-                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
                 </svg>
                 <span>✓ Parcele em 12x no cartão</span>
@@ -152,7 +151,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative flex justify-center lg:justify-end"
+            className="hidden lg:flex relative justify-center lg:justify-end"
           >
             <div className="relative">
               {/* Kit Images Placeholder - Replace with actual images */}
@@ -191,17 +190,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
-        onClick={scrollToKits}
-      >
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse" />
-        </div>
-      </motion.div>
     </motion.section>
   )
 }
