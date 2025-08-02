@@ -61,7 +61,8 @@ export default function SocialProofSection() {
   return (
     <section 
       ref={sectionRef}
-      className="py-16 md:py-20 bg-[#F8F8F8] relative overflow-hidden"
+      className="py-16 md:py-20 relative overflow-hidden"
+      style={{ backgroundColor: '#FFFBF7' }}
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Stats Section */}

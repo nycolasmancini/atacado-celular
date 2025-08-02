@@ -14,7 +14,11 @@ export async function GET() {
       include: {
         items: {
           include: {
-            product: true
+            product: {
+              include: {
+                category: true
+              }
+            }
           }
         }
       },
@@ -35,7 +39,8 @@ export async function GET() {
         product: {
           ...item.product,
           price: Number(item.product.price),
-          specialPrice: Number(item.product.specialPrice)
+          specialPrice: Number(item.product.specialPrice),
+          category: item.product.category
         }
       }))
     }))

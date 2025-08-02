@@ -112,7 +112,7 @@ export default function TestimonialsSection() {
   return (
     <section className="py-16 md:py-20 relative overflow-hidden"
       style={{
-        background: 'linear-gradient(180deg, #f0f9ff 0%, #dbeafe 30%, #fef3c7 70%, #fff7ed 100%)'
+        backgroundColor: '#FFFBF7'
       }}
     >
       <div className="container mx-auto mobile-padding md:px-10">
@@ -123,7 +123,7 @@ export default function TestimonialsSection() {
             <span className="text-primary-orange">Parceiros Dizem</span>
           </h2>
           <p className="text-16px md:text-18px font-inter text-gray-600 max-w-2xl mx-auto">
-            Mais de 340 lojistas confiam na PMCELL para multiplicar seus resultados
+            Mais de 4200 lojistas confiam na PMCELL para multiplicar seus resultados
           </p>
         </div>
 
@@ -211,7 +211,7 @@ function TestimonialCard({ testimonial }: { testimonial: any }) {
 
   return (
     <div 
-      className="bg-white rounded-xl p-4 md:p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative cursor-pointer mx-2 md:mx-0"
+      className="bg-white rounded-xl p-4 md:p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 relative cursor-pointer mx-2 md:mx-0 flex flex-col h-full"
       onClick={handleCardClick}
     >
 
@@ -229,12 +229,12 @@ function TestimonialCard({ testimonial }: { testimonial: any }) {
       </div>
 
       {/* Quote */}
-      <blockquote className="text-14px md:text-16px font-inter text-gray-700 text-center mb-4 md:mb-6 leading-relaxed italic">
+      <blockquote className="text-14px md:text-16px font-inter text-gray-700 text-center mb-4 md:mb-6 leading-relaxed italic flex-grow">
         "{testimonial.quote}"
       </blockquote>
 
       {/* Client Info */}
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mt-auto">
         <h4 className="text-16px md:text-18px font-montserrat font-bold text-black mb-1">
           {testimonial.name}
         </h4>

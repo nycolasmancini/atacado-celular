@@ -37,12 +37,28 @@ export async function POST(request: NextRequest) {
     // Em produção, você pode adicionar verificação de IP ou outro método
 
     const body = await request.json()
-    const { avatarWhatsappUrl } = body
+    const { 
+      avatarWhatsappUrl, 
+      webhookUrl, 
+      webhookEnabled, 
+      webhookSecretKey,
+      minSessionTime,
+      sessionTimeout,
+      highValueThreshold
+    } = body
 
-    // Validar dados
+    // Validar dados obrigatórios
     if (!avatarWhatsappUrl || typeof avatarWhatsappUrl !== 'string') {
       return NextResponse.json(
         { error: 'URL do avatar é obrigatória' },
+        { status: 400 }
+      )
+    }
+
+    // Validar webhook URL se o webhook estiver habilitado
+    if (webhookEnabled && (!webhookUrl || !webhookUrl.startsWith('http'))) {
+      return NextResponse.json(
+        { error: 'URL do webhook deve ser uma URL válida quando o webhook estiver habilitado' },
         { status: 400 }
       )
     }
@@ -58,6 +74,12 @@ export async function POST(request: NextRequest) {
         where: { id: config.id },
         data: {
           avatarWhatsappUrl,
+          webhookUrl: webhookUrl || null,
+          webhookEnabled: webhookEnabled || false,
+          webhookSecretKey: webhookSecretKey || null,
+          minSessionTime: minSessionTime || 300,
+          sessionTimeout: sessionTimeout || 1800,
+          highValueThreshold: highValueThreshold ? parseFloat(highValueThreshold.toString()) : 1000,
           updatedAt: new Date()
         }
       })
@@ -65,7 +87,13 @@ export async function POST(request: NextRequest) {
       // Criar nova configuração
       config = await prisma.siteConfig.create({
         data: {
-          avatarWhatsappUrl
+          avatarWhatsappUrl,
+          webhookUrl: webhookUrl || null,
+          webhookEnabled: webhookEnabled || false,
+          webhookSecretKey: webhookSecretKey || null,
+          minSessionTime: minSessionTime || 300,
+          sessionTimeout: sessionTimeout || 1800,
+          highValueThreshold: highValueThreshold ? parseFloat(highValueThreshold.toString()) : 1000
         }
       })
     }

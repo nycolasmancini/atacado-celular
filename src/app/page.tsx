@@ -38,7 +38,7 @@ export default function LandingPage() {
   }
 
   return (
-    <>
+    <div style={{ backgroundColor: '#FFFBF7' }}>
       {/* Hero Section */}
       <HeroSection />
       
@@ -46,7 +46,7 @@ export default function LandingPage() {
       <SocialProofSection />
       
       {/* Solution/Benefits Section - Temporariamente desabilitado devido a erro de sintaxe */}
-      <div className="bg-green-50 py-16 px-4">
+      <div className="py-16 px-4" style={{ backgroundColor: '#FFFBF7' }}>
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Benefícios dos Nossos Produtos</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -111,6 +111,6 @@ export default function LandingPage() {
         onSuccess={handleWhatsAppSuccess}
         onClose={() => setModalOpen(false)}
       />
-    </>
+    </div>
   )
 }

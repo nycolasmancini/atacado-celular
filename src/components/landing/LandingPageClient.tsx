@@ -39,7 +39,7 @@ export default function LandingPageClient() {
   }, [])
 
   return (
-    <main className="overflow-x-hidden">
+    <main className="overflow-x-hidden" style={{ backgroundColor: '#FFFBF7' }}>
       <HeroSection />
       
       {/* Menu navegação após o hero - apenas na home */}

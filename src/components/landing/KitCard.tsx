@@ -1,7 +1,9 @@
 import { Kit, KitItem, Product } from '@prisma/client'
 import { useCart } from '@/contexts/CartContext'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
+import { ProductDetailModal } from '@/components/catalog/ProductDetailModal'
 
 interface KitCardProps {
   kit: Kit & { 
@@ -12,6 +14,7 @@ interface KitCardProps {
   onRequestWhatsApp: () => void
 }
 
+
 const gradientClasses = {
   'purple-pink': 'from-purple-500 to-pink-500',
   'blue-green': 'from-blue-500 to-green-500', 
@@ -21,6 +24,8 @@ const gradientClasses = {
 export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onRequestWhatsApp }: KitCardProps) {
   const { addItem } = useCart()
   const router = useRouter()
+  const [selectedProduct, setSelectedProduct] = useState<any>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const gradientClass = gradientClasses[kit.colorTheme as keyof typeof gradientClasses] || gradientClasses['purple-pink']
   
   const calculatedPrice = kit.items.reduce((sum, item) => 
@@ -53,6 +58,25 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onR
     setTimeout(() => {
       router.push('/carrinho')
     }, 500)
+  }
+
+  const handleProductClick = (e: React.MouseEvent, product: Product) => {
+    e.preventDefault()
+    e.stopPropagation()
+    
+    // Verificações básicas
+    if (!product || !product.category) {
+      return
+    }
+    
+    // Usar o produto diretamente, já que o ProductDetailModal deve ser compatível
+    setSelectedProduct(product as any)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedProduct(null)
   }
 
   return (
@@ -97,7 +121,12 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onR
             </h4>
             <div className="space-y-2.5">
               {kit.items.map((item) => (
-                <div key={item.id} className="flex items-center gap-3 text-sm py-1">
+                <div 
+                  key={item.id} 
+                  className="flex items-center gap-3 text-sm py-1 cursor-pointer hover:bg-gray-50 rounded-lg px-2 -mx-2 transition-colors duration-200"
+                  onClick={(e) => handleProductClick(e, item.product)}
+                  title="Clique para ver detalhes do produto"
+                >
                   {/* Product Image */}
                   <div className={`relative flex-shrink-0 w-9 h-9 rounded-full border-2 ${gradientClass.includes('purple') ? 'border-purple-300' : gradientClass.includes('blue') ? 'border-blue-300' : 'border-orange-300'} overflow-hidden bg-white shadow-sm`}>
                     {item.product.imageUrl ? (
@@ -220,6 +249,15 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onR
         {/* Hover Glow Effect */}
         <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass} opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none rounded-2xl`} />
       </div>
+
+      {/* Product Detail Modal */}
+      {isModalOpen && selectedProduct && (
+        <ProductDetailModal
+          product={selectedProduct}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   )
 }

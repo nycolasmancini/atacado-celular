@@ -37,7 +37,7 @@ export default function LandingPageClient() {
       <ScrollProgressBar />
       
       {/* ⚠️ NOVA ESTRUTURA IMPLEMENTADA - TESTE DE ATUALIZAÇÃO ⚠️ */}
-      <div className="min-h-screen">
+      <div className="min-h-screen" style={{ backgroundColor: '#FFFBF7' }}>
         {/* 1. Hero Section com dual CTA */}
         <HeroSection />
         

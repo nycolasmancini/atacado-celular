@@ -1,0 +1,13 @@
+import { NextRequest, NextResponse } from "next/server"
+
+export function middleware(request: NextRequest) {
+  // Middleware simplificado para resolver erro de manifest
+  return NextResponse.next()
+}
+
+export const config = {
+  matcher: [
+    // Matcher mais específico para evitar conflitos
+    "/(admin|api)/:path*",
+  ]
+}

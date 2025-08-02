@@ -82,7 +82,7 @@ export default function ProcessSection() {
   return (
     <section id="process-section" className="py-16 md:py-20 relative overflow-hidden"
       style={{
-        background: 'linear-gradient(180deg, #f0f9ff 0%, #f8fafc 30%, #f0f9ff 70%, #fef2f2 100%)'
+        backgroundColor: '#FFFBF7'
       }}
     >
       <div className="container mx-auto px-5 md:px-10">

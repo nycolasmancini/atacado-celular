@@ -78,7 +78,7 @@ export default function UrgencySection() {
   return (
     <section className="py-12 md:py-16 relative overflow-hidden"
       style={{
-        background: 'linear-gradient(180deg, #fef2f2 0%, #fed7d7 30%, #fef2f2 70%, #9333ea 95%, #7c3aed 100%)'
+        backgroundColor: '#FFFBF7'
       }}
     >
       {/* Background Pattern */}

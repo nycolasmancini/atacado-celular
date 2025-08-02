@@ -279,7 +279,7 @@ export default function KitsSection({ pricesUnlocked, onRequestWhatsApp }: KitsS
   return (
     <section id="kits-section" className="py-20 relative overflow-hidden"
       style={{
-        background: 'linear-gradient(180deg, #fef3c7 0%, #fff7ed 40%, #fef5e7 70%, #f0f9ff 100%)'
+        backgroundColor: '#FFFBF7'
       }}
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8">

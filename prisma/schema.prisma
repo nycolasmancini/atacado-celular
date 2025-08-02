@@ -100,8 +100,58 @@ model Admin {
 model SiteConfig {
   id                Int      @id @default(autoincrement())
   avatarWhatsappUrl String   @default("/images/whatsapp-avatar.svg")
+  // Webhook Configuration
+  webhookUrl        String?  // URL do webhook para Evolution API
+  webhookEnabled    Boolean  @default(false)
+  webhookSecretKey  String?  // Chave secreta para validação
+  // Configurações de comportamento do webhook
+  minSessionTime    Int      @default(300) // Tempo mínimo em segundos (5min)
+  sessionTimeout    Int      @default(1800) // Timeout de sessão em segundos (30min)
+  highValueThreshold Decimal @default(1000) // Valor alto para priorização
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
   @@map("site_config")
+}
+
+model UserJourney {
+  id                    Int      @id @default(autoincrement())
+  sessionId             String   @unique
+  phoneNumber           String?
+  email                 String?
+  // Dados da sessão
+  userAgent             String?
+  ipAddress             String?
+  location              String?
+  device                String?
+  trafficSource         String?
+  // Timing
+  sessionStart          DateTime
+  sessionEnd            DateTime?
+  totalTime             Int?     // em segundos
+  // Comportamento
+  pagesVisited          Int      @default(0)
+  productsViewed        Json?    // Array de produtos visualizados
+  searchQueries         Json?    // Array de buscas realizadas
+  cartItems             Json?    // Itens do carrinho
+  cartAbandoned         Boolean  @default(false)
+  cartValue             Decimal? 
+  checkoutAttempts      Int      @default(0)
+  // Score e análise
+  interestScore         Decimal  @default(0)
+  urgencySignals        Json?    // Sinais de urgência detectados
+  behaviorFlags         Json?    // Flags de comportamento
+  // Status do webhook
+  webhookSent           Boolean  @default(false)
+  webhookSentAt         DateTime?
+  webhookResponse       Json?
+  // Motivo do término da sessão
+  endReason             String?  // "timeout", "whatsapp_provided", "order_completed", "manual_exit"
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@index([sessionId])
+  @@index([phoneNumber])
+  @@index([webhookSent])
+  @@map("user_journeys")
 }

@@ -5,18 +5,32 @@ import { useState, useEffect } from 'react'
 interface SiteConfig {
   id?: string
   avatarWhatsappUrl: string
+  webhookUrl?: string
+  webhookEnabled?: boolean
+  webhookSecretKey?: string
+  minSessionTime?: number
+  sessionTimeout?: number
+  highValueThreshold?: number
   createdAt?: Date
   updatedAt?: Date
 }
 
 export default function ConfiguracoesPage() {
   const [config, setConfig] = useState<SiteConfig>({
-    avatarWhatsappUrl: '/images/whatsapp-avatar.svg'
+    avatarWhatsappUrl: '/images/whatsapp-avatar.svg',
+    webhookUrl: '',
+    webhookEnabled: false,
+    webhookSecretKey: '',
+    minSessionTime: 300,
+    sessionTimeout: 1800,
+    highValueThreshold: 1000
   })
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [uploading, setUploading] = useState(false)
+  const [testingWebhook, setTestingWebhook] = useState(false)
   const [message, setMessage] = useState('')
+  const [webhookTestResult, setWebhookTestResult] = useState<any>(null)
 
   useEffect(() => {
     loadConfig()
@@ -105,6 +119,45 @@ export default function ConfiguracoesPage() {
       setMessage('Erro ao salvar configurações')
     } finally {
       setSaving(false)
+    }
+  }
+
+  const handleTestWebhook = async () => {
+    if (!config.webhookUrl) {
+      setMessage('Por favor, configure a URL do webhook antes de testar')
+      return
+    }
+
+    setTestingWebhook(true)
+    setWebhookTestResult(null)
+    setMessage('')
+    
+    try {
+      const response = await fetch('/api/webhook/test', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+
+      const result = await response.json()
+      setWebhookTestResult(result)
+      
+      if (response.ok) {
+        setMessage('Teste do webhook realizado com sucesso!')
+      } else {
+        setMessage(`Erro no teste: ${result.error || 'Webhook retornou erro'}`)
+      }
+    } catch (error) {
+      console.error('Erro ao testar webhook:', error)
+      setMessage('Erro ao conectar com o webhook')
+      setWebhookTestResult({
+        error: 'Erro de conexão',
+        details: error.message
+      })
+    } finally {
+      setTestingWebhook(false)
+      setTimeout(() => setMessage(''), 5000)
     }
   }
 
@@ -216,6 +269,214 @@ export default function ConfiguracoesPage() {
                   <p className="text-xs text-gray-500 mt-1">
                     Ou cole uma URL externa
                   </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Seção de Webhook */}
+            <div className="space-y-6 border-t border-gray-200 pt-8">
+              <div>
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">
+                  Configuração do Webhook (Evolution API)
+                </h2>
+                <p className="text-sm text-gray-600 mb-4">
+                  Configure o webhook para receber dados consolidados da jornada do cliente
+                </p>
+              </div>
+
+              {/* Status do Webhook */}
+              <div className="flex items-center gap-3">
+                <div className={`w-3 h-3 rounded-full ${config.webhookEnabled ? 'bg-green-500' : 'bg-gray-400'}`}></div>
+                <span className={`text-sm font-medium ${config.webhookEnabled ? 'text-green-700' : 'text-gray-500'}`}>
+                  {config.webhookEnabled ? 'Webhook Ativo' : 'Webhook Inativo'}
+                </span>
+                <label className="relative inline-flex items-center cursor-pointer ml-auto">
+                  <input
+                    type="checkbox"
+                    checked={config.webhookEnabled || false}
+                    onChange={(e) => setConfig(prev => ({ ...prev, webhookEnabled: e.target.checked }))}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                </label>
+              </div>
+
+              {/* URL do Webhook */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  URL do Webhook
+                </label>
+                <input
+                  type="url"
+                  value={config.webhookUrl || ''}
+                  onChange={(e) => setConfig(prev => ({ ...prev, webhookUrl: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="https://evolution.exemplo.com/webhook/sua-instancia"
+                />
+                <p className="text-xs text-gray-500">
+                  URL da sua instância Evolution API para receber os webhooks
+                </p>
+              </div>
+
+              {/* Chave Secreta */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Chave Secreta (Opcional)
+                </label>
+                <input
+                  type="password"
+                  value={config.webhookSecretKey || ''}
+                  onChange={(e) => setConfig(prev => ({ ...prev, webhookSecretKey: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="Sua chave secreta para validação"
+                />
+                <p className="text-xs text-gray-500">
+                  Chave secreta enviada no header X-Webhook-Secret para validação
+                </p>
+              </div>
+
+              {/* Configurações Avançadas */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Tempo Mínimo de Sessão (segundos)
+                  </label>
+                  <input
+                    type="number"
+                    min="60"
+                    max="3600"
+                    value={config.minSessionTime || 300}
+                    onChange={(e) => setConfig(prev => ({ ...prev, minSessionTime: parseInt(e.target.value) }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  />
+                  <p className="text-xs text-gray-500">Tempo mínimo para enviar webhook</p>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Timeout de Sessão (segundos)
+                  </label>
+                  <input
+                    type="number"
+                    min="300"
+                    max="7200"
+                    value={config.sessionTimeout || 1800}
+                    onChange={(e) => setConfig(prev => ({ ...prev, sessionTimeout: parseInt(e.target.value) }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  />
+                  <p className="text-xs text-gray-500">Tempo limite para considerar sessão finalizada</p>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Valor Alto Threshold (R$)
+                  </label>
+                  <input
+                    type="number"
+                    min="100"
+                    step="50"
+                    value={config.highValueThreshold || 1000}
+                    onChange={(e) => setConfig(prev => ({ ...prev, highValueThreshold: parseFloat(e.target.value) }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  />
+                  <p className="text-xs text-gray-500">Valor do carrinho considerado alto</p>
+                </div>
+              </div>
+
+              {/* Teste do Webhook */}
+              <div className="bg-gray-50 rounded-lg p-4 space-y-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-900">Testar Webhook</h3>
+                    <p className="text-xs text-gray-600">Envie um payload de teste para verificar se o webhook está funcionando</p>
+                  </div>
+                  <button
+                    onClick={handleTestWebhook}
+                    disabled={testingWebhook || !config.webhookUrl}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    {testingWebhook ? 'Testando...' : 'Testar Webhook'}
+                  </button>
+                </div>
+
+                {/* Resultado do Teste */}
+                {webhookTestResult && (
+                  <div className="bg-white rounded border p-3 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <div className={`w-2 h-2 rounded-full ${webhookTestResult.testResult?.success ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                      <span className={`text-sm font-medium ${webhookTestResult.testResult?.success ? 'text-green-700' : 'text-red-700'}`}>
+                        {webhookTestResult.testResult?.success ? 'Sucesso' : 'Erro'}
+                      </span>
+                      <span className="text-xs text-gray-500">
+                        {webhookTestResult.testResult?.responseTime}
+                      </span>
+                    </div>
+                    
+                    {webhookTestResult.testResult && (
+                      <div className="text-xs">
+                        <div><strong>Status:</strong> {webhookTestResult.testResult.status} {webhookTestResult.testResult.statusText}</div>
+                        {webhookTestResult.testResult.responseBody && (
+                          <div className="mt-1">
+                            <strong>Resposta:</strong>
+                            <pre className="mt-1 p-2 bg-gray-100 rounded text-xs overflow-x-auto">
+                              {webhookTestResult.testResult.responseBody}
+                            </pre>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Documentação do Webhook */}
+            <div className="bg-blue-50 rounded-lg p-6 space-y-4 border-t border-gray-200">
+              <h3 className="text-lg font-semibold text-blue-900">📚 Como usar os dados do Webhook</h3>
+              
+              <div className="space-y-4 text-sm text-blue-800">
+                <div>
+                  <h4 className="font-medium">🎯 Quando o webhook é enviado:</h4>
+                  <ul className="list-disc list-inside ml-4 space-y-1 text-blue-700">
+                    <li>Cliente fornece WhatsApp no site</li>
+                    <li>Sessão expira após inatividade (configurável)</li>
+                    <li>Cliente abandona carrinho com valor alto</li>
+                    <li>Score de interesse é maior que 7</li>
+                    <li>Sessão dura mais que o tempo mínimo com atividade significativa</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-medium">📊 Informações incluídas no webhook:</h4>
+                  <ul className="list-disc list-inside ml-4 space-y-1 text-blue-700">
+                    <li><strong>Dados do cliente:</strong> WhatsApp, email, informações da sessão</li>
+                    <li><strong>Resumo da jornada:</strong> Tempo no site, páginas visitadas, dispositivo, localização</li>
+                    <li><strong>Produtos:</strong> Lista de produtos visualizados, tempo por produto, carrinho atual</li>
+                    <li><strong>Comportamento:</strong> Buscas realizadas, sinais de urgência, flags comportamentais</li>
+                    <li><strong>Análise de oportunidade:</strong> Nível (FRIO/MORNO/QUENTE), sugestão de abordagem, melhor momento para contato</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-medium">🤖 Automações sugeridas no N8N:</h4>
+                  <ul className="list-disc list-inside ml-4 space-y-1 text-blue-700">
+                    <li><strong>Score QUENTE:</strong> Notificação imediata para vendedor + mensagem personalizada</li>
+                    <li><strong>Carrinho abandonado:</strong> Workflow de recuperação com desconto</li>
+                    <li><strong>Produto específico:</strong> Enviar materiais do produto visualizado</li>
+                    <li><strong>Alta indecisão:</strong> Oferecer consultoria personalizada</li>
+                    <li><strong>Múltiplas visitas:</strong> Sequência de nutrição via WhatsApp</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-medium">💡 Exemplo de uso:</h4>
+                  <div className="bg-white rounded p-3 border border-blue-200">
+                    <code className="text-xs">
+                      Se <strong>oportunidade.nivel === &quot;QUENTE&quot;</strong> E <strong>produtos.valor_carrinho &gt; 1000</strong><br/>
+                      Então: Enviar mensagem imediata para vendedor com contexto completo<br/>
+                      Aguardar 5min → Se não houver resposta, enviar WhatsApp automático com desconto
+                    </code>
+                  </div>
                 </div>
               </div>
             </div>

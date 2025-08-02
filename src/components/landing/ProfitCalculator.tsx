@@ -70,7 +70,7 @@ export default function ProfitCalculator() {
       ref={sectionRef}
       className="py-16 lg:py-24 relative overflow-hidden"
       style={{
-        background: 'linear-gradient(180deg, #f0fdf4 0%, #dbeafe 30%, #ede9fe 70%, #fef3c7 100%)'
+        backgroundColor: '#FFFBF7'
       }}
     >
       {/* Background Decorations */}

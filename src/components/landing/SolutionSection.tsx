@@ -97,7 +97,7 @@ export default function SolutionSection() {
   return (
     <section ref={sectionRef} className="py-16 lg:py-24 relative overflow-hidden"
       style={{
-        background: 'linear-gradient(180deg, #f0f9ff 0%, #ecfdf5 40%, #f0fdf4 70%, #f0fdf4 100%)'
+        backgroundColor: '#FFFBF7'
       }}
     >
       {/* Background decoration */}

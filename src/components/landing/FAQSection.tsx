@@ -44,12 +44,12 @@ export default function FAQSection() {
     },
     {
       question: "A PMCELL é uma empresa confiável?",
-      answer: "**Absolutamente!** Somos uma empresa estabelecida há mais de 8 anos no mercado com:\n\n• **CNPJ 29.734.462/0003-86** ativo e regularizado\n• **4.8 estrelas** no Google Reviews\n• **+340 lojistas parceiros** ativos\n• **Certificação ANATEL** em todos os produtos\n• **Suporte humanizado** com atendimento por videochamada\n\n[Ver nossa empresa no Google](https://share.google/CE3XD0Dd9mmQYW0xI)",
+      answer: "**Absolutamente!** Somos uma empresa estabelecida há mais de 8 anos no mercado com:\n\n• **CNPJ 29.734.462/0003-86** ativo e regularizado\n• **4.8 estrelas** no Google Reviews\n• **+340 lojistas parceiros** ativos\n• **Certificação ANATEL** nos produtos que exigem\n• **Suporte humanizado** com atendimento por videochamada\n\n[Ver nossa empresa no Google](https://share.google/CE3XD0Dd9mmQYW0xI)",
       category: "confiabilidade"
     },
     {
       question: "Os produtos têm certificação ANATEL?",
-      answer: "**Sim, nossos produtos possuem certificação ANATEL!**\n\nIsso significa:\n• **Conformidade** com as normas brasileiras\n• **Segurança** para você e seus clientes\n• **Proteção legal** contra fiscalizações\n• **Qualidade garantida** nos produtos eletrônicos\n\nTodos os certificados ANATEL estão disponíveis em nosso site e são enviados junto com os produtos.",
+      answer: "**Sim, todos os nossos produtos que exigem certificação ANATEL possuem essa certificação!**\n\nNem todos os produtos precisam de certificação ANATEL - apenas aqueles que a legislação brasileira exige para comercialização, como carregadores, fones de ouvido bluetooth e produtos eletrônicos ativos.\n\nIsso significa:\n• **Conformidade** com as normas brasileiras\n• **Segurança** para você e seus clientes\n• **Proteção legal** contra fiscalizações\n• **Qualidade garantida** nos produtos eletrônicos\n\n**Verificar certificações:** [Consulte os certificados no site oficial da ANATEL](https://informacoes.anatel.gov.br/paineis/certificacao-de-produtos/consulta-de-produtos) - no campo \"Nome do Solicitante\", busque por **PMCELL Comercio Eletronico**.",
       category: "certificacao"
     },
     {
@@ -110,7 +110,7 @@ export default function FAQSection() {
       
       <section className="py-16 md:py-20 relative overflow-hidden"
         style={{
-          background: 'linear-gradient(180deg, #fef2f2 0%, #ffffff 30%, #f8fafc 70%, #fef2f2 100%)'
+          backgroundColor: '#FFFBF7'
         }}
       >
         <div className="container mx-auto px-5 md:px-10">

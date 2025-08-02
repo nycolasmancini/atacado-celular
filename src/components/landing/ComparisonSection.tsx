@@ -42,7 +42,7 @@ export default function ComparisonSection() {
     },
     {
       diferencial: "Suporte",
-      pmcell: "WhatsApp + Telefone",
+      pmcell: "WhatsApp + Video chamada",
       pmcellIcon: "✓",
       others: "Apenas WhatsApp",
       othersIcon: "✗"
@@ -86,7 +86,7 @@ export default function ComparisonSection() {
   return (
     <section id="comparison-section" className="py-16 md:py-20 relative overflow-hidden"
       style={{
-        background: 'linear-gradient(180deg, #fff7ed 0%, #ffffff 40%, #f8fafc 70%, #f0f9ff 100%)'
+        backgroundColor: '#FFFBF7'
       }}
     >
       <div className="container mx-auto px-5 md:px-10">
@@ -114,7 +114,7 @@ export default function ComparisonSection() {
                     Diferencial
                   </th>
                   <th className="py-4 px-6 text-center text-18px font-montserrat font-semibold bg-gradient-to-br from-primary-orange to-orange-600 text-white relative">
-                    <div className="absolute -top-2 -right-2 bg-success text-white text-xs px-2 py-1 rounded-full font-bold">
+                    <div className="absolute top-1 -right-2 bg-success text-white text-xs px-2 py-1 rounded-full font-bold">
                       MELHOR
                     </div>
                     PMCELL
@@ -184,7 +184,7 @@ export default function ComparisonSection() {
               <div className="p-4 space-y-4">
                 {/* PMCELL */}
                 <div className="bg-gradient-to-br from-success/5 to-success/10 rounded-lg p-4 border-l-4 border-success relative">
-                  <div className="absolute -top-2 -right-2 bg-success text-white text-xs px-2 py-1 rounded-full font-bold">
+                  <div className="absolute top-1 -right-2 bg-success text-white text-xs px-2 py-1 rounded-full font-bold">
                     MELHOR
                   </div>
                   <div className="flex items-center justify-between">

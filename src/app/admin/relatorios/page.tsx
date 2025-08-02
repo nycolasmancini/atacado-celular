@@ -104,7 +104,11 @@ export default function RelatoriosPage() {
         const isMobile = /Mobile|Android|iPhone/i.test(value)
         return (
           <span className="text-sm">
-            {isMobile ? '📱 Mobile' : '💻 Desktop'}
+            <span role="img" aria-label={isMobile ? "mobile device" : "desktop device"}>
+              {isMobile ? '📱' : '💻'}
+            </span>
+            {' '}
+            {isMobile ? 'Mobile' : 'Desktop'}
           </span>
         )
       }

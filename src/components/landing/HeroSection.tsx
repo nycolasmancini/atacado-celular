@@ -14,10 +14,10 @@ export default function HeroSection() {
 
   return (
     <motion.section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50"
-      initial={{ background: '#F8F8F8' }}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      initial={{ background: '#FFFBF7' }}
       style={{
-        background: '#F8F8F8'
+        background: '#FFFBF7'
       }}
     >
       {/* Subtle Background Elements */}

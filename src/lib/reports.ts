@@ -1,5 +1,3 @@
-import { prisma } from './prisma'
-
 export interface WhatsAppStat {
   sessionId: string
   phoneNumber: string | null
@@ -25,71 +23,55 @@ export interface ReportSummary {
 }
 
 export async function getWhatsAppStats(startDate: Date, endDate: Date): Promise<WhatsAppStat[]> {
-  const whatsappEvents = await prisma.trackingEvent.findMany({
-    where: {
-      eventType: 'WHATSAPP_SUBMITTED',
-      createdAt: {
-        gte: startDate,
-        lte: endDate
-      }
-    },
-    orderBy: {
-      createdAt: 'desc'
-    }
+  const params = new URLSearchParams({
+    startDate: startDate.toISOString(),
+    endDate: endDate.toISOString()
   })
 
-  return whatsappEvents.map(event => ({
-    sessionId: event.sessionId,
-    phoneNumber: event.phoneNumber,
-    createdAt: event.createdAt,
-    userAgent: event.userAgent,
-    ipAddress: event.ipAddress
+  const response = await fetch(`/api/admin/reports/whatsapp?${params}`)
+  if (!response.ok) {
+    throw new Error('Failed to fetch WhatsApp stats')
+  }
+
+  const data = await response.json()
+  // Convert createdAt strings back to Date objects
+  return data.map((item: any) => ({
+    ...item,
+    createdAt: new Date(item.createdAt)
   }))
 }
 
 export async function getOrderStats(startDate: Date, endDate: Date): Promise<OrderStat[]> {
-  const orderEvents = await prisma.trackingEvent.findMany({
-    where: {
-      eventType: 'ORDER_COMPLETED',
-      createdAt: {
-        gte: startDate,
-        lte: endDate
-      }
-    },
-    orderBy: {
-      createdAt: 'desc'
-    }
+  const params = new URLSearchParams({
+    startDate: startDate.toISOString(),
+    endDate: endDate.toISOString()
   })
 
-  return orderEvents.map(event => ({
-    id: event.sessionId,
-    phoneNumber: event.phoneNumber || 'N/A',
-    totalAmount: event.metadata?.totalAmount || 0,
-    itemCount: event.metadata?.itemCount || 0,
-    createdAt: event.createdAt,
-    metadata: event.metadata
+  const response = await fetch(`/api/admin/reports/orders?${params}`)
+  if (!response.ok) {
+    throw new Error('Failed to fetch order stats')
+  }
+
+  const data = await response.json()
+  // Convert createdAt strings back to Date objects
+  return data.map((item: any) => ({
+    ...item,
+    createdAt: new Date(item.createdAt)
   }))
 }
 
 export async function getReportSummary(startDate: Date, endDate: Date): Promise<ReportSummary> {
-  const [whatsappStats, orderStats] = await Promise.all([
-    getWhatsAppStats(startDate, endDate),
-    getOrderStats(startDate, endDate)
-  ])
+  const params = new URLSearchParams({
+    startDate: startDate.toISOString(),
+    endDate: endDate.toISOString()
+  })
 
-  const totalWhatsApps = whatsappStats.length
-  const totalOrders = orderStats.length
-  const conversionRate = totalWhatsApps > 0 ? (totalOrders / totalWhatsApps) * 100 : 0
-  const averageTicket = totalOrders > 0 
-    ? orderStats.reduce((sum, order) => sum + order.totalAmount, 0) / totalOrders 
-    : 0
-
-  return {
-    totalWhatsApps,
-    totalOrders,
-    conversionRate,
-    averageTicket
+  const response = await fetch(`/api/admin/reports/summary?${params}`)
+  if (!response.ok) {
+    throw new Error('Failed to fetch report summary')
   }
+
+  return await response.json()
 }
 
 export function exportToCSV(data: any[], filename: string): void {

@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useUserJourneyTracking } from "../hooks/useUserJourneyTracking";
 
 interface TrackingData {
   sessionId: string;
@@ -18,6 +19,14 @@ interface TrackingContextType {
   trackEvent: (type: string, data?: any) => void;
   trackCustomEvent: (name: string, data?: any) => void;
   updateTrackingData: (updates: Partial<TrackingData>) => void;
+  // Funções do novo sistema de tracking de jornada
+  trackProductView: (product: { id: number, name: string, price: number }) => { onLeave: () => void };
+  trackSearch: (query: string) => void;
+  trackCartAction: (action: 'add' | 'remove' | 'update', item: any) => void;
+  trackWhatsAppProvided: (phoneNumber: string) => void;
+  trackOrderCompleted: () => void;
+  getJourneyData: () => any;
+  getCurrentScore: () => number;
 }
 
 const TrackingContext = createContext<TrackingContextType | undefined>(undefined);
@@ -33,6 +42,9 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
   });
 
   const [sessionStart] = useState(Date.now());
+  
+  // Integração com o novo sistema de tracking de jornada - temporariamente desabilitado
+  // const journeyTracking = useUserJourneyTracking();
 
   // Inicializar sessionId
   useEffect(() => {
@@ -88,9 +100,12 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
       pagesVisited: [...new Set([...prev.pagesVisited, currentPath])],
     }));
 
+    // Integrar com o novo sistema de tracking - temporariamente desabilitado
+    // journeyTracking.trackPageView(currentPath);
+
     // Log para desenvolvimento (substitui Meta Pixel por enquanto)
     console.log('Page View:', currentPath);
-  }, [isInitialized]);
+  }, [isInitialized]); // Removido journeyTracking das dependências
 
   const trackEvent = (type: string, data?: any) => {
     try {
@@ -156,6 +171,14 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
     trackEvent,
     trackCustomEvent,
     updateTrackingData,
+    // Integração com o novo sistema de tracking de jornada - temporariamente desabilitado
+    trackProductView: () => ({ onLeave: () => {} }),
+    trackSearch: () => {},
+    trackCartAction: () => {},
+    trackWhatsAppProvided: () => {},
+    trackOrderCompleted: () => {},
+    getJourneyData: () => ({}),
+    getCurrentScore: () => 0,
   };
 
   return (
@@ -185,6 +208,13 @@ export function useTracking() {
       trackEvent: () => {},
       trackCustomEvent: () => {},
       updateTrackingData: () => {},
+      trackProductView: () => ({ onLeave: () => {} }),
+      trackSearch: () => {},
+      trackCartAction: () => {},
+      trackWhatsAppProvided: () => {},
+      trackOrderCompleted: () => {},
+      getJourneyData: () => ({}),
+      getCurrentScore: () => 0,
     };
   }
   
