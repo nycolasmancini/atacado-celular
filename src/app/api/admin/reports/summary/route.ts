@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
     // Get WhatsApp events
     const whatsappEvents = await prisma.trackingEvent.findMany({
       where: {
-        eventType: 'WHATSAPP_SUBMITTED',
+        eventType: 'whatsapp_submitted',
         createdAt: {
           gte: startDateObj,
           lte: endDateObj
@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
     // Get order events  
     const orderEvents = await prisma.trackingEvent.findMany({
       where: {
-        eventType: 'ORDER_COMPLETED',
+        eventType: 'order_completed',
         createdAt: {
           gte: startDateObj,
           lte: endDateObj

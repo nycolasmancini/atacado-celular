@@ -3,6 +3,7 @@
 import { useRouter, usePathname } from "next/navigation";
 import { TrackingProvider } from "@/contexts/TrackingContext";
 import { useState, useEffect } from "react";
+import { getCurrentUser, clearCurrentUser } from "@/lib/auth";
 
 export default function AdminLayout({
   children,
@@ -101,8 +102,7 @@ export default function AdminLayout({
         <div style={{ position: 'fixed', bottom: '20px', right: '20px' }}>
           <button 
             onClick={() => {
-              localStorage.removeItem('admin_authenticated');
-              localStorage.removeItem('admin_auth_time');
+              clearCurrentUser();
               window.location.href = '/admin/login';
             }}
             style={{ background: '#dc2626', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '8px' }}

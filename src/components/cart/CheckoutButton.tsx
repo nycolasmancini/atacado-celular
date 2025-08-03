@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { useCheckout } from "@/hooks/useCheckout";
 import { usePricesUnlocked } from "@/hooks/usePricesUnlocked";
@@ -32,9 +33,17 @@ export function CheckoutButton({
   isMinOrderMet,
   onSuccess 
 }: CheckoutButtonProps) {
+  const router = useRouter();
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const whatsapp = localStorage.getItem('whatsapp');
   const { submitOrder, isLoading, isError, error, orderId, reset } = useCheckout();
+
+  console.log('🔍 CheckoutButton estado:', { showSuccessModal, isLoading, isError, orderId });
+
+  // Monitor mudanças no showSuccessModal
+  useEffect(() => {
+    console.log('📊 showSuccessModal mudou para:', showSuccessModal);
+  }, [showSuccessModal]);
 
   const handleCheckout = async () => {
     if (!whatsapp) {
@@ -49,6 +58,8 @@ export function CheckoutButton({
     }
 
     try {
+      console.log('🛒 Iniciando checkout...', { whatsapp, itemsCount: items.length });
+      
       await submitOrder({
         whatsapp,
         items: items.map(item => ({
@@ -61,21 +72,59 @@ export function CheckoutButton({
         }))
       });
 
-      // Sucesso - mostrar modal
-      setShowSuccessModal(true);
+      console.log('✅ Pedido enviado com sucesso! Mostrando modal...');
       
-      // Callback para limpar carrinho e fechar drawer
-      onSuccess?.();
+      // Sucesso - mostrar modal ANTES de limpar carrinho
+      console.log('🎯 Definindo showSuccessModal para true...');
+      setShowSuccessModal(true);
+      console.log('🎯 showSuccessModal definido. Estado atual:', showSuccessModal);
+      
+      // MOVER callback para depois - pode estar causando desmontagem
+      // onSuccess?.();
 
     } catch (err) {
       // Erro já está sendo tratado pelo hook
-      console.error('Erro no checkout:', err);
+      console.error('❌ Erro no checkout:', err);
     }
   };
 
   const handleCloseSuccessModal = () => {
     setShowSuccessModal(false);
     reset(); // Reset do estado do hook
+    
+    // Executar callback DEPOIS de fechar o modal
+    console.log('🧹 Limpando carrinho após fechar modal...');
+    onSuccess?.();
+  };
+
+  const handleChangeWhatsApp = () => {
+    try {
+      // Fechar modal primeiro
+      setShowSuccessModal(false);
+      
+      // Limpar todos os dados relacionados para reiniciar o fluxo
+      localStorage.removeItem('whatsapp');
+      localStorage.removeItem('prices_unlocked');
+      
+      // Limpar carrinho também (se houver)
+      localStorage.removeItem('cart');
+      
+      // Executar callback para limpar estado local do carrinho
+      onSuccess?.();
+      
+      // Navegar de forma mais suave usando window.location.href
+      console.log('🔄 Redirecionando para alterar WhatsApp...');
+      
+      // Usar setTimeout para garantir que as operações anteriores completem
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 100);
+      
+    } catch (error) {
+      console.error('Erro ao trocar WhatsApp:', error);
+      // Fallback: simplesmente recarregar a página
+      window.location.reload();
+    }
   };
 
   const handleRetry = () => {
@@ -145,15 +194,15 @@ export function CheckoutButton({
         )}
       </Button>
 
-      {showSuccessModal && (
-        <SuccessModal
-          isOpen={showSuccessModal}
-          onClose={handleCloseSuccessModal}
-          orderId={orderId}
-          totalValue={totalPrice}
-          totalItems={totalItems}
-        />
-      )}
+      <SuccessModal
+        isOpen={showSuccessModal}
+        onClose={handleCloseSuccessModal}
+        orderId={orderId}
+        totalValue={totalPrice}
+        totalItems={totalItems}
+        whatsapp={whatsapp}
+        onChangeWhatsApp={handleChangeWhatsApp}
+      />
     </>
   );
 }

@@ -24,7 +24,7 @@ export default function AdminLogin() {
     }
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setError('')
 
@@ -32,17 +32,30 @@ export default function AdminLogin() {
     const email = formData.get('email') as string
     const password = formData.get('password') as string
 
-    console.log('Login attempt:', email, password)
+    try {
+      const response = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      })
 
-    if (email === 'admin@atacadocelular.com' && password === 'admin123') {
-      console.log('Login successful, setting localStorage')
-      localStorage.setItem('admin_authenticated', 'true')
-      localStorage.setItem('admin_auth_time', Date.now().toString())
-      
-      console.log('Redirecting to admin...')
-      window.location.href = '/admin'
-    } else {
-      setError('Credenciais inválidas')
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        // Armazenar dados do usuário no localStorage
+        localStorage.setItem('admin_authenticated', 'true')
+        localStorage.setItem('admin_auth_time', Date.now().toString())
+        localStorage.setItem('admin_user_data', JSON.stringify(data.user))
+        
+        window.location.href = '/admin'
+      } else {
+        setError(data.error || 'Erro ao fazer login')
+      }
+    } catch (error) {
+      console.error('Login error:', error)
+      setError('Erro de conexão')
     }
   }
 
@@ -60,7 +73,7 @@ export default function AdminLogin() {
             <input
               type="email"
               name="email"
-              placeholder="admin@atacadocelular.com"
+              placeholder="admin@atacado-celular.com"
               style={{ width: '100%', padding: '8px 12px', border: '1px solid #d1d5db', borderRadius: '6px', fontSize: '16px' }}
               required
             />
@@ -92,8 +105,12 @@ export default function AdminLogin() {
         </form>
         
         <div style={{ textAlign: 'center', marginTop: '24px', fontSize: '14px', color: '#6b7280' }}>
-          <p style={{ margin: '4px 0' }}>📧 Email: admin@atacadocelular.com</p>
-          <p style={{ margin: '4px 0' }}>🔑 Senha: admin123</p>
+          <p style={{ margin: '8px 0', fontWeight: '500' }}>Credenciais de Teste:</p>
+          <div style={{ background: '#f9fafb', padding: '12px', borderRadius: '6px', marginBottom: '8px' }}>
+            <p style={{ margin: '2px 0', fontWeight: '500' }}>👑 Administrador:</p>
+            <p style={{ margin: '2px 0' }}>📧 admin@atacado-celular.com</p>
+            <p style={{ margin: '2px 0' }}>🔑 admin123</p>
+          </div>
         </div>
       </div>
     </div>

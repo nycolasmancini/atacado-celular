@@ -1,6 +1,6 @@
 'use client'
 
-import { useTracking } from '@/components/providers/TrackingProvider'
+import { useTracking } from '@/contexts/TrackingContext'
 
 interface FinalCTAProps {
   onRequestWhatsApp?: () => void

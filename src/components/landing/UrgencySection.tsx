@@ -32,19 +32,57 @@ export default function UrgencySection() {
   useEffect(() => {
     if (!isClient) return // Only run on client side
     
-    // Get kits count from localStorage (same as banner)
-    const savedKits = localStorage.getItem('pmcell-kits-left')
-    const today = new Date().toDateString()
-    const lastReset = localStorage.getItem('pmcell-last-reset')
-
-    if (lastReset !== today) {
-      const randomKits = Math.floor(Math.random() * 15) + 8
-      setKitsLeft(randomKits)
-      localStorage.setItem('pmcell-kits-left', randomKits.toString())
-      localStorage.setItem('pmcell-last-reset', today)
-    } else {
-      setKitsLeft(parseInt(savedKits || '12'))
+    // Sistema de estoque limitado por dia (24 kits)
+    const getKitsLeft = () => {
+      const now = new Date()
+      const resetTime = new Date()
+      resetTime.setHours(22, 43, 0, 0) // Reset às 22:43
+      
+      // Se já passou das 22:43 hoje, o próximo reset é amanhã
+      if (now > resetTime) {
+        resetTime.setDate(resetTime.getDate() + 1)
+      }
+      
+      const lastResetKey = 'pmcell-last-reset-2243'
+      const kitsKey = 'pmcell-kits-left-2243'
+      const resetTimeKey = 'pmcell-reset-time-2243'
+      
+      const lastReset = localStorage.getItem(lastResetKey)
+      const storedResetTime = localStorage.getItem(resetTimeKey)
+      const currentResetTime = resetTime.getTime().toString()
+      
+      // Se é um novo ciclo (novo reset time)
+      if (lastReset !== currentResetTime || storedResetTime !== currentResetTime) {
+        // Começar com 24 kits
+        setKitsLeft(24)
+        localStorage.setItem(kitsKey, '24')
+        localStorage.setItem(lastResetKey, currentResetTime)
+        localStorage.setItem(resetTimeKey, currentResetTime)
+        localStorage.setItem('pmcell-start-time-2243', now.getTime().toString())
+      } else {
+        // Calcular quantos kits restam baseado no tempo passado desde o último reset às 22:43
+        const lastResetTime = new Date()
+        lastResetTime.setHours(22, 43, 0, 0)
+        
+        // Se ainda não passou das 22:43 hoje, o último reset foi ontem
+        if (now.getHours() < 22 || (now.getHours() === 22 && now.getMinutes() < 43)) {
+          lastResetTime.setDate(lastResetTime.getDate() - 1)
+        }
+        
+        const hoursPassedSinceReset = (now.getTime() - lastResetTime.getTime()) / (1000 * 60 * 60)
+        const kitsConsumed = Math.floor(hoursPassedSinceReset) // 1 kit por hora
+        const remainingKits = Math.max(1, 24 - kitsConsumed) // Mínimo 1 kit
+        
+        setKitsLeft(remainingKits)
+        localStorage.setItem(kitsKey, remainingKits.toString())
+      }
     }
+    
+    getKitsLeft()
+    
+    // Atualizar a cada minuto para mostrar redução em tempo real
+    const interval = setInterval(getKitsLeft, 60000)
+    return () => clearInterval(interval)
   }, [isClient])
 
   useEffect(() => {
@@ -52,11 +90,15 @@ export default function UrgencySection() {
     
     const calculateTimeLeft = () => {
       const now = new Date()
-      const tomorrow = new Date(now)
-      tomorrow.setDate(tomorrow.getDate() + 1)
-      tomorrow.setHours(0, 0, 0, 0)
+      const resetTime = new Date()
+      resetTime.setHours(22, 43, 0, 0) // Reset às 22:43
       
-      const difference = tomorrow.getTime() - now.getTime()
+      // Se já passou das 22:43 hoje, o próximo reset é amanhã às 22:43
+      if (now > resetTime) {
+        resetTime.setDate(resetTime.getDate() + 1)
+      }
+      
+      const difference = resetTime.getTime() - now.getTime()
       
       const hours = Math.floor((difference / (1000 * 60 * 60)) % 24)
       const minutes = Math.floor((difference / 1000 / 60) % 60)
@@ -102,8 +144,13 @@ export default function UrgencySection() {
 
               {/* Main Headline */}
               <h2 className="text-24px md:text-32px font-montserrat font-bold text-black mb-4">
-                <span className="text-red-600 animate-pulse">ATENÇÃO!</span> Oferta por Tempo Limitado
+                <span className="text-red-600 animate-pulse">ÚLTIMA CHANCE!</span> Oferta Exclusiva para Revendedores
               </h2>
+              <p className="text-16px text-gray-700 mb-6 font-inter">
+                Material profissional completo + produtos com preços atacado especiais.
+                <br className="hidden md:block" />
+                <strong className="text-red-600">Apenas {kitsLeft} kits restantes no estoque diário!</strong>
+              </p>
 
               {/* Urgency Messages */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -154,7 +201,7 @@ export default function UrgencySection() {
                       {kitsLeft}
                     </div>
                     <div className="text-14px opacity-90">
-                      kits restantes com<br />preço promocional
+                      kits restantes HOJE
                     </div>
                   </div>
                 </div>
@@ -168,20 +215,25 @@ export default function UrgencySection() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left">
                   <div className="flex items-center">
                     <span className="text-success mr-2">✅</span>
-                    <span className="text-14px font-inter">Desconto de até 40% OFF</span>
+                    <span className="text-14px font-inter">Acervo completo de fotos .PNG com fundo transparente</span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-success mr-2">✅</span>
-                    <span className="text-14px font-inter">Frete GRÁTIS para todo Brasil</span>
+                    <span className="text-14px font-inter">Garantia estendida de 150 dias</span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-success mr-2">✅</span>
-                    <span className="text-14px font-inter">Garantia estendida 120 dias</span>
+                    <span className="text-14px font-inter">Artes prontas para postagens e marketing</span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-success mr-2">✅</span>
-                    <span className="text-14px font-inter">Kit exclusivo de brindes</span>
+                    <span className="text-14px font-inter">Desconto exclusivo dos kits promocionais</span>
                   </div>
+                </div>
+                <div className="mt-4 p-3 bg-yellow-100 border-l-4 border-yellow-500 rounded">
+                  <p className="text-14px font-inter text-gray-700">
+                    <strong>💡 Exclusivo para Revendedores:</strong> Material profissional completo para impulsionar suas vendas e destacar seus produtos da concorrência.
+                  </p>
                 </div>
               </div>
 
@@ -206,7 +258,7 @@ export default function UrgencySection() {
 
               {/* Warning Text */}
               <p className="text-12px md:text-14px text-gray-600 mt-6 animate-pulse">
-                ⚠️ Após o prazo, os preços voltam ao valor normal. Não perca esta oportunidade única!
+                ⚠️ Material profissional incluso apenas nesta promoção! Não perca esta oportunidade única!
               </p>
             </div>
           </div>

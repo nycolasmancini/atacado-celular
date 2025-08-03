@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { WebhookManager } from '@/components/admin/WebhookManager'
 
 interface SiteConfig {
   id?: string
@@ -507,6 +508,11 @@ export default function ConfiguracoesPage() {
                   {saving ? 'Salvando...' : 'Salvar Configurações'}
                 </button>
               </div>
+            </div>
+
+            {/* Gerenciador de Webhooks */}
+            <div className="mt-8">
+              <WebhookManager />
             </div>
           </div>
         </div>

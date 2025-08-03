@@ -53,15 +53,23 @@ export default function UrgencyTimer({
     }
 
     const createNewTimer = () => {
-      // Timer de 4-6 horas (randomizado para parecer mais natural)
-      const hoursToAdd = 4 + Math.random() * 2
-      const newTarget = Date.now() + (hoursToAdd * 60 * 60 * 1000)
+      // Timer até às 22:43 do mesmo dia ou próximo dia
+      const now = new Date()
+      const resetTime = new Date()
+      resetTime.setHours(22, 43, 0, 0)
+      
+      // Se já passou das 22:43 hoje, definir para amanhã às 22:43
+      if (now > resetTime) {
+        resetTime.setDate(resetTime.getDate() + 1)
+      }
+      
+      const newTarget = resetTime.getTime()
       localStorage.setItem('urgency_timer_target', newTarget.toString())
       
       // Track timer creation
       trackEvent('urgency_timer_created', {
         target_time: new Date(newTarget).toISOString(),
-        duration_hours: hoursToAdd
+        reset_time: '22:43'
       })
       
       return newTarget
@@ -252,8 +260,8 @@ interface ScarcityCounterProps {
 }
 
 export function ScarcityCounter({ 
-  initialCount = 47,
-  minCount = 8,
+  initialCount = 24, // Alterado para 24 kits por dia
+  minCount = 1,
   kitName = "kit",
   className = ''
 }: ScarcityCounterProps) {
@@ -268,63 +276,69 @@ export function ScarcityCounter({
   useEffect(() => {
     if (!isClient) return // Only run on client side
     
-    const storageKey = `scarcity_${kitName}_remaining`
-    const stored = localStorage.getItem(storageKey)
-    
-    if (stored) {
-      const storedCount = parseInt(stored)
-      if (storedCount >= minCount) {
-        setRemainingKits(storedCount)
-        return
+    // Sistema de estoque limitado por dia (24 kits)
+    const getKitsLeft = () => {
+      const now = new Date()
+      const resetTime = new Date()
+      resetTime.setHours(22, 43, 0, 0) // Reset às 22:43
+      
+      // Se já passou das 22:43 hoje, o próximo reset é amanhã
+      if (now > resetTime) {
+        resetTime.setDate(resetTime.getDate() + 1)
+      }
+      
+      const lastResetKey = `scarcity_${kitName}_last_reset_2243`
+      const kitsKey = `scarcity_${kitName}_remaining_2243`
+      const resetTimeKey = `scarcity_${kitName}_reset_time_2243`
+      
+      const lastReset = localStorage.getItem(lastResetKey)
+      const storedResetTime = localStorage.getItem(resetTimeKey)
+      const currentResetTime = resetTime.getTime().toString()
+      
+      // Se é um novo ciclo (novo reset time)
+      if (lastReset !== currentResetTime || storedResetTime !== currentResetTime) {
+        // Começar com 24 kits
+        setRemainingKits(24)
+        localStorage.setItem(kitsKey, '24')
+        localStorage.setItem(lastResetKey, currentResetTime)
+        localStorage.setItem(resetTimeKey, currentResetTime)
+        localStorage.setItem(`scarcity_${kitName}_start_time_2243`, now.getTime().toString())
+      } else {
+        // Calcular quantos kits restam baseado no tempo passado desde o último reset às 22:43
+        const lastResetTime = new Date()
+        lastResetTime.setHours(22, 43, 0, 0)
+        
+        // Se ainda não passou das 22:43 hoje, o último reset foi ontem
+        if (now.getHours() < 22 || (now.getHours() === 22 && now.getMinutes() < 43)) {
+          lastResetTime.setDate(lastResetTime.getDate() - 1)
+        }
+        
+        const hoursPassedSinceReset = (now.getTime() - lastResetTime.getTime()) / (1000 * 60 * 60)
+        const kitsConsumed = Math.floor(hoursPassedSinceReset) // 1 kit por hora
+        const remainingKits = Math.max(1, 24 - kitsConsumed) // Mínimo 1 kit
+        
+        setRemainingKits(remainingKits)
+        localStorage.setItem(kitsKey, remainingKits.toString())
       }
     }
-
-    // Gerar número inicial com alguma variação
-    const variation = Math.floor(Math.random() * 10) - 5 // -5 a +5
-    const count = Math.max(minCount, initialCount + variation)
-    setRemainingKits(count)
-    localStorage.setItem(storageKey, count.toString())
+    
+    getKitsLeft()
+    
+    // Atualizar a cada minuto para mostrar redução em tempo real
+    const interval = setInterval(getKitsLeft, 60000)
+    return () => clearInterval(interval)
   }, [initialCount, minCount, kitName, isClient])
 
-  // Simular redução gradual dos kits
-  useEffect(() => {
-    if (!isClient) return // Only run on client side
-    
-    const interval = setInterval(() => {
-      setRemainingKits(prev => {
-        if (prev <= minCount) return prev
-        
-        // Chance de 15% de reduzir 1 kit a cada minuto
-        if (Math.random() < 0.15) {
-          const newCount = prev - 1
-          localStorage.setItem(`scarcity_${kitName}_remaining`, newCount.toString())
-          
-          // Track scarcity update
-          trackEvent('scarcity_updated', {
-            kit_name: kitName,
-            remaining_count: newCount,
-            timestamp: new Date().toISOString()
-          })
-          
-          return newCount
-        }
-        return prev
-      })
-    }, 60000) // A cada minuto
-
-    return () => clearInterval(interval)
-  }, [kitName, minCount, isClient])
-
   const getUrgencyColor = () => {
-    if (remainingKits <= 15) return 'from-red-500 to-red-600'
-    if (remainingKits <= 25) return 'from-orange-500 to-red-500'
+    if (remainingKits <= 5) return 'from-red-500 to-red-600'
+    if (remainingKits <= 12) return 'from-orange-500 to-red-500'
     return 'from-orange-400 to-orange-500'
   }
 
   const getUrgencyText = () => {
-    if (remainingKits <= 10) return '🔥 ÚLTIMAS UNIDADES!'
-    if (remainingKits <= 20) return '⚠️ ESTOQUE BAIXO!'
-    return '📦 DISPONÍVEL AGORA'
+    if (remainingKits <= 3) return '🔥 ÚLTIMOS KITS HOJE!'
+    if (remainingKits <= 8) return '⚠️ ESTOQUE BAIXO!'
+    return '📦 DISPONÍVEL HOJE'
   }
 
   return (
@@ -348,7 +362,7 @@ export function ScarcityCounter({
         >
           {remainingKits}
         </motion.span>
-        <span className="text-sm opacity-90">unidades</span>
+        <span className="text-sm opacity-90">kits HOJE</span>
       </div>
     </motion.div>
   )

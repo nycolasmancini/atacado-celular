@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
 
     const whatsappEvents = await prisma.trackingEvent.findMany({
       where: {
-        eventType: 'WHATSAPP_SUBMITTED',
+        eventType: 'whatsapp_submitted',
         createdAt: {
           gte: new Date(startDate),
           lte: new Date(endDate)

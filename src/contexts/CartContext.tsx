@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { useTracking } from "@/components/providers/TrackingProvider";
+import { useTracking } from "@/contexts/TrackingContext";
 
 interface CartItem {
   productId: number;

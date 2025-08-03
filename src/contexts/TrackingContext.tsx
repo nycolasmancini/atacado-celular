@@ -16,6 +16,7 @@ interface TrackingData {
 
 interface TrackingContextType {
   trackingData: TrackingData;
+  sessionId: string;
   trackEvent: (type: string, data?: any) => void;
   trackCustomEvent: (name: string, data?: any) => void;
   updateTrackingData: (updates: Partial<TrackingData>) => void;
@@ -168,6 +169,7 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
 
   const value: TrackingContextType = {
     trackingData,
+    sessionId: trackingData.sessionId,
     trackEvent,
     trackCustomEvent,
     updateTrackingData,
@@ -205,6 +207,7 @@ export function useTracking() {
         productsViewed: [],
         searches: [],
       },
+      sessionId: "",
       trackEvent: () => {},
       trackCustomEvent: () => {},
       updateTrackingData: () => {},

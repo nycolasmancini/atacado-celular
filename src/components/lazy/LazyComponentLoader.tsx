@@ -1,7 +1,7 @@
 'use client'
 
 import { Suspense, lazy, ComponentType } from 'react'
-import LoadingSkeleton from '@/components/ui/LoadingSkeleton'
+import { LoadingSkeleton } from '@/components/ui/LoadingSkeleton'
 
 interface LazyComponentLoaderProps {
   importFunction: () => Promise<{ default: ComponentType<any> }>

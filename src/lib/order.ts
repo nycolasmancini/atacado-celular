@@ -7,8 +7,10 @@ interface OrderItem {
   specialPriceMinQty?: number;
 }
 
-export function formatOrderMessage(items: OrderItem[], total: number): string {
-  const header = "🛍️ *NOVO PEDIDO ATACADO*\n\n";
+export function formatOrderMessage(items: OrderItem[], total: number, orderNumber?: number): string {
+  const header = orderNumber 
+    ? `🛍️ *NOVO PEDIDO ATACADO #${orderNumber}*\n\n`
+    : "🛍️ *NOVO PEDIDO ATACADO*\n\n";
   
   const productsSection = "📦 *Produtos:*\n";
   

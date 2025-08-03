@@ -82,7 +82,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 mb-8"
+              className="flex flex-col sm:flex-row gap-4 mb-8 items-center justify-center lg:justify-start"
             >
               <motion.button
                 onClick={scrollToKits}
@@ -95,17 +95,13 @@ export default function HeroSection() {
               </motion.button>
               
               <motion.div
-                whileHover={{ 
-                  scale: 1.02,
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  borderColor: 'rgba(255, 255, 255, 0.6)'
-                }}
+                whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
                 className="inline-flex"
               >
                 <Link
                   href="/catalogo"
-                  className="inline-flex items-center justify-center px-6 py-4 text-orange-500 hover:text-orange-600 border-2 border-orange-500/30 rounded-lg font-medium transition-colors duration-300 underline"
+                  className="group relative px-8 py-4 bg-white border-2 border-orange-500 text-orange-500 hover:text-white hover:bg-orange-500 font-bold text-lg rounded-lg shadow-md hover:shadow-lg transform transition-all duration-300 hover:scale-105"
                 >
                   Ver Catálogo Completo
                 </Link>

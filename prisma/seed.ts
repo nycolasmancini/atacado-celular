@@ -9,14 +9,14 @@ async function main() {
   // Create admin user
   const hashedPassword = await bcrypt.hash('admin123', 12)
   
-  const admin = await prisma.user.upsert({
+  const admin = await prisma.admin.upsert({
     where: { email: 'admin@atacado-celular.com' },
     update: {},
     create: {
       email: 'admin@atacado-celular.com',
       name: 'Administrador',
       password: hashedPassword,
-      role: 'ADMIN'
+      role: 'admin'
     }
   })
 
@@ -24,22 +24,14 @@ async function main() {
 
   // Create site configuration
   await prisma.siteConfig.upsert({
-    where: { key: 'whatsapp_number' },
+    where: { id: 1 },
     update: {},
     create: {
-      key: 'whatsapp_number',
-      value: '5511981326609',
-      description: 'Número do WhatsApp para contato'
-    }
-  })
-
-  await prisma.siteConfig.upsert({
-    where: { key: 'unlock_threshold' },
-    update: {},
-    create: {
-      key: 'unlock_threshold',
-      value: '100',
-      description: 'Valor mínimo para desbloquear preços especiais'
+      avatarWhatsappUrl: '/images/whatsapp-avatar.svg',
+      webhookEnabled: false,
+      minSessionTime: 300,
+      sessionTimeout: 1800,
+      highValueThreshold: 1000
     }
   })
 
@@ -98,7 +90,8 @@ async function main() {
       specialPrice: 14.50,
       specialPriceMinQty: 100,
       categoryId: categoria1.id,
-      imageUrl: '/images/products/capinha-iphone-15.webp'
+      imageUrl: '/images/products/capinha-iphone-15.webp',
+      modelsImageUrl: '/images/products/capinha-modelos-list.webp'
     },
     {
       name: 'Carregador USB-C 20W Original',
@@ -118,7 +111,8 @@ async function main() {
       specialPrice: 8.50,
       specialPriceMinQty: 200,
       categoryId: categoria3.id,
-      imageUrl: '/images/products/pelicula-vidro.webp'
+      imageUrl: '/images/products/pelicula-vidro.webp',
+      modelsImageUrl: '/images/products/pelicula-modelos-list.webp'
     },
     {
       name: 'Fone Bluetooth TWS Pro',
@@ -148,7 +142,8 @@ async function main() {
       specialPrice: 13.00,
       specialPriceMinQty: 120,
       categoryId: categoria1.id,
-      imageUrl: '/images/products/capinha-samsung.webp'
+      imageUrl: '/images/products/capinha-samsung.webp',
+      modelsImageUrl: '/images/products/capinha-samsung-modelos-list.webp'
     }
   ]
 

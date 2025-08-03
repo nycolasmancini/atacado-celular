@@ -170,7 +170,7 @@ const nextConfig: NextConfig = {
     // Bundle size analysis
     if (process.env.ANALYZE === 'true') {
       config.plugins.find(
-        plugin => plugin.constructor.name === 'BundleAnalyzerPlugin'
+        (plugin: any) => plugin.constructor.name === 'BundleAnalyzerPlugin'
       ).analyzerMode = 'static';
     }
 

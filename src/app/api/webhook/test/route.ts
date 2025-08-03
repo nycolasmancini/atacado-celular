@@ -1,118 +1,154 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
+import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
+import { webhookClient } from '@/lib/webhooks';
 
-const prisma = new PrismaClient()
+const testWebhookSchema = z.object({
+  event: z.enum(['whatsapp_captured', 'order_completed', 'cart_abandoned', 'high_value_interest', 'session_ended'])
+});
+
+const mockData = {
+  whatsapp_captured: {
+    whatsapp: '(11) 99999-9999',
+    source: 'landing' as const,
+    sessionId: 'test-session-123'
+  },
+  order_completed: {
+    customer: {
+      whatsapp: '(11) 99999-9999',
+      sessionId: 'test-session-123'
+    },
+    order: {
+      items: [
+        {
+          productId: 1,
+          name: 'Produto Teste',
+          quantity: 30,
+          price: 10,
+          specialPrice: 8
+        }
+      ],
+      totalItems: 30,
+      totalValue: 240
+    },
+    behavior: {
+      timeOnSite: 300000,
+      pagesVisited: ['home', 'catalog'],
+      productsViewed: [1, 2, 3],
+      searches: ['iPhone', 'Samsung'],
+      kitInterest: 'kit-premium'
+    }
+  },
+  cart_abandoned: {
+    customer: {
+      whatsapp: '(11) 99999-9999',
+      sessionId: 'test-session-123'
+    },
+    cart: {
+      items: [
+        {
+          productId: 1,
+          name: 'Produto Teste',
+          quantity: 15,
+          price: 20
+        }
+      ],
+      totalItems: 15,
+      totalValue: 300,
+      timeInCart: 600000
+    },
+    behavior: {
+      timeOnSite: 900000,
+      pagesVisited: ['home', 'catalog', 'product/1'],
+      productsViewed: [1, 2],
+      searches: ['iPhone'],
+      kitInterest: 'kit-basic'
+    }
+  },
+  high_value_interest: {
+    customer: {
+      whatsapp: '(11) 99999-9999',
+      sessionId: 'test-session-123'
+    },
+    product: {
+      id: 1,
+      name: 'iPhone 15 Pro Max',
+      price: 1200,
+      viewTime: 180000
+    },
+    behavior: {
+      timeOnSite: 600000,
+      pagesVisited: ['home', 'catalog', 'product/1'],
+      productsViewed: [1, 5, 8],
+      score: 9.2
+    }
+  },
+  session_ended: {
+    customer: {
+      whatsapp: '(11) 99999-9999',
+      sessionId: 'test-session-123'
+    },
+    session: {
+      duration: 1200000,
+      score: 8.5,
+      quality: 'high' as const
+    },
+    behavior: {
+      timeOnSite: 1200000,
+      pagesVisited: ['home', 'catalog', 'product/1', 'product/2', 'cart'],
+      productsViewed: [1, 2, 3, 4, 5],
+      searches: ['iPhone', 'Samsung', 'Xiaomi'],
+      cartActions: 5,
+      kitInterest: 'kit-premium'
+    }
+  }
+};
 
 export async function POST(request: NextRequest) {
   try {
-    // Buscar configurações do webhook
-    const config = await prisma.siteConfig.findFirst()
+    const body = await request.json();
+    const { event } = testWebhookSchema.parse(body);
     
-    if (!config?.webhookUrl) {
-      return NextResponse.json(
-        { error: 'URL do webhook não configurada' },
-        { status: 400 }
-      )
-    }
-
-    // Payload de teste
-    const testPayload = {
-      evento: 'teste_webhook',
-      timestamp: new Date().toISOString(),
-      motivo: 'teste_configuracao',
-      
-      cliente: {
-        whatsapp: '+5511999999999',
-        email: 'teste@exemplo.com',
-        sessao_id: 'test_session_123',
-        primeira_visita: true,
-        total_visitas: 1
-      },
-      
-      resumo_jornada: {
-        tempo_total: '12min 34s',
-        paginas_visitadas: 8,
-        origem_trafego: 'Google Ads',
-        dispositivo: 'Mobile',
-        localizacao: 'São Paulo, SP',
-        score_interesse: 8.5
-      },
-      
-      produtos: {
-        visualizados: [
-          { id: 1, nome: 'iPhone 14 Pro', tempo: '5min 20s', interesse: 'alto' },
-          { id: 2, nome: 'Samsung Galaxy S23', tempo: '3min 15s', interesse: 'medio' }
-        ],
-        carrinho_atual: [
-          { id: 1, nome: 'iPhone 14 Pro', quantidade: 1, valor: 3500.00 }
-        ],
-        valor_carrinho: 3500.00
-      },
-      
-      comportamento: {
-        buscas: ['iPhone 14', 'smartphone premium'],
-        tempo_indecisao: 'Alto',
-        sinais_urgencia: ['visualizou_mesmo_produto_multiplas_vezes', 'carrinho_abandonado'],
-        flags_comportamento: ['visualizacao_detalhada', 'comparou_produtos']
-      },
-      
-      oportunidade: {
-        nivel: 'QUENTE',
-        motivo: 'Carrinho abandonado com produto de alto valor',
-        sugestao_abordagem: 'Oferecer desconto ou condição especial',
-        melhor_momento_contato: 'agora',
-        produtos_focar: [1]
-      },
-      
-      teste: {
-        enviado_em: new Date().toISOString(),
-        configuracao_ativa: true,
-        webhook_url: config.webhookUrl
-      }
-    }
-
-    // Enviar teste do webhook
-    const startTime = Date.now()
+    console.log(`🧪 Testing webhook: ${event}`);
     
-    const response = await fetch(config.webhookUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'User-Agent': 'atacado-celular-webhook-test/1.0',
-        ...(config.webhookSecretKey && {
-          'X-Webhook-Secret': config.webhookSecretKey
-        })
-      },
-      body: JSON.stringify(testPayload)
-    })
-
-    const responseTime = Date.now() - startTime
-    const responseText = await response.text()
-
-    // Resultado do teste
-    const testResult = {
-      success: response.ok,
-      status: response.status,
-      statusText: response.statusText,
-      responseTime: `${responseTime}ms`,
-      responseBody: responseText,
-      headers: Object.fromEntries(response.headers),
-      webhookUrl: config.webhookUrl,
-      testedAt: new Date().toISOString()
+    const testData = mockData[event];
+    
+    switch (event) {
+      case 'whatsapp_captured':
+        await webhookClient.sendWhatsAppCaptured(testData as any);
+        break;
+      case 'order_completed':
+        await webhookClient.sendOrderCompleted(testData as any);
+        break;
+      case 'cart_abandoned':
+        await webhookClient.sendCartAbandoned(testData as any);
+        break;
+      case 'high_value_interest':
+        await webhookClient.sendHighValueInterest(testData as any);
+        break;
+      case 'session_ended':
+        await webhookClient.sendSessionEnded(testData as any);
+        break;
     }
-
+    
     return NextResponse.json({
-      message: response.ok ? 'Webhook testado com sucesso!' : 'Webhook retornou erro',
-      testResult
-    }, { status: response.ok ? 200 : 400 })
-
+      success: true,
+      message: `Webhook ${event} enviado com sucesso`,
+      testData
+    });
+    
   } catch (error) {
-    console.error('Erro ao testar webhook:', error)
+    console.error('Error testing webhook:', error);
+    
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({
+        success: false,
+        error: 'Evento de webhook inválido'
+      }, { status: 400 });
+    }
     
     return NextResponse.json({
-      error: 'Erro ao conectar com o webhook',
-      details: error.message,
-      testedAt: new Date().toISOString()
-    }, { status: 500 })
+      success: false,
+      error: 'Erro ao testar webhook'
+    }, { status: 500 });
   }
 }

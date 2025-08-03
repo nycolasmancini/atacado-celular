@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
 
     const orderEvents = await prisma.trackingEvent.findMany({
       where: {
-        eventType: 'ORDER_COMPLETED',
+        eventType: 'order_completed',
         createdAt: {
           gte: new Date(startDate),
           lte: new Date(endDate)

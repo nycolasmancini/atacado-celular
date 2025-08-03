@@ -30,6 +30,7 @@ model Product {
   specialPriceMinQty  Int       @default(100)       // Qtd mínima para preço especial
   categoryId          Int
   imageUrl            String?
+  modelsImageUrl      String?   // Segunda imagem com lista de modelos (para película/capa)
   isActive            Boolean   @default(true)
   category            Category  @relation(fields: [categoryId], references: [id])
   kitItems            KitItem[]
@@ -89,6 +90,7 @@ model Admin {
   email       String   @unique
   password    String
   name        String
+  role        String   @default("admin") // "admin" or "seller"
   isActive    Boolean  @default(true)
   lastLoginAt DateTime?
   createdAt   DateTime @default(now())
@@ -154,4 +156,69 @@ model UserJourney {
   @@index([phoneNumber])
   @@index([webhookSent])
   @@map("user_journeys")
+}
+
+model Order {
+  id                  Int               @id @default(autoincrement())
+  orderNumber         Int               @unique // Número sequencial do pedido (gerado via função)
+  sessionId           String            // ID da sessão original
+  originalWhatsapp    String            // WhatsApp original informado para liberar preços
+  currentWhatsapp     String            // WhatsApp atual (pode ter sido alterado no carrinho)
+  whatsappHistory     WhatsappChange[]  // Histórico de alterações de WhatsApp
+  totalValue          Decimal           // Valor total do pedido
+  totalItems          Int               // Quantidade total de itens
+  status              String            @default("pending") // pending, processing, completed, cancelled
+  chatwootContactId   String?           // ID do contato no Chatwoot (se encontrado)
+  assignedSeller      String?           // Vendedor atribuído (do Chatwoot ou manual)
+  sellerAssignedAt    DateTime?         // Quando foi atribuído ao vendedor
+  completedAt         DateTime?         // Quando foi finalizado
+  completedBy         String?           // Quem finalizou o pedido
+  notes               String?           // Observações do vendedor
+  items               OrderItem[]       // Itens do pedido
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([orderNumber])
+  @@index([originalWhatsapp])
+  @@index([currentWhatsapp])
+  @@index([status])
+  @@index([assignedSeller])
+  @@index([createdAt])
+  @@map("orders")
+}
+
+model OrderItem {
+  id                  Int     @id @default(autoincrement())
+  orderId             Int
+  productId           Int
+  productName         String  // Nome do produto no momento do pedido
+  quantity            Int
+  unitPrice           Decimal // Preço unitário aplicado
+  totalPrice          Decimal // Preço total do item (unitPrice * quantity)
+  isSpecialPrice      Boolean @default(false) // Se foi aplicado preço especial
+  specialPriceMinQty  Int?    // Quantidade mínima para preço especial (se aplicável)
+  order               Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([productId])
+  @@map("order_items")
+}
+
+model WhatsappChange {
+  id              Int      @id @default(autoincrement())
+  orderId         Int
+  previousNumber  String   // Número anterior
+  newNumber       String   // Novo número
+  changeReason    String   @default("user_request") // user_request, correction, admin_change
+  changedBy       String?  // Quem fez a alteração (admin, vendedor, etc)
+  ipAddress       String?  // IP de onde foi feita a alteração
+  userAgent       String?  // User agent da alteração
+  notes           String?  // Observações sobre a alteração
+  order           Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+
+  @@index([orderId])
+  @@index([previousNumber])
+  @@index([newNumber])
+  @@map("whatsapp_changes")
 }

@@ -6,6 +6,7 @@ import ProductTable from '@/components/admin/ProductTable'
 import ProductForm from '@/components/admin/ProductForm'
 import Button from '@/components/ui/Button'
 import Modal from '@/components/ui/Modal'
+import { ProtectedRoute } from '@/components/admin/ProtectedRoute'
 
 interface Product {
   id: number
@@ -163,7 +164,8 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <ProtectedRoute requiredRole="admin">
+      <div className="p-6 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -230,6 +232,7 @@ export default function ProductsPage() {
           loading={formLoading}
         />
       </Modal>
-    </div>
+      </div>
+    </ProtectedRoute>
   )
 }

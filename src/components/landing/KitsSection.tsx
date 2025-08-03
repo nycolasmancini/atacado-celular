@@ -69,7 +69,7 @@ const MOCK_KITS = [
 
 interface KitsSectionProps {
   pricesUnlocked: boolean
-  onRequestWhatsApp: () => void
+  onRequestWhatsApp: (kit?: any) => void
 }
 
 interface KitWithItems extends Kit {
@@ -112,7 +112,7 @@ function KitCardSkeleton() {
 }
 
 // Client Component for Data Fetching
-function KitsList({ pricesUnlocked, onRequestWhatsApp }: { pricesUnlocked: boolean, onRequestWhatsApp: () => void }) {
+function KitsList({ pricesUnlocked, onRequestWhatsApp }: { pricesUnlocked: boolean, onRequestWhatsApp: (kit?: any) => void }) {
   const [kits, setKits] = useState<KitWithItems[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)

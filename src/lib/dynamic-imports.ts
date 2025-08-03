@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import LoadingSkeleton from '@/components/ui/LoadingSkeleton'
+import { LoadingSkeleton } from '@/components/ui/LoadingSkeleton'
 
 // Utility for creating dynamic imports with consistent loading states
 export function createDynamicComponent<P = {}>(

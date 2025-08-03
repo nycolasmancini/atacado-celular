@@ -4,6 +4,8 @@ import { formatOrderMessage } from '@/lib/order';
 import { evolutionClient } from '@/lib/evolution';
 import { webhookClient } from '@/lib/webhooks';
 import { getBehaviorDataForWebhook } from '@/lib/tracking-aggregator';
+import { createOrder } from '@/lib/orders';
+import { getChatwootContactInfo } from '@/lib/chatwoot';
 
 const WHATSAPP_REGEX = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
 
@@ -47,11 +49,44 @@ export async function POST(request: NextRequest) {
       return sum + (unitPrice * item.quantity);
     }, 0);
     
-    // Gerar ID do pedido
-    const orderId = `ORDER-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    // Buscar informações do cliente no Chatwoot
+    const chatwootInfo = await getChatwootContactInfo(whatsapp);
+    console.log('🔍 Informações do Chatwoot:', chatwootInfo);
+    
+    // Salvar pedido no banco de dados
+    const orderData = await createOrder({
+      sessionId,
+      originalWhatsapp: whatsapp, // Por enquanto assumimos que é o mesmo
+      currentWhatsapp: whatsapp,
+      totalValue: total,
+      totalItems,
+      chatwootContactId: chatwootInfo.chatwootContactId,
+      assignedSeller: chatwootInfo.assignedSeller,
+      items: items.map(item => {
+        const isSpecialPrice = item.specialPrice && item.specialPriceMinQty && 
+                             item.quantity >= item.specialPriceMinQty;
+        const unitPrice = isSpecialPrice ? item.specialPrice! : item.price;
+        
+        return {
+          productId: item.productId,
+          productName: item.name,
+          quantity: item.quantity,
+          unitPrice,
+          totalPrice: unitPrice * item.quantity,
+          isSpecialPrice,
+          specialPriceMinQty: item.specialPriceMinQty
+        };
+      })
+    });
+
+    console.log('📦 Pedido salvo no banco:', {
+      orderNumber: orderData.orderNumber,
+      totalValue: total,
+      totalItems
+    });
     
     // Formatar mensagem para WhatsApp
-    const message = formatOrderMessage(items, total);
+    const message = formatOrderMessage(items, total, orderData.orderNumber);
     
     // Enviar WhatsApp via Evolution API
     let messageId: string | undefined;
@@ -108,7 +143,8 @@ export async function POST(request: NextRequest) {
     
     return NextResponse.json({
       success: true,
-      orderId,
+      orderId: `ORDER-${orderData.orderNumber}`, // Manter compatibilidade
+      orderNumber: orderData.orderNumber,
       messageId,
       message: "Pedido enviado com sucesso!"
     });

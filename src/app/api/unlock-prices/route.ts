@@ -59,30 +59,40 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { whatsapp } = unlockPricesSchema.parse(body)
 
-    // Track the WhatsApp submission event
+    // Track the WhatsApp submission event (with error handling)
     const sessionId = request.headers.get('x-session-id') || 'anonymous'
     const userAgent = request.headers.get('user-agent') || undefined
 
-    await prisma.trackingEvent.create({
-      data: {
-        sessionId,
-        eventType: 'whatsapp_submitted',
-        phoneNumber: whatsapp,
-        userAgent,
-        ipAddress: ip,
-        metadata: {
-          source: 'landing',
-          timestamp: new Date().toISOString()
+    try {
+      await prisma.trackingEvent.create({
+        data: {
+          sessionId,
+          eventType: 'whatsapp_submitted',
+          phoneNumber: whatsapp,
+          userAgent,
+          ipAddress: ip,
+          metadata: {
+            source: 'landing',
+            timestamp: new Date().toISOString()
+          }
         }
-      }
-    })
+      })
+    } catch (dbError) {
+      console.warn('Failed to save tracking event:', dbError)
+      // Continue execution even if tracking fails
+    }
 
-    // Send webhook to n8n
-    await webhookClient.sendWhatsAppCaptured({
-      whatsapp,
-      source: 'landing',
-      sessionId
-    })
+    // Send webhook to n8n (with error handling)
+    try {
+      await webhookClient.sendWhatsAppCaptured({
+        whatsapp,
+        source: 'landing',
+        sessionId
+      })
+    } catch (webhookError) {
+      console.warn('Failed to send webhook:', webhookError)
+      // Continue execution even if webhook fails
+    }
 
     // Calculate expiration date (7 days from now)
     const expiresAt = Date.now() + (7 * 24 * 60 * 60 * 1000)

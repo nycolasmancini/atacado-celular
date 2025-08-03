@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { DateRangePicker } from '@/components/admin/DateRangePicker'
 import { ReportTable } from '@/components/admin/ReportTable'
 import { StatsCard } from '@/components/admin/StatsCard'
+import { ProtectedRoute } from '@/components/admin/ProtectedRoute'
 import { 
   getWhatsAppStats, 
   getOrderStats, 
@@ -168,10 +169,11 @@ export default function RelatoriosPage() {
   ]
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">Relatórios</h1>
-      </div>
+    <ProtectedRoute requiredRole="admin">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-bold text-gray-900">Relatórios</h1>
+        </div>
 
       {/* Date Range Picker */}
       <DateRangePicker onDateRangeChange={loadReportData} />
@@ -222,6 +224,7 @@ export default function RelatoriosPage() {
         loading={loading}
         emptyMessage="Nenhum pedido finalizado no período selecionado"
       />
-    </div>
+      </div>
+    </ProtectedRoute>
   )
 }

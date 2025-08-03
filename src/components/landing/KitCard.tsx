@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { ProductDetailModal } from '@/components/catalog/ProductDetailModal'
+import AddMoreProductsModal from '@/components/common/AddMoreProductsModal'
 
 interface KitCardProps {
   kit: Kit & { 
@@ -11,7 +12,7 @@ interface KitCardProps {
   }
   pricesUnlocked: boolean
   isBestSeller?: boolean
-  onRequestWhatsApp: () => void
+  onRequestWhatsApp: (kit?: any) => void
 }
 
 
@@ -26,6 +27,7 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onR
   const router = useRouter()
   const [selectedProduct, setSelectedProduct] = useState<any>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [showAddMoreModal, setShowAddMoreModal] = useState(false)
   const gradientClass = gradientClasses[kit.colorTheme as keyof typeof gradientClasses] || gradientClasses['purple-pink']
   
   const calculatedPrice = kit.items.reduce((sum, item) => 
@@ -38,11 +40,11 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onR
 
   const handleAddKitToCart = () => {
     if (!pricesUnlocked) {
-      // Se preços não estão liberados, abrir modal do WhatsApp
-      onRequestWhatsApp()
+      // Se preços não estão liberados, abrir modal do WhatsApp passando o kit
+      onRequestWhatsApp(kit)
       return
     }
-
+    
     // Adicionar todos os produtos do kit ao carrinho
     kit.items.forEach(item => {
       addItem(item.product, item.quantity)
@@ -54,9 +56,9 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onR
       icon: '🛒',
     })
 
-    // Navegar para a página do carrinho após um pequeno delay
+    // Mostrar modal perguntando se quer adicionar mais produtos
     setTimeout(() => {
-      router.push('/carrinho')
+      setShowAddMoreModal(true)
     }, 500)
   }
 
@@ -258,6 +260,13 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onR
           onClose={handleCloseModal}
         />
       )}
+
+      {/* Add More Products Modal */}
+      <AddMoreProductsModal
+        isOpen={showAddMoreModal}
+        onClose={() => setShowAddMoreModal(false)}
+        kitName={kit.name}
+      />
     </div>
   )
 }

@@ -7,7 +7,7 @@
 
 import { useEffect } from 'react'
 import { TrackedButton } from '@/components/ui/TrackedButton'
-import { useTracking } from '@/components/providers/TrackingProvider'
+import { useTracking } from '@/contexts/TrackingContext'
 import { useSectionTracking } from '@/hooks/useSectionTracking'
 import { useScrollDepthTracking } from '@/hooks/useScrollDepthTracking'
 import { useUTMNavigation } from '@/lib/utm'

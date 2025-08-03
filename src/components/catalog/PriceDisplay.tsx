@@ -8,6 +8,10 @@ interface PriceDisplayProps {
   specialQty: number;
   currentQty: number;
   pricesUnlocked: boolean;
+  customPriceLabels?: {
+    normalLabel?: string;
+    specialLabel?: string;
+  };
 }
 
 export function PriceDisplay({ 
@@ -15,7 +19,8 @@ export function PriceDisplay({
   specialPrice, 
   specialQty, 
   currentQty, 
-  pricesUnlocked 
+  pricesUnlocked,
+  customPriceLabels 
 }: PriceDisplayProps) {
   const isSpecialPriceActive = currentQty >= specialQty;
   const applicablePrice = isSpecialPriceActive ? specialPrice : price;
@@ -24,9 +29,7 @@ export function PriceDisplay({
   if (!pricesUnlocked) {
     return (
       <div className="space-y-2">
-        <div className="bg-orange-100 text-orange-800 px-3 py-2 rounded-lg text-center">
-          <p className="text-sm font-medium">🔒 Libere para ver preços</p>
-        </div>
+        {/* Preços bloqueados - sem texto duplicado */}
       </div>
     );
   }
@@ -37,6 +40,10 @@ export function PriceDisplay({
       currency: 'BRL'
     }).format(value);
 
+  // Labels padrão ou customizados
+  const normalLabel = customPriceLabels?.normalLabel || "Atacado:";
+  const specialLabel = customPriceLabels?.specialLabel || `+${specialQty} unidades:`;
+
   return (
     <div className="space-y-2">
       {/* Mobile: Horizontal layout, Desktop: Vertical */}
@@ -46,7 +53,7 @@ export function PriceDisplay({
           "flex flex-col text-center md:flex-row md:items-center md:justify-between md:text-left text-sm gap-1",
           isSpecialPriceActive && "line-through text-gray-500"
         )}>
-          <span className="text-xs md:text-sm">Atacado:</span>
+          <span className="text-xs md:text-sm">{normalLabel}</span>
           <span className="font-semibold text-lg md:text-base">{formatPrice(price)}</span>
         </div>
 
@@ -57,7 +64,7 @@ export function PriceDisplay({
             ? "text-green-600 font-bold" 
             : "text-gray-600"
         )}>
-          <span className="text-xs md:text-sm">+{specialQty} unidades:</span>
+          <span className="text-xs md:text-sm">{specialLabel}</span>
           <span className="font-semibold text-lg md:text-base">{formatPrice(specialPrice)}</span>
         </div>
       </div>

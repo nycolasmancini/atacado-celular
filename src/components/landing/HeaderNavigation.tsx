@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { Input } from "@/components/ui/Input"
+import { usePricesUnlocked } from '@/hooks/usePricesUnlocked'
+import { WhatsAppModal } from './WhatsAppModal'
 
 interface Category {
   id: number;
@@ -28,11 +30,13 @@ export default function HeaderNavigation() {
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [avatarUrl, setAvatarUrl] = useState('/images/whatsapp-avatar.svg')
+  const [showWhatsAppModal, setShowWhatsAppModal] = useState(false)
   
   const router = useRouter()
   const pathname = usePathname()
   const isOnCatalogPage = pathname === '/catalogo'
   const isOnHomePage = pathname === '/'
+  const { pricesUnlocked, unlockPrices } = usePricesUnlocked()
 
   // Handle client-side mounting
   useEffect(() => {
@@ -132,6 +136,43 @@ export default function HeaderNavigation() {
     window.open('https://wa.me/5511981326609?text=Oi, vim pelo site e estou com dúvidas', '_blank')
   }
 
+  const handleKitsClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    
+    // Só verificar preços se o componente estiver montado
+    if (!mounted) return
+    
+    // Verificação direta do localStorage para garantir precisão
+    const unlocked = localStorage.getItem('prices_unlocked')
+    const expires = localStorage.getItem('unlock_expires')
+    
+    const isUnlocked = unlocked && expires && Date.now() < parseInt(expires)
+    
+    if (isUnlocked) {
+      // Se preços já liberados, navegar diretamente
+      router.push('/kits')
+    } else {
+      // Se preços não liberados, mostrar modal primeiro
+      setShowWhatsAppModal(true)
+    }
+  }
+
+  const handleWhatsAppSuccess = (whatsapp: string) => {
+    console.log('=== HeaderNavigation - handleWhatsAppSuccess ===')
+    console.log('WhatsApp recebido:', whatsapp)
+    
+    // Usar o hook para salvar no localStorage (igual ao CatalogoPageClient)
+    unlockPrices(whatsapp)
+    
+    setShowWhatsAppModal(false)
+    
+    // Aguardar um pouco para garantir que o localStorage foi atualizado
+    setTimeout(() => {
+      console.log('Navegando para /kits após unlock')
+      router.push('/kits')
+    }, 100)
+  }
+
   // Search autocomplete logic
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -229,7 +270,19 @@ export default function HeaderNavigation() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-4 flex-1 max-w-2xl mx-8">
+            <div className="hidden md:flex items-center space-x-4 flex-1 max-w-3xl mx-8">
+              {/* Kits Button */}
+              <button
+                onClick={handleKitsClick}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 whitespace-nowrap ${
+                  isScrolled || !isOnHomePage
+                    ? 'bg-purple-500 text-white hover:bg-purple-600'
+                    : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30'
+                }`}
+              >
+                Kits Prontos
+              </button>
+
               {/* Search Bar */}
               <div className="relative flex-1">
                 <form onSubmit={handleSearchSubmit}>
@@ -412,6 +465,16 @@ export default function HeaderNavigation() {
                   ))}
                 </select>
                 
+                <button
+                  onClick={(e) => {
+                    setIsMobileMenuOpen(false)
+                    handleKitsClick(e)
+                  }}
+                  className="text-purple-600 font-medium py-2 px-4 rounded-lg hover:bg-purple-50 transition-colors duration-300 w-full text-left"
+                >
+                  Kits Prontos
+                </button>
+                
                 <Link
                   href="/catalogo"
                   className="text-gray-900 font-medium py-2 px-4 rounded-lg hover:bg-gray-100 transition-colors duration-300"
@@ -437,6 +500,13 @@ export default function HeaderNavigation() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* WhatsApp Modal for Kits Access */}
+      <WhatsAppModal 
+        isOpen={showWhatsAppModal}
+        onSuccess={handleWhatsAppSuccess}
+        onClose={() => setShowWhatsAppModal(false)}
+      />
     </>
   )
 }

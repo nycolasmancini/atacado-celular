@@ -2,7 +2,7 @@
 
 import { forwardRef, ReactNode } from 'react'
 import { Button, ButtonProps } from './Button'
-import { useTracking } from '../providers/TrackingProvider'
+import { useTracking } from '@/contexts/TrackingContext'
 import { trackCTAClick } from '@/lib/gtm'
 import { trackHeatmapCTAClick } from '@/lib/heatmaps'
 

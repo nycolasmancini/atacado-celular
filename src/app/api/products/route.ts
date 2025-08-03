@@ -38,27 +38,43 @@ export async function GET(request: NextRequest) {
       ];
     }
 
-    // Get products with category info
-    const products = await prisma.product.findMany({
-      where,
-      include: {
-        category: {
-          select: {
-            id: true,
-            name: true,
-            slug: true,
+    let products, total;
+
+    try {
+      // Get products with category info
+      products = await prisma.product.findMany({
+        where,
+        include: {
+          category: {
+            select: {
+              id: true,
+              name: true,
+              slug: true,
+            },
           },
         },
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-      skip: offset,
-      take: limit,
-    });
+        orderBy: {
+          createdAt: 'desc',
+        },
+        skip: offset,
+        take: limit,
+      });
 
-    // Get total count for pagination
-    const total = await prisma.product.count({ where });
+      // Get total count for pagination
+      total = await prisma.product.count({ where });
+    } catch (dbError) {
+      console.error('Database error:', dbError);
+      // Return empty results if database is not accessible
+      return NextResponse.json({
+        products: [],
+        pagination: {
+          page,
+          limit,
+          total: 0,
+          pages: 0,
+        },
+      });
+    }
 
     // Converter Decimal para number para serialização JSON
     const serializedProducts = products.map(product => ({

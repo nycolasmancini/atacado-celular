@@ -10,19 +10,27 @@ interface WebhookConfig {
 }
 
 export class WebhookClient {
-  private baseUrl: string;
   private timeout: number;
   private retries: number;
+  private isTestMode: boolean;
 
   constructor(config: WebhookConfig = {}) {
-    this.baseUrl = process.env.N8N_WEBHOOK_URL || '';
     this.timeout = config.timeout || 5000; // 5s timeout
     this.retries = config.retries || 0; // No retries by default
+    this.isTestMode = process.env.WEBHOOK_MODE === 'test';
+  }
+
+  private getWebhookUrl(event: string): string {
+    const mode = this.isTestMode ? 'TEST_' : '';
+    const envKey = `N8N_WEBHOOK_URL_${mode}${event.toUpperCase()}`;
+    return process.env[envKey] || '';
   }
 
   async send(event: string, data: any): Promise<void> {
-    if (!this.baseUrl) {
-      console.warn('N8N_WEBHOOK_URL not configured, skipping webhook');
+    const url = this.getWebhookUrl(event);
+    
+    if (!url) {
+      console.warn(`Webhook URL not configured for event: ${event}, skipping webhook`);
       return;
     }
 
@@ -31,8 +39,6 @@ export class WebhookClient {
       timestamp: new Date().toISOString(),
       ...data
     };
-
-    const url = `${this.baseUrl}/${event.replace('_', '-')}`;
     
     try {
       console.log(`📤 Sending webhook: ${event}`, { url, payload });
@@ -96,6 +102,71 @@ export class WebhookClient {
     };
   }): Promise<void> {
     return this.send('order_completed', data);
+  }
+
+  async sendCartAbandoned(data: {
+    customer: {
+      whatsapp?: string;
+      sessionId: string;
+    };
+    cart: {
+      items: any[];
+      totalItems: number;
+      totalValue: number;
+      timeInCart: number; // tempo em ms
+    };
+    behavior: {
+      timeOnSite: number;
+      pagesVisited: string[];
+      productsViewed: number[];
+      searches: string[];
+      kitInterest?: string;
+    };
+  }): Promise<void> {
+    return this.send('cart_abandoned', data);
+  }
+
+  async sendHighValueInterest(data: {
+    customer: {
+      whatsapp?: string;
+      sessionId: string;
+    };
+    product: {
+      id: number;
+      name: string;
+      price: number;
+      viewTime: number; // tempo visualizando em ms
+    };
+    behavior: {
+      timeOnSite: number;
+      pagesVisited: string[];
+      productsViewed: number[];
+      score: number;
+    };
+  }): Promise<void> {
+    return this.send('high_value_interest', data);
+  }
+
+  async sendSessionEnded(data: {
+    customer: {
+      whatsapp?: string;
+      sessionId: string;
+    };
+    session: {
+      duration: number; // duração total em ms
+      score: number; // score de engajamento 0-10
+      quality: 'high' | 'medium' | 'low';
+    };
+    behavior: {
+      timeOnSite: number;
+      pagesVisited: string[];
+      productsViewed: number[];
+      searches: string[];
+      cartActions: number;
+      kitInterest?: string;
+    };
+  }): Promise<void> {
+    return this.send('session_ended', data);
   }
 
   async sendTrackingSummary(data: {

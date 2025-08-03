@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useTracking } from '../providers/TrackingProvider'
+import { useTracking } from '@/contexts/TrackingContext'
 
 export default function TrackingTest() {
   const { trackEvent, isInitialized } = useTracking()

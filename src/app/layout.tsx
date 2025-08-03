@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { TrackingProvider } from "@/contexts/TrackingContext";
 import { CartProvider } from "@/contexts/CartContext";
@@ -7,15 +7,15 @@ import { ABTestingProvider } from "@/contexts/ABTestingContext";
 import { Toaster } from "react-hot-toast";
 import WebVitalsReporter from "@/components/optimization/WebVitalsReporter";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: 'swap',
   preload: true,
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: 'swap',
 });
@@ -191,7 +191,7 @@ export default function RootLayout({
         {/* Cache Control for better performance */}
         <meta httpEquiv="Cache-Control" content="public, max-age=31536000" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
         {/* <WebVitalsReporter /> */}
         {/* <ABTestingProvider> */}
           <TrackingProvider>

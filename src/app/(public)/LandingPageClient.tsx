@@ -15,7 +15,7 @@ import { FloatingNav } from '@/components/ui/SmoothScrollNav'
 import { WhatsAppModal } from '@/components/landing/WhatsAppModal'
 import StickyCTAButton from '@/components/landing/StickyCTAButton'
 import { usePricesUnlocked } from '@/hooks/usePricesUnlocked'
-import { useTracking } from '@/components/providers/TrackingProvider'
+import { useTracking } from '@/contexts/TrackingContext'
 
 export default function LandingPageClient() {
   const { pricesUnlocked, unlockPrices } = usePricesUnlocked()

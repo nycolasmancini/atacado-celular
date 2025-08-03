@@ -30,6 +30,10 @@ export function useCheckout() {
     setState({ status: 'loading' });
 
     try {
+      // Ensure we have a valid sessionId
+      if (!sessionId) {
+        throw new Error('Sessão não inicializada. Recarregue a página.');
+      }
       // Tracking - InitiateCheckout
       trackEvent('InitiateCheckout', {
         value: data.items.reduce((sum, item) => {

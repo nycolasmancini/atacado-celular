@@ -8,8 +8,10 @@ import { PriceDisplay } from "./PriceDisplay";
 import { QuantitySelector } from "./QuantitySelector";
 import { AddToCartSection } from "./AddToCartSection";
 import { ProductDetailModal } from "./ProductDetailModal";
+import { ModelSelectionModal } from "./ModelSelectionModal";
 import { useProductView } from "@/hooks/useProductView";
 import { useCart } from "@/contexts/CartContext";
+import { isModelSelectionProduct, getModelSelectionButtonText, getCustomPriceLabels } from "@/utils/productUtils";
 
 interface Product {
   id: number;
@@ -20,6 +22,7 @@ interface Product {
   specialPrice: number;
   specialPriceMinQty: number;
   imageUrl?: string;
+  modelsImageUrl?: string;
   images?: string[];
   category: {
     id: number;
@@ -43,8 +46,15 @@ export function ProductCard({
 }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
   const [showDetailModal, setShowDetailModal] = useState(false);
+  const [showModelModal, setShowModelModal] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const { addItem, getItemQuantity } = useCart();
+  
+  // Check if this is a model selection product (película/capa)
+  const isModelProduct = isModelSelectionProduct(product);
+  
+  // Get custom price labels if available
+  const customPriceLabels = getCustomPriceLabels(product.category.slug, product.specialPriceMinQty);
   
   // Track product view
   useProductView(cardRef, product);
@@ -141,36 +151,76 @@ export function ProductCard({
               specialQty={product.specialPriceMinQty}
               currentQty={quantity}
               pricesUnlocked={pricesUnlocked}
+              customPriceLabels={customPriceLabels}
             />
           </div>
 
-          {/* Quantity Selector - Centered */}
+          {/* Quantity Selector or Model Selection Button - Centered */}
           <div className="mb-3 flex justify-center">
-            <QuantitySelector
-              value={quantity}
-              onChange={setQuantity}
-              specialQty={product.specialPriceMinQty}
-            />
+            {isModelProduct ? (
+              pricesUnlocked ? (
+                <button
+                  onClick={() => setShowModelModal(true)}
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors"
+                >
+                  {getModelSelectionButtonText(product.category.slug)}
+                </button>
+              ) : (
+                <div className="px-4 py-2 bg-gray-100 text-gray-500 text-sm font-medium rounded-lg text-center">
+                  Insira seu WhatsApp para ver modelos
+                </div>
+              )
+            ) : (
+              <QuantitySelector
+                value={quantity}
+                onChange={setQuantity}
+                specialQty={product.specialPriceMinQty}
+              />
+            )}
           </div>
             
             
           {/* Add to Cart Section - Mobile */}
-          <div className="mt-auto">
-            <AddToCartSection
-              product={product}
-              quantity={quantity}
-              pricesUnlocked={pricesUnlocked}
-              onAddToCart={handleAddToCart}
-              onRequestWhatsApp={onRequestWhatsApp}
-            />
-            
-            {/* Cart indicator if item is in cart */}
-            {cartQuantity > 0 && (
-              <div className="text-xs text-green-600 text-center mt-1">
-                {cartQuantity} no carrinho
-              </div>
-            )}
-          </div>
+          {!isModelProduct && (
+            <div className="mt-auto">
+              <AddToCartSection
+                product={product}
+                quantity={quantity}
+                pricesUnlocked={pricesUnlocked}
+                onAddToCart={handleAddToCart}
+                onRequestWhatsApp={onRequestWhatsApp}
+              />
+              
+              {/* Cart indicator if item is in cart */}
+              {cartQuantity > 0 && (
+                <div className="text-xs text-green-600 text-center mt-1">
+                  {cartQuantity} no carrinho
+                </div>
+              )}
+            </div>
+          )}
+          
+          {/* Add to Cart Section for Model Products - Mobile */}
+          {isModelProduct && (
+            <div className="mt-auto">
+              {!pricesUnlocked && (
+                <AddToCartSection
+                  product={product}
+                  quantity={1}
+                  pricesUnlocked={pricesUnlocked}
+                  onAddToCart={handleAddToCart}
+                  onRequestWhatsApp={onRequestWhatsApp}
+                />
+              )}
+              
+              {/* Cart indicator for model products */}
+              {cartQuantity > 0 && (
+                <div className="text-xs text-green-600 text-center mt-2">
+                  {cartQuantity} no carrinho
+                </div>
+              )}
+            </div>
+          )}
             
         </div>
       </div>
@@ -223,16 +273,32 @@ export function ProductCard({
               specialQty={product.specialPriceMinQty}
               currentQty={quantity}
               pricesUnlocked={pricesUnlocked}
+              customPriceLabels={customPriceLabels}
             />
           </div>
 
-          {/* Quantity Selector */}
+          {/* Quantity Selector or Model Selection Button */}
           <div className="mb-3 flex-shrink-0">
-            <QuantitySelector
-              value={quantity}
-              onChange={setQuantity}
-              specialQty={product.specialPriceMinQty}
-            />
+            {isModelProduct ? (
+              pricesUnlocked ? (
+                <button
+                  onClick={() => setShowModelModal(true)}
+                  className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors"
+                >
+                  {getModelSelectionButtonText(product.category.slug)}
+                </button>
+              ) : (
+                <div className="w-full px-4 py-2 bg-gray-100 text-gray-500 text-sm font-medium rounded-lg text-center">
+                  Insira seu WhatsApp para ver modelos
+                </div>
+              )
+            ) : (
+              <QuantitySelector
+                value={quantity}
+                onChange={setQuantity}
+                specialQty={product.specialPriceMinQty}
+              />
+            )}
           </div>
 
 
@@ -245,15 +311,30 @@ export function ProductCard({
 
 
           {/* Add to Cart Section */}
-          <div className="mt-auto">
-            <AddToCartSection
-              product={product}
-              quantity={quantity}
-              pricesUnlocked={pricesUnlocked}
-              onAddToCart={handleAddToCart}
-              onRequestWhatsApp={onRequestWhatsApp}
-            />
-          </div>
+          {!isModelProduct && (
+            <div className="mt-auto">
+              <AddToCartSection
+                product={product}
+                quantity={quantity}
+                pricesUnlocked={pricesUnlocked}
+                onAddToCart={handleAddToCart}
+                onRequestWhatsApp={onRequestWhatsApp}
+              />
+            </div>
+          )}
+          
+          {/* Add to Cart Section for Model Products - Desktop */}
+          {isModelProduct && !pricesUnlocked && (
+            <div className="mt-auto">
+              <AddToCartSection
+                product={product}
+                quantity={1}
+                pricesUnlocked={pricesUnlocked}
+                onAddToCart={handleAddToCart}
+                onRequestWhatsApp={onRequestWhatsApp}
+              />
+            </div>
+          )}
         </div>
       </div>
 
@@ -263,6 +344,17 @@ export function ProductCard({
         isOpen={showDetailModal}
         onClose={() => setShowDetailModal(false)}
       />
+
+      {/* Model Selection Modal */}
+      {isModelProduct && (
+        <ModelSelectionModal
+          product={product}
+          isOpen={showModelModal}
+          onClose={() => setShowModelModal(false)}
+          onAddToCart={handleAddToCart}
+          pricesUnlocked={pricesUnlocked}
+        />
+      )}
     </div>
   );
 }
