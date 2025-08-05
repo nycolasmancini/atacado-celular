@@ -44,7 +44,7 @@ export default function FAQSection() {
     },
     {
       question: "A PMCELL é uma empresa confiável?",
-      answer: "**Absolutamente!** Somos uma empresa estabelecida há mais de 8 anos no mercado com:\n\n• **CNPJ 29.734.462/0003-86** ativo e regularizado\n• **4.8 estrelas** no Google Reviews\n• **+340 lojistas parceiros** ativos\n• **Certificação ANATEL** nos produtos que exigem\n• **Suporte humanizado** com atendimento por videochamada\n\n[Ver nossa empresa no Google](https://share.google/CE3XD0Dd9mmQYW0xI)",
+      answer: "**Absolutamente!** Somos uma empresa estabelecida há mais de 8 anos no mercado com:\n\n• **CNPJ 29.734.462/0003-86** ativo e regularizado\n• **5.0 estrelas** no Google Reviews\n• **+4200 lojistas parceiros** ativos\n• **Certificação ANATEL** nos produtos que exigem\n• **Suporte humanizado** com atendimento por videochamada\n\n[Ver nossa empresa no Google](https://share.google/CE3XD0Dd9mmQYW0xI)",
       category: "confiabilidade"
     },
     {

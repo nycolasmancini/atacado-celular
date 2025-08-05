@@ -68,7 +68,7 @@ export default function FinalCTA({ onRequestWhatsApp, onKitClick }: FinalCTAProp
           
           {/* Subheadline */}
           <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
-            Mais de <strong className="text-orange-600">340+ lojistas</strong> já estão lucrando até <strong className="text-orange-600">600%</strong> com nossos kits.
+            Mais de <strong className="text-orange-600">4200+ lojistas</strong> já estão lucrando até <strong className="text-orange-600">600%</strong> com nossos kits.
             <span className="block mt-2">Seja o próximo a transformar seu negócio!</span>
           </p>
           

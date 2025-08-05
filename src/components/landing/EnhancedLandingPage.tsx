@@ -97,7 +97,7 @@ export default function EnhancedLandingPage() {
 
       {/* Seção Hero com A/B Testing */}
       <TrackingSection sectionName="hero" content="Seção principal com CTA e proposta de valor">
-        <section className="relative py-20 px-4">
+        <section className="relative py-12 px-4">
           <div className="max-w-6xl mx-auto text-center">
             
             {/* Status comercial */}
@@ -165,7 +165,7 @@ export default function EnhancedLandingPage() {
 
       {/* Seção da Calculadora de Lucro */}
       <TrackingSection sectionName="profit_calculator" content="Calculadora interativa de lucro para engajar visitantes">
-        <section className="py-16 px-4">
+        <section className="py-10 px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -185,7 +185,7 @@ export default function EnhancedLandingPage() {
 
       {/* Seção de Social Proof */}
       <TrackingSection sectionName="social_proof" content="Depoimentos e prova social para aumentar credibilidade">
-        <section className="py-16 px-4 bg-white">
+        <section className="py-10 px-4 bg-white">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -222,7 +222,7 @@ export default function EnhancedLandingPage() {
 
       {/* Seção de Informações Avançadas com Progressive Disclosure */}
       <TrackingSection sectionName="advanced_info" content="Informações detalhadas sobre produtos e condições">
-        <section className="py-16 px-4">
+        <section className="py-10 px-4">
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">
@@ -273,7 +273,7 @@ export default function EnhancedLandingPage() {
 
       {/* CTA Final */}
       <TrackingSection sectionName="final_cta" content="Chamada final para ação com urgência e benefícios">
-        <section className="py-20 px-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white">
+        <section className="py-12 px-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Pronto para Começar Seu Negócio?

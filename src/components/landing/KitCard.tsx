@@ -23,7 +23,7 @@ const gradientClasses = {
 }
 
 export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onRequestWhatsApp }: KitCardProps) {
-  const { addItem } = useCart()
+  const { addKitToCart } = useCart()
   const router = useRouter()
   const [selectedProduct, setSelectedProduct] = useState<any>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -45,10 +45,8 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onR
       return
     }
     
-    // Adicionar todos os produtos do kit ao carrinho
-    kit.items.forEach(item => {
-      addItem(item.product, item.quantity)
-    })
+    // Adicionar o kit completo ao carrinho (com desconto se houver)
+    addKitToCart(kit)
     
     // Mostrar feedback ao usuário
     toast.success(`Kit "${kit.name}" adicionado ao carrinho!`, {
@@ -171,68 +169,43 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onR
 
           {/* Pricing Section */}
           <div className="border-t pt-4">
-            {!pricesUnlocked ? (
-              <div className="text-center">
-                <div className="bg-gradient-to-r from-orange-50 to-yellow-50 border border-orange-200 rounded-lg p-4 mb-4">
-                  <div className="w-8 h-8 mx-auto mb-2 bg-orange-200 rounded-full flex items-center justify-center">
-                    🚚
-                  </div>
-                  <p className="text-orange-800 font-medium">Calcular Frete</p>
-                  <p className="text-orange-600 text-xs">Informe seu WhatsApp para calcular o frete e ver preços</p>
+            <div className="text-center">
+              {/* Preço original se houver desconto */}
+              {kitDiscount > 0 && (
+                <div className="mb-2">
+                  <span className="text-sm text-gray-500 line-through">
+                    R$ {calculatedPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                  </span>
+                  <span className="ml-2 text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">
+                    -{((kitDiscount / calculatedPrice) * 100).toFixed(0)}%
+                  </span>
+                </div>
+              )}
+              
+              <div className="mb-3">
+                <span className="text-2xl font-bold text-gray-800">
+                  R$ {totalPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                </span>
+                <div className="text-xs text-gray-500 mt-1">
+                  R$ {(totalPrice / totalItems).toFixed(2)} por peça
                 </div>
               </div>
-            ) : (
-              <div className="text-center">
-                {/* Preço original se houver desconto */}
-                {kitDiscount > 0 && (
-                  <div className="mb-2">
-                    <span className="text-sm text-gray-500 line-through">
-                      R$ {calculatedPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                    </span>
-                    <span className="ml-2 text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">
-                      -{((kitDiscount / calculatedPrice) * 100).toFixed(0)}%
-                    </span>
-                  </div>
-                )}
-                
-                <div className="mb-3">
-                  <span className="text-2xl font-bold text-gray-800">
-                    R$ {totalPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                  </span>
-                  <div className="text-xs text-gray-500 mt-1">
-                    R$ {(totalPrice / totalItems).toFixed(2)} por peça
-                  </div>
-                </div>
-                
-                {/* Economia se houver desconto */}
-                {kitDiscount > 0 && (
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
-                    <div className="flex items-center justify-center space-x-2 text-yellow-700">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
-                      </svg>
-                      <span className="text-sm font-medium">Economia de R$ {kitDiscount.toFixed(2)}</span>
-                    </div>
-                    <p className="text-yellow-600 text-xs mt-1">
-                      Desconto especial do kit
-                    </p>
-                  </div>
-                )}
-                
-                {/* Value Proposition */}
-                <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
-                  <div className="flex items-center justify-center space-x-2 text-green-700">
+              
+              {/* Economia se houver desconto */}
+              {kitDiscount > 0 && (
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
+                  <div className="flex items-center justify-center space-x-2 text-yellow-700">
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                      <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-sm font-medium">Kit Completo Pronto</span>
+                    <span className="text-sm font-medium">Economia de R$ {kitDiscount.toFixed(2)}</span>
                   </div>
-                  <p className="text-green-600 text-xs mt-1">
-                    Economia de tempo na seleção
+                  <p className="text-yellow-600 text-xs mt-1">
+                    Desconto especial do kit
                   </p>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
 
             {/* Action Button */}
             <button
@@ -243,7 +216,7 @@ export default function KitCard({ kit, pricesUnlocked, isBestSeller = false, onR
                   : `bg-gradient-to-r ${gradientClass} hover:shadow-lg hover:scale-105 active:scale-95`
               }`}
             >
-              {pricesUnlocked ? 'Adicionar Kit ao Carrinho' : 'Calcular Frete + Adicionar'}
+{pricesUnlocked ? 'Adicionar Kit ao Carrinho' : 'Adicionar WhatsApp + Comprar'}
             </button>
           </div>
         </div>

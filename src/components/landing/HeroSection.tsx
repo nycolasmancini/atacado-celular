@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function HeroSection() {
 
@@ -136,45 +137,21 @@ export default function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Kit Mockups */}
+          {/* Right Column - Hero Image */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="hidden lg:flex relative justify-center lg:justify-end"
+            className="hidden lg:flex relative justify-center lg:justify-end items-center"
           >
-            <div className="relative">
-              {/* Kit Images Placeholder - Replace with actual images */}
-              <div className="grid grid-cols-2 gap-4 lg:gap-6">
-                <motion.div 
-                  whileHover={{ scale: 1.05, y: -10 }}
-                  className="w-32 h-40 lg:w-40 lg:h-48 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 flex items-center justify-center"
-                >
-                  <span className="text-white/60 text-sm font-medium">Kit 1</span>
-                </motion.div>
-                <motion.div 
-                  whileHover={{ scale: 1.05, y: -10 }}
-                  transition={{ delay: 0.1 }}
-                  className="w-32 h-40 lg:w-40 lg:h-48 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 flex items-center justify-center mt-8"
-                >
-                  <span className="text-white/60 text-sm font-medium">Kit 2</span>
-                </motion.div>
-                <motion.div 
-                  whileHover={{ scale: 1.05, y: -10 }}
-                  transition={{ delay: 0.2 }}
-                  className="w-32 h-40 lg:w-40 lg:h-48 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 flex items-center justify-center col-span-2 mx-auto"
-                >
-                  <span className="text-white/60 text-sm font-medium">Kit 3</span>
-                </motion.div>
-              </div>
-              
-              <motion.div 
-                animate={{ y: [-10, 10, -10] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -top-4 -right-4 w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center text-white font-bold text-sm"
-              >
-                600%
-              </motion.div>
+            <div className="relative w-full max-w-lg h-96 lg:h-[500px]">
+              <Image
+                src="/images/finance-leaders-rafiki.svg"
+                alt="Finance Leaders - Business Growth Illustration"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
           </motion.div>
         </div>

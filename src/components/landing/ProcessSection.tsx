@@ -19,8 +19,7 @@ export default function ProcessSection() {
       description: "Navegue pelo nosso catálogo e escolha o kit que melhor atende sua loja",
       icon: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
-          <path d="M9 8V17H11V8H9ZM13 8V17H15V8H13Z"/>
+          <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
         </svg>
       )
     },
@@ -103,7 +102,7 @@ export default function ProcessSection() {
             {/* Progress Line */}
             <div className="absolute top-16 left-0 right-0 h-1 bg-gray-200 rounded-full">
               <div 
-                className={`h-full bg-gradient-to-r from-primary-orange to-success rounded-full transition-all duration-2000 ease-out ${
+                className={`h-full bg-gradient-to-r from-green-300 to-green-700 rounded-full transition-all duration-2000 ease-out ${
                   isVisible ? 'w-full' : 'w-0'
                 }`}
                 style={{ transitionDelay: '500ms' }}
@@ -124,8 +123,10 @@ export default function ProcessSection() {
                   <div className="relative inline-flex items-center justify-center w-32 h-32 mb-6">
                     {/* Background Circle */}
                     <div className={`absolute w-full h-full rounded-full transition-all duration-500 ${
-                      step.number <= 2 ? 'bg-gradient-to-br from-primary-orange to-orange-600' :
-                      'bg-gradient-to-br from-success to-green-600'
+                      step.number === 1 ? 'bg-gradient-to-br from-green-300 to-green-400' :
+                      step.number === 2 ? 'bg-gradient-to-br from-green-400 to-green-500' :
+                      step.number === 3 ? 'bg-gradient-to-br from-green-500 to-green-600' :
+                      'bg-gradient-to-br from-green-600 to-green-700'
                     } shadow-lg`}
                     style={{ transitionDelay: `${index * 200 + 600}ms` }}
                     />
@@ -140,7 +141,10 @@ export default function ProcessSection() {
                     {/* Step Number */}
                     <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center">
                       <span className={`text-20px font-montserrat font-bold ${
-                        step.number <= 2 ? 'text-primary-orange' : 'text-success'
+                        step.number === 1 ? 'text-green-400' :
+                        step.number === 2 ? 'text-green-500' :
+                        step.number === 3 ? 'text-green-600' :
+                        'text-green-700'
                       }`}>
                         {step.number}
                       </span>
@@ -168,7 +172,7 @@ export default function ProcessSection() {
             {/* Vertical Progress Line */}
             <div className="absolute left-8 top-16 bottom-0 w-1 bg-gray-200 rounded-full">
               <div 
-                className={`w-full bg-gradient-to-b from-primary-orange via-orange-500 to-success rounded-full transition-all duration-2000 ease-out ${
+                className={`w-full bg-gradient-to-b from-green-300 via-green-500 to-green-700 rounded-full transition-all duration-2000 ease-out ${
                   isVisible ? 'h-full' : 'h-0'
                 }`}
                 style={{ transitionDelay: '500ms' }}
@@ -188,8 +192,10 @@ export default function ProcessSection() {
                   {/* Step Circle */}
                   <div className="relative flex-shrink-0">
                     <div className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-all duration-500 ${
-                      step.number <= 2 ? 'bg-gradient-to-br from-primary-orange to-orange-600' :
-                      'bg-gradient-to-br from-success to-green-600'
+                      step.number === 1 ? 'bg-gradient-to-br from-green-300 to-green-400' :
+                      step.number === 2 ? 'bg-gradient-to-br from-green-400 to-green-500' :
+                      step.number === 3 ? 'bg-gradient-to-br from-green-500 to-green-600' :
+                      'bg-gradient-to-br from-green-600 to-green-700'
                     }`}
                     style={{ transitionDelay: `${index * 200 + 600}ms` }}
                     >
@@ -201,7 +207,10 @@ export default function ProcessSection() {
                     {/* Step Number */}
                     <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center">
                       <span className={`text-14px font-montserrat font-bold ${
-                        step.number <= 2 ? 'text-primary-orange' : 'text-success'
+                        step.number === 1 ? 'text-green-400' :
+                        step.number === 2 ? 'text-green-500' :
+                        step.number === 3 ? 'text-green-600' :
+                        'text-green-700'
                       }`}>
                         {step.number}
                       </span>

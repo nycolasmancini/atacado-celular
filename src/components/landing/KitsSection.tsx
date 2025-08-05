@@ -232,6 +232,13 @@ function KitsList({ pricesUnlocked, onRequestWhatsApp }: { pricesUnlocked: boole
     )
   }
 
+  // Find the most expensive kit
+  const mostExpensiveKit = kits.reduce((prev, current) => {
+    const prevPrice = prev.items.reduce((sum, item) => sum + (item.product.price * item.quantity), 0) - Number(prev.discount)
+    const currentPrice = current.items.reduce((sum, item) => sum + (item.product.price * item.quantity), 0) - Number(current.discount)
+    return currentPrice > prevPrice ? current : prev
+  })
+
   return (
     <>
       {kits.map((kit, index) => (
@@ -239,7 +246,7 @@ function KitsList({ pricesUnlocked, onRequestWhatsApp }: { pricesUnlocked: boole
           key={kit.id}
           kit={kit}
           pricesUnlocked={pricesUnlocked}
-          isBestSeller={index === 0}
+          isBestSeller={kit.id === mostExpensiveKit.id}
           onRequestWhatsApp={onRequestWhatsApp}
         />
       ))}

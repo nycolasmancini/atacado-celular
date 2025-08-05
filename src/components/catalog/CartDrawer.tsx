@@ -21,6 +21,8 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
     totalItems, 
     totalPrice, 
     totalSavings, 
+    kitDiscounts,
+    totalKitDiscounts,
     isMinOrderMet, 
     itemsToMinOrder,
     updateQuantity,
@@ -158,6 +160,8 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               totalItems={totalItems}
               totalPrice={totalPrice}
               totalSavings={totalSavings}
+              kitDiscounts={kitDiscounts}
+              totalKitDiscounts={totalKitDiscounts}
               isMinOrderMet={isMinOrderMet}
               itemsToMinOrder={itemsToMinOrder}
               savingOpportunities={savingOpportunities}

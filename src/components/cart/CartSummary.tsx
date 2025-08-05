@@ -5,10 +5,21 @@ import { cn } from "@/lib/utils";
 import { CheckoutButton } from "./CheckoutButton";
 import { useCart } from "@/contexts/CartContext";
 
+interface KitDiscount {
+  kitId: number;
+  kitName: string;
+  discountAmount: number;
+  originalItemsCount: number;
+  currentItemsCount: number;
+  isActive: boolean;
+}
+
 interface CartSummaryProps {
   totalItems: number;
   totalPrice: number;
   totalSavings: number;
+  kitDiscounts: KitDiscount[];
+  totalKitDiscounts: number;
   isMinOrderMet: boolean;
   itemsToMinOrder: number;
   savingOpportunities: Array<{
@@ -27,6 +38,8 @@ export function CartSummary({
   totalItems,
   totalPrice,
   totalSavings,
+  kitDiscounts,
+  totalKitDiscounts,
   isMinOrderMet,
   itemsToMinOrder,
   savingOpportunities,
@@ -117,6 +130,46 @@ export function CartSummary({
             {totalPotentialSavings > 0 && (
               <div className="border-t border-blue-200 pt-2 text-xs text-blue-800">
                 <strong>Total de economia possível: {formatPrice(totalPotentialSavings)}</strong>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Kit Discounts Section */}
+      {kitDiscounts.length > 0 && (
+        <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
+          <h4 className="text-sm font-medium text-purple-900 mb-2">
+            🎁 Descontos de Kits
+          </h4>
+          <div className="space-y-2">
+            {kitDiscounts.map((discount) => (
+              <div key={discount.kitId} className="flex items-center justify-between text-xs">
+                <div className="flex-1">
+                  <span className="text-purple-800 font-medium">
+                    {discount.kitName}
+                  </span>
+                  <div className="text-purple-600">
+                    {discount.isActive ? (
+                      `${discount.currentItemsCount}/${discount.originalItemsCount} peças (ativo)`
+                    ) : (
+                      <span className="text-orange-600">
+                        Desconto removido - menos de 50% dos itens restantes
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className={`font-medium ${discount.isActive ? 'text-green-600' : 'text-gray-400 line-through'}`}>
+                    -{formatPrice(discount.discountAmount)}
+                  </div>
+                </div>
+              </div>
+            ))}
+            
+            {totalKitDiscounts > 0 && (
+              <div className="border-t border-purple-200 pt-2 text-xs text-purple-800">
+                <strong>Total de desconto de kits: -{formatPrice(totalKitDiscounts)}</strong>
               </div>
             )}
           </div>

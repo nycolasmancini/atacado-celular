@@ -18,6 +18,8 @@ export default function CarrinhoPage() {
     totalItems, 
     totalPrice, 
     totalSavings, 
+    kitDiscounts,
+    totalKitDiscounts,
     isMinOrderMet, 
     itemsToMinOrder,
     updateQuantity,
@@ -175,6 +177,8 @@ export default function CarrinhoPage() {
                   totalItems={totalItems}
                   totalPrice={totalPrice}
                   totalSavings={totalSavings}
+                  kitDiscounts={kitDiscounts}
+                  totalKitDiscounts={totalKitDiscounts}
                   isMinOrderMet={isMinOrderMet}
                   itemsToMinOrder={itemsToMinOrder}
                   savingOpportunities={savingOpportunities}
