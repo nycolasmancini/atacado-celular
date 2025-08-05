@@ -285,13 +285,13 @@ export default function KitsSection({ pricesUnlocked, onRequestWhatsApp }: KitsS
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-4">
+          <div className="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-medium mb-4">
             🎯 Kits Exclusivos
           </div>
           
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
             Escolha Seu Kit
-            <span className="block text-purple-600">Perfeito</span>
+            <span className="block text-orange-600">Perfeito</span>
           </h2>
           
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -370,60 +370,6 @@ export default function KitsSection({ pricesUnlocked, onRequestWhatsApp }: KitsS
           </div>
         </div>
 
-        {/* Trust Section */}
-        <div className="mt-16 rounded-2xl" style={{ backgroundColor: '#FC6D36' }}>
-          {/* Desktop: Uma linha */}
-          <div className="hidden md:flex items-center justify-between py-6 px-8">
-            <div className="text-center flex-1">
-              <div className="text-4xl font-bold mb-1 text-white">1000+</div>
-              <div className="text-white opacity-90 text-xs uppercase tracking-wide">Revendedores Ativos</div>
-            </div>
-            
-            <div className="text-center flex-1">
-              <div className="text-4xl font-bold mb-1 text-white">500+</div>
-              <div className="text-white opacity-90 text-xs uppercase tracking-wide">Produtos Disponíveis</div>
-            </div>
-            
-            <div className="text-center flex-1">
-              <div className="text-4xl font-bold mb-1 text-white">24h</div>
-              <div className="text-white opacity-90 text-xs uppercase tracking-wide">Envio Garantido</div>
-            </div>
-            
-            <div className="text-center flex-1">
-              <div className="text-4xl font-bold mb-1 text-white">98%</div>
-              <div className="text-white opacity-90 text-xs uppercase tracking-wide">Satisfação</div>
-            </div>
-          </div>
-
-          {/* Mobile: Duas linhas */}
-          <div className="md:hidden py-6 px-8">
-            {/* Primeira linha */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="text-center flex-1">
-                <div className="text-3xl font-bold mb-1 text-white">1000+</div>
-                <div className="text-white opacity-90 text-xs uppercase tracking-wide">Revendedores Ativos</div>
-              </div>
-              
-              <div className="text-center flex-1">
-                <div className="text-3xl font-bold mb-1 text-white">500+</div>
-                <div className="text-white opacity-90 text-xs uppercase tracking-wide">Produtos Disponíveis</div>
-              </div>
-            </div>
-            
-            {/* Segunda linha */}
-            <div className="flex items-center justify-between">
-              <div className="text-center flex-1">
-                <div className="text-3xl font-bold mb-1 text-white">24h</div>
-                <div className="text-white opacity-90 text-xs uppercase tracking-wide">Envio Garantido</div>
-              </div>
-              
-              <div className="text-center flex-1">
-                <div className="text-3xl font-bold mb-1 text-white">98%</div>
-                <div className="text-white opacity-90 text-xs uppercase tracking-wide">Satisfação</div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )

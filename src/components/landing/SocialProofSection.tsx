@@ -74,7 +74,7 @@ export default function SocialProofSection() {
                 <span className="text-[#FC6D36]">600%</span>
               </div>
               <p className="text-[12px] sm:text-[13px] md:text-[14px] text-[#4A4A4A] uppercase tracking-wide whitespace-nowrap">
-                DE AUMENTO NO LUCRO
+                DE LUCRO REVENDENDO PMCELL
               </p>
             </div>
 
@@ -99,7 +99,12 @@ export default function SocialProofSection() {
             </div>
 
             {/* Google Reviews */}
-            <div className="text-center relative flex-shrink-0">
+            <a 
+              href="https://share.google/LxupFQejbOkLmxSMu" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-center relative flex-shrink-0 hover:opacity-80 transition-opacity cursor-pointer"
+            >
               <div className="flex items-center justify-center mb-1">
                 <div className="text-[32px] sm:text-[40px] md:text-[48px] font-bold mr-1 sm:mr-2">
                   <span className="text-[#0A0A0A]">5.0</span>
@@ -120,7 +125,7 @@ export default function SocialProofSection() {
               <p className="text-[12px] sm:text-[13px] md:text-[14px] text-[#4A4A4A] uppercase tracking-wide whitespace-nowrap">
                 AVALIAÇÃO GOOGLE
               </p>
-            </div>
+            </a>
           </div>
         </div>
 

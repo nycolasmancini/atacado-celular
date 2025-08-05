@@ -38,8 +38,8 @@ export default function SolutionSection() {
       icon: "🛡️"
     },
     {
-      title: "Envios em 24h",
-      subtitle: "Estoque próprio em São Paulo",
+      title: "Receba em 24h",
+      subtitle: "Na região do ABC Paulista",
       description: "Seu estoque nunca para, reposição super rápida e confiável",
       hasCounter: true,
       counterKey: 'delivery',
@@ -173,7 +173,7 @@ export default function SolutionSection() {
                         </>
                       ) : benefit.title.includes('24') ? (
                         <>
-                          ✅ Envios em{' '}
+                          ✅ Receba em{' '}
                           <span className="text-green-800">{counters.delivery}h</span>
                         </>
                       ) : (

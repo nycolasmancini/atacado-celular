@@ -112,18 +112,19 @@ export function CheckoutButton({
       // Executar callback para limpar estado local do carrinho
       onSuccess?.();
       
-      // Navegar de forma mais suave usando window.location.href
+      // Navegar de forma mais suave usando window.location.replace
       console.log('🔄 Redirecionando para alterar WhatsApp...');
       
       // Usar setTimeout para garantir que as operações anteriores completem
       setTimeout(() => {
-        window.location.href = '/';
+        // Usar replace para evitar problemas de histórico
+        window.location.replace('/');
       }, 100);
       
     } catch (error) {
       console.error('Erro ao trocar WhatsApp:', error);
-      // Fallback: simplesmente recarregar a página
-      window.location.reload();
+      // Fallback: usar replace também
+      window.location.replace('/');
     }
   };
 

@@ -100,8 +100,8 @@ export default function FinalCTA({ onRequestWhatsApp, onKitClick }: FinalCTAProp
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                 </svg>
               </div>
-              <h3 className="font-semibold text-lg mb-2 text-gray-900">Entrega em 24h</h3>
-              <p className="text-gray-600 text-sm">Receba rapidamente e comece a vender hoje</p>
+              <h3 className="font-semibold text-lg mb-2 text-gray-900">Receba em 24h</h3>
+              <p className="text-gray-600 text-sm">Na região do ABC Paulista</p>
             </div>
           </div>
           

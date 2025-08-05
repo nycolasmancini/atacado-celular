@@ -2,314 +2,292 @@
 > atacado-celular@0.1.0 dev
 > next dev
 
-SyntaxError: Expected double-quoted property name in JSON at position 156865 (line 4141 column 1)
-    at JSON.parse (<anonymous>)
- ⚠ Warning: Found multiple lockfiles. Selecting /Users/nycolasmancini/package-lock.json.
-   Consider removing the lockfiles at:
-   * /Users/nycolasmancini/Desktop/catalogo/atacado-celular/package-lock.json
-
-   ▲ Next.js 15.4.5
-   - Local:        http://localhost:3000
-   - Network:      http://192.168.15.35:3000
-   - Environments: .env.local, .env
-   - Experiments (use with caution):
-     ✓ optimizeCss
+  ▲ Next.js 14.2.15
+  - Local:        http://localhost:3000
+  - Environments: .env.local, .env
 
  ✓ Starting...
-SyntaxError: Expected double-quoted property name in JSON at position 156865 (line 4141 column 1)
-    at JSON.parse (<anonymous>)
- ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` as Turbopack is now stable.
- ✓ Ready in 1568ms
- ○ Compiling /api/kits ...
- ✓ Compiled /api/kits in 1407ms (332 modules)
- GET /api/kits 200 in 1935ms
- ✓ Compiled /api/auth/[...nextauth] in 446ms (477 modules)
- GET /api/auth/session 200 in 944ms
+ ✓ Ready in 1800ms
  ○ Compiling / ...
- ✓ Compiled / in 3.9s (1731 modules)
- GET / 200 in 4403ms
- ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 952ms (1704 modules)
- GET /_next/static/chunks/main-app.js?v=1753982442503 404 in 1057ms
- ✓ Compiled /favicon.ico in 93ms (969 modules)
- GET /favicon.ico 200 in 157ms
- ✓ Compiled in 613ms (762 modules)
- ✓ Compiled in 408ms (762 modules)
- ✓ Compiled in 344ms (762 modules)
- ✓ Compiled in 260ms (762 modules)
- ✓ Compiled in 539ms (762 modules)
- ✓ Compiled in 506ms (762 modules)
- ✓ Compiled in 272ms (762 modules)
- ✓ Compiled in 223ms (762 modules)
- ✓ Compiled in 396ms (762 modules)
- ✓ Compiled in 484ms (762 modules)
- ✓ Compiled in 350ms (762 modules)
- ✓ Compiled in 387ms (762 modules)
- ○ Compiling /catalogo ...
- ✓ Compiled /catalogo in 1405ms (1794 modules)
- ⨯ Error: useTracking must be used within a TrackingProvider
-    at useTracking (src/contexts/TrackingContext.tsx:163:10)
-    at CatalogoPage (src/app/(public)/catalogo/page.tsx:44:74)
-  161 |   
-  162 |   if (context === undefined) {
-> 163 |     throw new Error('useTracking must be used within a TrackingProvider');
-      |          ^
-  164 |   }
-  165 |   
-  166 |   return context; {
-  digest: '428805612'
+ ✓ Compiled / in 3.5s (1697 modules)
+ GET / 200 in 3742ms
+ ✓ Compiled /api/tracking in 360ms (967 modules)
+ GET /api/tracking 405 in 745ms
+ POST /api/tracking 200 in 19ms
+ GET / 200 in 123ms
+ ✓ Compiled /api/unlock-prices in 97ms (970 modules)
+Unlock prices API error: ZodError: [
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "regex",
+    "pattern": "/^\\(\\d{2}\\)\\s\\d{5}-\\d{4}$/",
+    "path": [
+      "whatsapp"
+    ],
+    "message": "WhatsApp deve estar no formato (XX) XXXXX-XXXX"
+  }
+]
+    at POST (webpack-internal:///(rsc)/./src/app/api/unlock-prices/route.ts:75:49)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:55778
+    at async eO.execute (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46527)
+    at async eO.handle (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57112)
+    at async doRender (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1352:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1574:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1482:28)
+    at async DevServer.renderPageComponent (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1908:24)
+    at async DevServer.renderToResponseImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1946:32)
+    at async DevServer.pipeImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:921:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:817:17)
+    at async /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/unlock-prices 400 in 122ms
+📤 Sending webhook: whatsapp_captured {
+  url: 'https://n8n.pmcell.shop/webhook/whatsapp-captured',
+  payload: {
+    event: 'whatsapp_captured',
+    timestamp: '2025-08-05T18:16:23.878Z',
+    whatsapp: '(11) 98765-4321',
+    source: 'landing',
+    sessionId: 'anonymous'
+  }
 }
- GET /catalogo 500 in 1706ms
- ⚠ Cross origin request detected from 192.168.15.35 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
-Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- ✓ Compiled /favicon.ico in 452ms (1874 modules)
- GET /favicon.ico 200 in 452ms
- ⚠ Fast Refresh had to perform a full reload due to a runtime error.
- POST /api/tracking 200 in 526ms
-Tracking API error: SyntaxError: Unexpected end of JSON input
-    at JSON.parse (<anonymous>)
-    at POST (src/app/api/tracking/route.ts:14:31)
-  12 | export async function POST(request: NextRequest) {
-  13 |   try {
-> 14 |     const body = await request.json()
-     |                               ^
-  15 |     const { sessionId, eventType, eventData, whatsapp } = trackingSchema.parse(body)
-  16 |
-  17 |     // Get user agent and IP for additional context
- ⨯ Error: useTracking must be used within a TrackingProvider
-    at useTracking (src/contexts/TrackingContext.tsx:163:10)
-    at CatalogoPage (src/app/(public)/catalogo/page.tsx:44:74)
-  161 |   
-  162 |   if (context === undefined) {
-> 163 |     throw new Error('useTracking must be used within a TrackingProvider');
-      |          ^
-  164 |   }
-  165 |   
-  166 |   return context; {
-  digest: '428805612'
+✅ Webhook sent successfully: whatsapp_captured
+ POST /api/unlock-prices 200 in 207ms
+ ✓ Compiled /api/products in 90ms (972 modules)
+ GET /api/products 200 in 116ms
+ ✓ Compiled /api/orders in 97ms (975 modules)
+ POST /api/orders 405 in 110ms
+ ✓ Compiled /api/order/complete in 80ms (182 modules)
+Erro ao processar pedido: ZodError: [
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "sessionId"
+    ],
+    "message": "Invalid input"
+  }
+]
+    at POST (webpack-internal:///(rsc)/./src/app/api/order/complete/route.ts:38:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:55778
+    at async eO.execute (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46527)
+    at async eO.handle (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57112)
+    at async doRender (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1352:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1574:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1482:28)
+    at async DevServer.renderPageComponent (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1908:24)
+    at async DevServer.renderToResponseImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1946:32)
+    at async DevServer.pipeImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:921:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:817:17)
+    at async /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/order/complete 400 in 117ms
+Erro ao processar pedido: ZodError: [
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "uuid",
+    "pattern": "/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000)$/",
+    "path": [
+      "sessionId"
+    ],
+    "message": "Invalid input"
+  }
+]
+    at POST (webpack-internal:///(rsc)/./src/app/api/order/complete/route.ts:38:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:55778
+    at async eO.execute (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46527)
+    at async eO.handle (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57112)
+    at async doRender (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1352:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1574:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1482:28)
+    at async DevServer.renderPageComponent (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1908:24)
+    at async DevServer.renderToResponseImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1946:32)
+    at async DevServer.pipeImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:921:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:817:17)
+    at async /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/order/complete 400 in 7ms
+🔍 Buscando contato no Chatwoot: {
+  phoneNumber: '(11) 98765-4321',
+  searchQueries: [ '11987654321', '+5511987654321', '(11) 98765-4321' ]
 }
- GET /catalogo 500 in 187ms
- POST /api/tracking 200 in 28ms
- ✓ Compiled in 403ms (812 modules)
- ✓ Compiled in 285ms (812 modules)
- ✓ Compiled in 244ms (812 modules)
- ✓ Compiled in 197ms (812 modules)
- ✓ Compiled in 173ms (812 modules)
- ✓ Compiled in 311ms (809 modules)
- ✓ Compiled in 207ms (809 modules)
- ✓ Compiled in 497ms (1795 modules)
- ✓ Compiled in 197ms (809 modules)
- ✓ Compiled in 453ms (1795 modules)
- ✓ Compiled in 423ms (1795 modules)
- ✓ Compiled in 198ms (809 modules)
- ✓ Compiled in 494ms (1792 modules)
- ✓ Compiled in 510ms (807 modules)
- ✓ Compiled in 250ms (807 modules)
- ✓ Compiled in 294ms (807 modules)
- ✓ Compiled in 557ms (807 modules)
- ✓ Compiled in 238ms (807 modules)
- ✓ Compiled in 470ms (807 modules)
- ✓ Compiled in 243ms (807 modules)
- ✓ Compiled in 212ms (807 modules)
- ✓ Compiled in 212ms (807 modules)
- ○ Compiling / ...
- ✓ Compiled / in 519ms (1006 modules)
- GET / 200 in 883ms
- ✓ Compiled /api/tracking in 247ms (1094 modules)
- POST /api/tracking 200 in 338ms
- ✓ Compiled /api/auth/[...nextauth] in 102ms (1096 modules)
- ✓ Compiled (1233 modules)
- GET /api/kits 200 in 442ms
- GET /api/kits 200 in 561ms
- GET /api/auth/session 200 in 502ms
- GET /api/auth/session 200 in 409ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 10ms
- ⨯ Error: useTracking must be used within a TrackingProvider
-    at useTracking (src/contexts/TrackingContext.tsx:163:10)
-    at CatalogoPage (src/app/(public)/catalogo/page.tsx:44:74)
-  161 |   
-  162 |   if (context === undefined) {
-> 163 |     throw new Error('useTracking must be used within a TrackingProvider');
-      |          ^
-  164 |   }
-  165 |   
-  166 |   return context; {
-  digest: '428805612'
+⚠️ Chatwoot não configurado - variáveis de ambiente faltando
+⚠️ Chatwoot não configurado - variáveis de ambiente faltando
+⚠️ Chatwoot não configurado - variáveis de ambiente faltando
+❌ Contato não encontrado no Chatwoot
+🔍 Informações do Chatwoot: {
+  chatwootContactId: null,
+  assignedSeller: null,
+  contactName: null,
+  contactEmail: null
 }
- ⚠ Unsupported metadata viewport is configured in metadata export in /catalogo. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /catalogo. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- GET /catalogo 500 in 308ms
- ✓ Compiled /_not-found in 435ms (1804 modules)
- GET /_next/static/chunks/app/(public)/layout.js 404 in 601ms
- GET /_next/static/chunks/app/(public)/catalogo/page.js 404 in 544ms
- ✓ Compiled /favicon.ico in 117ms (1024 modules)
- GET /favicon.ico 200 in 185ms
- ⨯ Error: useTracking must be used within a TrackingProvider
-    at useTracking (src/contexts/TrackingContext.tsx:163:10)
-    at CatalogoPage (src/app/(public)/catalogo/page.tsx:44:74)
-  161 |   
-  162 |   if (context === undefined) {
-> 163 |     throw new Error('useTracking must be used within a TrackingProvider');
-      |          ^
-  164 |   }
-  165 |   
-  166 |   return context; {
-  digest: '428805612'
+📦 Pedido salvo no banco: { orderNumber: 27828, totalValue: 195, totalItems: 30 }
+📱 EVOLUTION API - Enviando mensagem WhatsApp:
+Para: (11) 98765-4321
+Mensagem:
+🛍️ *NOVO PEDIDO ATACADO #27828*
+
+📦 *Produtos:*
+• FO12 - 30 unid - R$ 195,00
+
+📊 *Resumo:*
+Total de peças: 30
+Valor total: R$ 195,00
+
+✅ Pedido recebido!
+Em breve entraremos em contato para confirmar e processar seu pedido.
+Evolution API attempt 1/3 for number 5511987654321
+Evolution API request failed: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async EvolutionClient.makeRequest (webpack-internal:///(rsc)/./src/lib/evolution.ts:18:30)
+    at async EvolutionClient.sendText (webpack-internal:///(rsc)/./src/lib/evolution.ts:63:28)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/order/complete/route.ts:101:37)
+    at async /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:55778
+    at async eO.execute (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46527)
+    at async eO.handle (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57112)
+    at async doRender (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1352:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1574:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1482:28)
+    at async DevServer.renderPageComponent (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1908:24)
+    at async DevServer.renderToResponseImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1946:32)
+    at async DevServer.pipeImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:921:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:817:17)
+    at async /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  [cause]: Error: getaddrinfo ENOTFOUND your-evolution-api-url
+      at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+      at GetAddrInfoReqWrap.callbackTrampoline (node:internal/async_hooks:130:17) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'your-evolution-api-url'
+  }
 }
- ⚠ Unsupported metadata viewport is configured in metadata export in /catalogo. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /catalogo. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- GET /catalogo 500 in 495ms
- GET /_next/static/chunks/app/(public)/layout.js 404 in 97ms
- GET /_next/static/chunks/app/(public)/catalogo/page.js 404 in 95ms
- GET /favicon.ico 200 in 10ms
- ✓ Compiled in 2.4s (1813 modules)
- ✓ Compiled in 735ms (807 modules)
- GET / 200 in 558ms
- ✓ Compiled /favicon.ico in 202ms (1094 modules)
- ✓ Compiled (1096 modules)
- GET /favicon.ico 200 in 348ms
- POST /api/tracking 200 in 514ms
- GET /favicon.ico 200 in 7ms
- GET /favicon.ico 200 in 13ms
- GET /favicon.ico 200 in 9ms
- GET /favicon.ico 200 in 10ms
- GET /favicon.ico 200 in 7ms
- ✓ Compiled in 3.5s (1813 modules)
- ✓ Compiled in 1922ms (1813 modules)
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: unexpected end of file
- ✓ Compiled in 2.4s (1813 modules)
- ✓ Compiled in 1155ms (1813 modules)
- ✓ Compiled in 1241ms (1813 modules)
- ✓ Compiled in 1202ms (1813 modules)
- ✓ Compiled in 646ms (807 modules)
- ✓ Compiled in 508ms (807 modules)
- ✓ Compiled in 641ms (807 modules)
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/cache/webpack/server-development/10.pack.gz_' -> '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/cache/webpack/server-development/10.pack.gz'
- ✓ Compiled in 966ms (1813 modules)
- ✓ Compiled in 1340ms (1813 modules)
- ✓ Compiled in 650ms (1813 modules)
- ✓ Compiled in 711ms (1813 modules)
- ✓ Compiled in 1212ms (1813 modules)
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/cache/webpack/client-development/0.pack.gz'
- ✓ Compiled / in 391ms (1007 modules)
- ⨯ [Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page.js'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page.js',
-  page: '/'
+Evolution API attempt 1 failed: fetch failed
+Evolution API attempt 2/3 for number 5511987654321
+Evolution API request failed: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async EvolutionClient.makeRequest (webpack-internal:///(rsc)/./src/lib/evolution.ts:18:30)
+    at async EvolutionClient.sendText (webpack-internal:///(rsc)/./src/lib/evolution.ts:63:28)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/order/complete/route.ts:101:37)
+    at async /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:55778
+    at async eO.execute (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46527)
+    at async eO.handle (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57112)
+    at async doRender (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1352:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1574:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1482:28)
+    at async DevServer.renderPageComponent (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1908:24)
+    at async DevServer.renderToResponseImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1946:32)
+    at async DevServer.pipeImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:921:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:817:17)
+    at async /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  [cause]: Error: getaddrinfo ENOTFOUND your-evolution-api-url
+      at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+      at GetAddrInfoReqWrap.callbackTrampoline (node:internal/async_hooks:130:17) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'your-evolution-api-url'
+  }
 }
- GET / 500 in 1103ms
- ○ Compiling /_error ...
- ✓ Compiled /_error in 2s (2128 modules)
- ⨯ [Error: Cannot find module 'critters'
-Require stack:
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/pages.runtime.dev.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_document.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/require.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-components.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/utils.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/options.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/index.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/next-config-ts/transpile-config.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/config.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array]
+Evolution API attempt 2 failed: fetch failed
+Evolution API attempt 3/3 for number 5511987654321
+Evolution API request failed: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async EvolutionClient.makeRequest (webpack-internal:///(rsc)/./src/lib/evolution.ts:18:30)
+    at async EvolutionClient.sendText (webpack-internal:///(rsc)/./src/lib/evolution.ts:63:28)
+    at async POST (webpack-internal:///(rsc)/./src/app/api/order/complete/route.ts:101:37)
+    at async /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:55778
+    at async eO.execute (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46527)
+    at async eO.handle (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57112)
+    at async doRender (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1352:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1574:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1482:28)
+    at async DevServer.renderPageComponent (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1908:24)
+    at async DevServer.renderToResponseImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:1946:32)
+    at async DevServer.pipeImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:921:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/base-server.js:817:17)
+    at async /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  [cause]: Error: getaddrinfo ENOTFOUND your-evolution-api-url
+      at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+      at GetAddrInfoReqWrap.callbackTrampoline (node:internal/async_hooks:130:17) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'your-evolution-api-url'
+  }
 }
- ⨯ [Error: Cannot find module 'critters'
-Require stack:
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/compiled/next-server/pages.runtime.dev.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/pages/_document.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/require.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-components.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/utils.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/options.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/swc/index.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/build/next-config-ts/transpile-config.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/config.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array]
+Evolution API attempt 3 failed: fetch failed
+❌ Falha ao enviar WhatsApp: All 3 attempts failed. Last error: fetch failed
+📤 Sending webhook: order_completed {
+  url: 'https://n8n.pmcell.shop/webhook/order-completed',
+  payload: {
+    event: 'order_completed',
+    timestamp: '2025-08-05T18:17:19.964Z',
+    customer: {
+      whatsapp: '(11) 98765-4321',
+      sessionId: '550e8400-e29b-41d4-a716-446655440000'
+    },
+    order: { items: [Array], totalItems: 30, totalValue: 195 },
+    behavior: {
+      timeOnSite: 0,
+      pagesVisited: [],
+      productsViewed: [],
+      searches: [],
+      kitInterest: undefined
+    }
+  }
 }
- ⨯ [Error: Cannot find module 'critters'
-Require stack:
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/post-process.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/render.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/module.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/builtin/_error.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-default-error-components.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array]
-}
-[Error: ENOENT: no such file or directory, open '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page.js'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/server/app/page.js',
-  page: '/'
-}
- ⨯ [TypeError: __webpack_require__(...) is not a constructor]
- ⨯ [TypeError: __webpack_require__(...) is not a constructor]
- ⨯ [Error: Cannot find module 'critters'
-Require stack:
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/post-process.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/render.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/module.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/builtin/_error.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-default-error-components.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array]
-}
-[Error: Cannot find module 'critters'
-Require stack:
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/post-process.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/render.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/module.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/route-modules/pages/builtin/_error.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/load-default-error-components.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/dev/next-dev-server.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/next.js
-- /Users/nycolasmancini/Desktop/catalogo/atacado-celular/node_modules/next/dist/server/lib/start-server.js] {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array]
-}
- ✓ Compiled in 1801ms (2054 modules)
- ✓ Compiled in 656ms (953 modules)
- ✓ Compiled in 1017ms (2054 modules)
- ✓ Compiled in 565ms (953 modules)
- ✓ Compiled in 703ms (2054 modules)
- ✓ Compiled in 1371ms (2054 modules)
- ✓ Compiled in 13.8s (2054 modules)
- ✓ Compiled in 1621ms (953 modules)
-   Reload env: .env
- ✓ Compiled in 586ms (2040 modules)
- ✓ Compiled in 1349ms (953 modules)
- ✓ Compiled in 2.9s (2031 modules)
- ✓ Compiled in 1273ms (2045 modules)
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/cache/webpack/client-development/0.pack.gz_' -> '/Users/nycolasmancini/Desktop/catalogo/atacado-celular/.next/cache/webpack/client-development/0.pack.gz'
- ✓ Compiled in 6.9s (2045 modules)
- ✓ Compiled in 1470ms (2045 modules)
- ✓ Compiled in 923ms (2045 modules)
- ✓ Compiled in 877ms (2045 modules)
- ✓ Compiled in 667ms (2045 modules)
- ✓ Compiled in 1504ms (2045 modules)
- ✓ Compiled in 3.2s (949 modules)
-   Reload env: .env
- ✓ Compiled in 2.2s (2031 modules)
-   Reload env: .env.local
- ✓ Compiled in 1469ms (2031 modules)
+✅ Webhook sent successfully: order_completed
+ POST /api/order/complete 200 in 3101ms
+ ✓ Compiled /api/orders/update-whatsapp in 203ms (188 modules)
+ POST /api/orders/update-whatsapp 200 in 239ms
+ ✓ Compiled in 523ms (809 modules)
+ ✓ Compiled in 357ms (809 modules)
 [?25h

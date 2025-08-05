@@ -13,6 +13,9 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Garantir que o Prisma está conectado
+    await prisma.$connect()
+
     // Buscar usuário pelo email
     const user = await prisma.admin.findUnique({
       where: { email },

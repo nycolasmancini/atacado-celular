@@ -62,8 +62,8 @@ export default function LandingPage() {
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="text-4xl mb-4">🚚</div>
-              <h3 className="text-xl font-semibold mb-2">Entrega 24h</h3>
-              <p className="text-gray-600">Receba rapidamente para não perder vendas</p>
+              <h3 className="text-xl font-semibold mb-2">Receba em 24h</h3>
+              <p className="text-gray-600">Na região do ABC Paulista</p>
             </div>
           </div>
         </div>

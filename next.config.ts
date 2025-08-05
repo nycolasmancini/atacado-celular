@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
   },
   images: {
     domains: ['via.placeholder.com'],
+    unoptimized: true, // Temporariamente desabilitar otimização para evitar erros 400
+  },
+  // Disable experimental features that might cause telemetry issues
+  experimental: {
+    instrumentationHook: false,
   },
 };
 
