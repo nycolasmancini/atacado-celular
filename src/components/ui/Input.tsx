@@ -11,15 +11,19 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   icon?: React.ReactNode;
 }
 
-// Simple phone mask for Brazilian format: (XX) XXXXX-XXXX
+// Brazilian phone mask for both formats: (XX) XXXX-XXXX or (XX) XXXXX-XXXX
 const applyPhoneMask = (value: string): string => {
   const numbers = value.replace(/\D/g, '');
   
   if (numbers.length <= 2) {
     return `(${numbers}`;
-  } else if (numbers.length <= 7) {
+  } else if (numbers.length <= 6) {
     return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
+  } else if (numbers.length <= 10) {
+    // Format for 10 digits: (XX) XXXX-XXXX
+    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 6)}-${numbers.slice(6, 10)}`;
   } else {
+    // Format for 11 digits: (XX) XXXXX-XXXX
     return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
   }
 };

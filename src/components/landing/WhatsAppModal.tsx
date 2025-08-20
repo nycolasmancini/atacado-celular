@@ -11,14 +11,14 @@ import { event, customEvent, MetaEvents } from "@/lib/meta-pixel";
 import { trackWhatsAppSubmission } from "@/lib/tracking";
 import toast from "react-hot-toast";
 
-// Schema de validação com regex brasileiro
+// Schema de validação com regex brasileiro para 10 ou 11 dígitos
 const whatsappSchema = z.object({
   whatsapp: z
     .string()
     .min(1, "WhatsApp é obrigatório")
     .regex(
-      /^\(\d{2}\)\s\d{5}-\d{4}$/,
-      "Formato inválido. Use: (XX) XXXXX-XXXX"
+      /^\(\d{2}\)\s\d{4,5}-\d{4}$/,
+      "Formato inválido. Use: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX"
     ),
 });
 
@@ -130,7 +130,7 @@ export function WhatsAppModal({ isOpen, onSuccess, onClose }: WhatsAppModalProps
             📦 Calcular Frete + Ver Preços
           </h2>
           <p className="text-white/90">
-            Insira seu WhatsApp para calcular o frete e liberar os preços atacadistas por 7 dias
+            Insira seu WhatsApp (com ou sem o 9) para calcular o frete e liberar os preços atacadistas por 7 dias
           </p>
         </div>
 
@@ -140,7 +140,7 @@ export function WhatsAppModal({ isOpen, onSuccess, onClose }: WhatsAppModalProps
             {...register("whatsapp")}
             type="tel"
             mask="(99) 99999-9999"
-            placeholder="(11) 99999-9999"
+            placeholder="(11) 9999-9999 ou (11) 99999-9999"
             error={errors.whatsapp?.message}
             className="bg-white/10 border-white/30 text-white placeholder:text-white/70 focus:ring-white/50 focus:border-white"
             icon={
